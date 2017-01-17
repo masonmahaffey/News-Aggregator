@@ -3,9 +3,9 @@ import ReactDOM from 'react-dom';
 import App from './App';
 import './index.css';
 import { Router, Route, hashHistory, IndexRoute } from 'react-router'
-import General from './general/General.jsx'
-import Entertainment from './entertainment/Entertainment.jsx'
-import Sports from './sports/Sports.jsx'
+import General from './general/General.js'
+import Entertainment from './entertainment/Entertainment.js'
+import Sports from './sports/Sports.js'
 import Business from './business/Business.js'
 
 //this is a comment

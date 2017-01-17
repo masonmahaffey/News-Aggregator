@@ -1,5 +1,7 @@
 import React, { Component } from 'react';
 import $ from 'jquery'
+import greenArrow from './images/green.png'
+import redArrow from './images/red.png'
 
 var symbol = 'BAC+FB+TSLA+WPX+WFC+RAD+FCX+AAPL+F+GE+JCP+JPM+VALE+FCAU+FTI+T+GOOG+S+DOW+TWTR+CSCO+INTC+QQQ+MU+XIV+NVDA+NFLX+JNJ+HBAN+ARRY+CMCSA+TVIX+GRPN+ARIA+MSFT+SIRI'
 var stockFront = 'http://query.yahooapis.com/v1/public/yql?q=select%20*%20from%20yahoo.finance.quotes%20where%20symbol%20in%20("'
@@ -190,11 +192,15 @@ class StockHeader extends Component{
     		hour: Number,
     		minutes: Number};
     	this.componentDidMount = this.componentDidMount.bind(this);
+    	this.componentWillUnmount = this.componentWillUnmount.bind(this);
     	this.changeTime = this.changeTime.bind(this);
 	};
   	componentDidMount() {
   		var newToday = setInterval(this.changeTime, 1000);
   		this.setState({today: newToday})
+  	};	
+  	componentWillUnmount() {
+  		clearInterval(this.changeTime)
   	};	
 	changeTime () {
 		var todayDate = new Date().toString().slice(0,24)
@@ -233,8 +239,8 @@ class Stock extends Component{
 				<div className="text-center stock-rows">				
 					{this.props.stocks.map(function(stock, index){
 						var bgColor = "";  var arrowImg = ""
-						if(stock.change>=0){bgColor='#76ff03'; arrowImg = './images/green.png'
-						}else{bgColor='#ef5350'; arrowImg = './images/red.png'}
+						if(stock.change>=0){bgColor='#76ff03'; arrowImg = greenArrow
+						}else{bgColor='#ef5350'; arrowImg = redArrow}
 						return(
 							<div className="col-xs-6 col-sm-4 col-md-3 text-center eachStock" key={index} 
 								style={{padding: 5, backgroundColor:'#091749', color:bgColor, fontSize:18, border: '1px white solid'}}>
@@ -274,7 +280,7 @@ class BuildStocks extends Component{
 					<div className="hidden-xs col-sm-4">${this.props.stock.price}</div>
 					<div className="col-xs-7 col-sm-4" style={{padding:0}}>
 						{this.props.stock.change} <img style={{padding:0, float:'right', marginTop:3, marginLeft:5, width:20, height:18}} 
-						src={require(this.props.arrowImg)} alt="." />
+						src={this.props.arrowImg} alt="." />
 					</div>									
 				</div>
 				<div style={{display:showName, maxHeight:25}} className="col-xs-12">
@@ -296,15 +302,16 @@ class Stocks extends Component {
 			var stockArrMin = []
 			for(let i = 0; i < stockArr.length; i++){
 				if(stockArr[i].symbol!==null){
-					if(stockArr[i].DaysHigh==null){stockArr[i].DaysHigh = "Closed"};
+					if(stockArr[i].DaysHigh==null){stockArr[i].DaysHigh = "-"};
 					if(stockArr[i].Change==null){stockArr[i].Change = "0"};
-					var stockSymbol = {
+					var eachStock = {
 						symbol: stockArr[i].symbol,
 						price: stockArr[i].DaysHigh,
 						change: stockArr[i].Change,
 						name: stockArr[i].Name
 					}
-					stockArrMin.push(stockSymbol)
+					stockArrMin.push(eachStock)
+					
 				}
 			}
 			this.setState({stocks: stockArrMin})

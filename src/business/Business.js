@@ -1,7 +1,7 @@
 import React, { Component } from 'react';
 import './business.css';
-import Stocks from './BusinessStocks.jsx'
-import { BusinessInsider, Fortune, FinancialTimes } from './BusinessArticles.jsx'
+import Stocks from './BusinessStocks.js'
+import { BusinessInsider, Fortune, FinancialTimes } from './BusinessArticles'
 
 
 class Business extends Component{
