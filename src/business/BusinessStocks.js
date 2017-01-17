@@ -196,11 +196,11 @@ class StockHeader extends Component{
     	this.changeTime = this.changeTime.bind(this);
 	};
   	componentDidMount() {
-  		var newToday = setInterval(this.changeTime, 1000);
-  		this.setState({today: newToday})
+  		window.newToday = setInterval(this.changeTime, 1000);
+  		this.setState({today: window.newToday})
   	};	
   	componentWillUnmount() {
-  		clearInterval(this.changeTime)
+  		clearInterval(window.newToday)
   	};	
 	changeTime () {
 		var todayDate = new Date().toString().slice(0,24)
