@@ -332,6 +332,6 @@ class Stocks extends Component {
   	}
 }
 
-// haha
+// hahaaa
 export default Stocks;
 
