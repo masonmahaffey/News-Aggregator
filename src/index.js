@@ -8,7 +8,7 @@ import Entertainment from './entertainment/Entertainment.js'
 import Sports from './sports/Sports.js'
 import Business from './business/Business.js'
 
-//this is a comment
+//this is a comment, 2
 
 ReactDOM.render(
 	<Router history={hashHistory}>
