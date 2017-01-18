@@ -11,8 +11,9 @@ body{
 
 .firstsports{
 background-color: forestgreen;
-float: right;
-width: 35%;
+border: 1px solid black;
+float: left;
+width: 25%;
 height: 300px;
 margin: 10px;
 text-align: center;
@@ -23,14 +24,34 @@ font-size: 40px;
 .secondsports{
 	background-color: lightgrey;
 	float: left;
-	margin: 15px;
+	margin: auto;
+	width: 45%;
+	height: 100%;
+	margin-top: 10px;
+	border: 1px solid black;
+	
+}
 
+.espnTitles{
+	font-size: 12px;
+	text-align: left;
+	margin: auto;
+	padding-top: 10px;
+}
 
+h1{
+	text-align: center;
+
+}
+
+p{
+	padding: 10px;
 }
 
 .thirdsports{
-	float: left;
+	float: right;
 	margin:  10px;
+	border: 1px solid black;
+	width: 23%;
+
 }
-/* 
-style={{backgroundColor:'lightgreen', float:'left', width:'50%', height:'50%'} */
