@@ -1,0 +1,124 @@
+.active{
+	background-color: #0099ff !important;
+	color: white !important;
+	font-size: 20px !important;
+}
+@keyframes rotateLoading{
+	0%{
+		transform: rotate(0deg);
+	}
+	100%{
+		transform: rotate(720deg);
+	}
+}
+#nobr {
+	border-radius: 0px 0px 0px 0px;
+}
+
+.left-side, .middle-side, .right-side {
+	height: 300px;
+}
+
+.left-side {
+	background-color: white;
+
+}
+
+.left-side-inner {
+	margin-left: 30%;
+	margin-top: 10px;
+}
+
+.top-stories{
+}
+
+.story-elements {
+	font-size: 19px;
+	color: black;
+}
+
+.middle-side {
+	background-color: lightgrey;
+	height: 600px;
+}
+
+.middle-side-inner {
+	height: 100px;
+}
+.middle-side-inner-lower {
+	height: 40px;
+	display: inline-block;
+}
+
+.middle-image-left {
+	width: 150px;
+	height: 100px;
+	float: left;
+
+}
+
+.middle-paragraph {
+	margin-left: 165px;
+}
+
+.right-side {
+	background-color: red;
+}
+
+img {
+	max-width: 100% !important;
+	max-height: 100% !important;
+}
+
+.marginstop {
+		margin-top: 60px;
+}
+
+.row {
+	margin-top: 52px;
+}
+
+.upVote-button {
+	display: inline-block;
+	border-radius: 10px 10px 0px 0px;
+	background-color: lightgrey;
+	width: 100%;
+	color: black;
+
+}
+.downVote-button {
+	display: inline-block;
+	border-radius: 0px 0px 10px 10px;
+	background-color: lightgrey;
+	width: 100%;
+	color: black;
+}
+
+.h-1{width: 100%; position: fixed; z-index: 9; background-color: #333333;}
+.h-2{border: none; width: 100%; background-color: #333333;}
+.h-3{color:white;}
+.h-4{text-align:right;}
+.h-5{margin-right: 3px}
+.place-hold-nav{background-color: #262222; height: 50px; width: 100%}
+.c1c1{position:fixed; z-index:9;width: 100%; background-color:lightblue;overflow: hidden;}
+.c1c2{height:100vw; width: 100%; background-color:yellow;}
+.c1c3{width: 100%; background-color:yellow;}
+.c1c4{width: 100%; background-color:lightgreen;}
+img{height:120px; float:left; margin-right: 20px}
+.height{height:150px;}
+.scrollingNews{height: 50px; width:6000px; overflow: hidden;
+animation: scroll 200s linear infinite}
+@keyframes scroll{
+	0%{
+		margin-left: 500px
+	}
+	100%{
+		margin-left: -5500px;
+	}	
+}
+.inline-list li{
+	display: inline-block;
+}
+.inline-list{
+	display: inline-block;	
+}
