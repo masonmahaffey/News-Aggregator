@@ -38,7 +38,6 @@ class SearchResults extends Component{
 	render(){
 		return(
 			<div style={{fontSize:17}}>
-				<h4 style={{textAlign:'center'}}>styling or background needed, filter source array</h4>
 			 	{this.state.searchedArticlesArray.map((article, index)=>{
 			 		var searchInput = this.props.params.newsToSearchFor.toLowerCase()
 			 		var indexOfTitle = article.title.toLowerCase().indexOf(searchInput)
@@ -70,14 +69,9 @@ class SearchResults extends Component{
 			 			var highlightText = article.title.slice(indexOfTitle, indexOfTitle + searchInput.length)
 			 			var backText = article.title.slice(indexOfTitle + searchInput.length)
 						return(
-							<div className='col-sm-6 col-md-3' key={index} style={{maxHeight:330,marginBottom:5,overflow:'hidden'}} >
-								<img src={article.urlToImage} alt='a' style={{width:'100%', height:'100%'}}/>
-								<a href={article.url} style={{fontSize:15}}>	
-									{frontText}
-									<span style={{backgroundColor:'yellow'}}>{highlightText}</span>
-									{backText}
-								</a><br/>
-								<div style={{fontSize:13, color:'grey'}}><span style={{float:'left'}}>{authorText}</span><span style={{float:'right'}}>{publishText}</span></div>
+							<div className='col-xs-offset-9 col-xs-3' key={index} style={{overflow:'scroll'}} >
+								<RenderSearchedNews imageUrl={article.urlToImage} url={article.url} frontText={frontText} highlightText={highlightText}
+									backText={backText} authorText={authorText} publishText={publishText} />
 							</div>
 						)			 		
 			 		}else{
@@ -88,5 +82,50 @@ class SearchResults extends Component{
 		)
 	}
 }
+class RenderSearchedNews extends Component{
+	constructor(props) {
+		super(props);
+		this.state = {
+			displayVariable: 'none'
+		}
+		this.openOnClick = this.openOnClick.bind(this)
+	}
+	openOnClick(){
+		this.setState({
+			displayVariable: 'block'
+		})
+	}
+	render(){
+		return(
+			<div onClick={this.openOnClick}>
+				<div>{this.props.frontText}
+					<span style={{backgroundColor:'yellow'}}>{this.props.highlightText}</span>
+					{this.props.backText}
+				</div>
+				<SearchedNewsDescription imageUrl={this.props.imageUrl} url={this.props.url} frontText={this.props.frontText} 
+				highlightText={this.props.highlightText} backText={this.props.backText} authorText={this.props.authorText} 
+				publishText={this.props.publishText} open={this.state.displayVariable}/>
+				<div style={{fontSize:13, color:'grey'}}><span style={{float:'left'}}>{this.props.authorText}</span><span style={{float:'right'}}>{this.props.publishText}</span></div>
+			</div>
+		)
+	}
+}
+class SearchedNewsDescription extends Component{
+	render(){
+		return(
+			<div style={{display:this.props.open, position:'fixed', left:0}}>
+				<img src={this.props.imageUrl} alt='a'/>
+			</div>
+		)
+	}
+}
+
 
 export default SearchResults
+								// <img src={article.urlToImage} alt='a' style={{width:'100%', height:'100%'}}/>
+								// <a href={article.url} style={{fontSize:15}}>	
+								// 	{frontText}
+								// 	<span style={{backgroundColor:'yellow'}}>{highlightText}</span>
+								// 	{backText}
+								// </a><br/>
+								// <div style={{fontSize:13, color:'grey'}}><span style={{float:'left'}}>{authorText}</span><span style={{float:'right'}}>{publishText}</span></div>
