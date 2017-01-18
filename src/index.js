@@ -7,6 +7,9 @@ import General from './general/General.js'
 import Entertainment from './entertainment/Entertainment.js'
 import Sports from './sports/Sports.js'
 import Business from './business/Business.js'
+import Global from './global/Global.js'
+import SearchResults from './search/SearchResults.js'
+
 
 ReactDOM.render(
 	<Router history={hashHistory}>
@@ -15,6 +18,8 @@ ReactDOM.render(
 			<Route path="entertainment" component={Entertainment} />
 			<Route path="sports" component={Sports} />
 			<Route path="business" component={Business} />
+			<Route path="global" component={Global} />
+			<Route path="news-search/:newsToSearchFor" component={SearchResults} />
 		</Route>
 	</Router>,	
   document.getElementById('root')

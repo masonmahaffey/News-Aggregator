@@ -65,9 +65,6 @@ var Component1Child2 = React.createClass({
 })
 
 
-
-
-
 var General = React.createClass({
 	render: function(){
 		return(

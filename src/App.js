@@ -4,8 +4,21 @@ import { IndexLink, Link } from 'react-router'
 
 //here is a commented change
 
-var ToggleRoutes = React.createClass({
-  render: function(){
+
+
+class ToggleRoutes extends React.Component {
+  constructor(props) {
+    super(props);
+    this.onInputChangeSaveValue = this.onInputChangeSaveValue.bind(this)
+    this.state = {
+    }
+  }
+  onInputChangeSaveValue(e){
+    e.preventDefault();
+    var inputValue = e.target.value
+    this.props.displaySearchedNews(inputValue)
+  }
+  render(){
     return(
     <div className="container h-1">
     <nav className="navbar navbar-inverse navbar-fixed-top h-2" id="nobr">
@@ -18,25 +31,26 @@ var ToggleRoutes = React.createClass({
           <li><Link to="/entertainment" activeClassName="active">Entertainment</Link></li>
           <li><Link to="/sports" activeClassName="active">Sports</Link></li>
           <li><Link to="/business" activeClassName="active">Business</Link></li>
+          <li><Link to="/global" activeClassName="active">Global</Link></li>
         </ul>
         <ul className="nav navbar-nav visible-xs inline-list">
           <li><IndexLink to="/" activeClassName="active">General</IndexLink></li>
           <li><Link to="/entertainment" activeClassName="active">Entertainment</Link></li>
           <li><Link to="/sports" activeClassName="active">Sports</Link></li>
           <li><Link to="/business" activeClassName="active">Business</Link></li>
+          <li><Link to="/global" activeClassName="active">Global</Link></li>
         </ul>       
       <form className="navbar-form h-4 hidden-xs">
         <div className="form-group">
-          <input type="text" className="form-control h-5" placeholder="ideas for this?"/>
+          <input onChange={this.onInputChangeSaveValue} type="text" className="form-control h-5" placeholder="Search Trending News"/>
         </div>
-        <button type="submit" className="btn btn-default">Search</button>
       </form>
       </div>
     </nav> 
     </div>
     )
   }
-});
+};
 
 function PlaceHolderForNavBar(){
   return(
@@ -44,16 +58,24 @@ function PlaceHolderForNavBar(){
   )
 }
 
-var App = React.createClass({
-  render: function(){
+class App extends React.Component{
+  constructor(props) {
+    super(props);
+    this.displaySearchedNews = this.displaySearchedNews.bind(this)
+  }
+  displaySearchedNews(searchTextFromChild){
+    this.props.router.push('/news-search/'+ searchTextFromChild)
+  }
+  render(){
     return(
       <div>
-        <ToggleRoutes />
+        <ToggleRoutes displaySearchedNews={this.displaySearchedNews} />
         <PlaceHolderForNavBar />
-        {this.props.children}
+        {this.props.children}       
       </div>
     );
   }
-})
+}
+
 
 export default App;

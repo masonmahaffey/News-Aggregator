@@ -9,9 +9,7 @@ class Articles extends Component{
 		return(
 			<div>
 				{this.props.articles.map(function(article, index){
-					// if(article.description.length > 90){
-					// 	article.description = article.description.slice(0,90) + "..."
-					// }
+					
 					return(
 						<div className="each-article" key={index}>
 							<a style={{fontSize:17.5}} href={article.url}>{article.title}</a><br/>

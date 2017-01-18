@@ -216,7 +216,7 @@ class StockHeader extends Component{
 	}
 	render(){
 		return(
-			<div className="stock-header" style={{display:'inline-block'}}>
+			<div className="stock-header"  style={{display:'inline-block'}}>
 				<TimeTicker today={this.state.today} />
 				<NYSE today={this.state}/>
 				<HKEX today={this.state}/>
@@ -320,18 +320,19 @@ class Stocks extends Component {
 
   	render() {
     	return(
-    		<div>
+    		<div style={{backgroundColor:'#091749'}}>
     			<div style={{position:'fixed', zIndex:8, backgroundColor:'#091749', color:'white'}}>
     				<StockHeader />
     				<Stock stocks={this.state.stocks} />
     				<div style={{position:'fixed', backgroundColor:'white', width:'100%', zIndex:11, height:4, borderBottom:'solid 3px #091749'}}></div>
     			</div>
-    			<div style={{height:138, marginBottom:10}}></div>
+    			<div style={{height:128, marginBottom:20}}></div>
     		</div>
 		)
   	}
 }
 
-// hahaaa
+// hahaaavar 
 export default Stocks;
+
 
