@@ -298,6 +298,7 @@ class Stocks extends Component {
 	};
   	componentDidMount() {
 		$.getJSON(stockUrl, (stockData) =>{
+			console.log(stockData)
 			var stockArr = stockData.query.results.quote
 			var stockArrMin = []
 			for(let i = 0; i < stockArr.length; i++){
@@ -306,11 +307,12 @@ class Stocks extends Component {
 					if(stockArr[i].Change==null){stockArr[i].Change = "0"};
 					var eachStock = {
 						symbol: stockArr[i].symbol,
-						price: stockArr[i].DaysHigh,
-						change: stockArr[i].Change,
+						price: stockArr[i].LastTradePriceOnly,
+						change: stockArr[i].EPSEstimateNextQuarter,
 						name: stockArr[i].Name
 					}
 					stockArrMin.push(eachStock)
+
 					
 				}
 			}

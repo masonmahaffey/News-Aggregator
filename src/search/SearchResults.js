@@ -49,8 +49,9 @@ class SearchResults extends Component{
 				 		var rightNow = new Date().getTime()
 				 		var daysAgo = (rightNow - publishedTime)/1000/60/60/24
 				 		var hoursAgo = daysAgo*24; 
+				 		var authorText = ""
 				 		var publishText = ""
-				 		if(article.author){publishText = "By " + article.author + " "}
+				 		if(article.author){authorText = "By " + article.author + " "}
 				 		if(daysAgo>1){
 				 			hoursAgo = (daysAgo - Math.floor(daysAgo))*24; 
 				 			publishText += Math.floor(daysAgo) + " days "
@@ -64,17 +65,19 @@ class SearchResults extends Component{
 				 			publishText += Math.floor(minutesAgo) + " minutes ago"
 				 		}else{publishText += Math.floor(minutesAgo) + " minutes ago"};
 				 		if(daysAgo>5){publishText = ""}
+				 		if(authorText.length>30){authorText=authorText.slice(0,30)+'...'}
 			 			var frontText = article.title.slice(0, indexOfTitle)
 			 			var highlightText = article.title.slice(indexOfTitle, indexOfTitle + searchInput.length)
 			 			var backText = article.title.slice(indexOfTitle + searchInput.length)
 						return(
-							<div key={index}>
-								<a href={article.url}>
+							<div className='col-sm-6 col-md-3' key={index} style={{maxHeight:330,marginBottom:5,overflow:'hidden'}} >
+								<img src={article.urlToImage} alt='a' style={{width:'100%', height:'100%'}}/>
+								<a href={article.url} style={{fontSize:15}}>	
 									{frontText}
 									<span style={{backgroundColor:'yellow'}}>{highlightText}</span>
 									{backText}
-								</a>
-								<span style={{marginLeft:30, fontSize:13, color:'grey'}}>{publishText}</span>
+								</a><br/>
+								<div style={{fontSize:13, color:'grey'}}><span style={{float:'left'}}>{authorText}</span><span style={{float:'right'}}>{publishText}</span></div>
 							</div>
 						)			 		
 			 		}else{
