@@ -9,33 +9,13 @@ var urlTail = ',us&appid=0ea662971e6d6306ad9a84ede4d36865'
 
 
 class Results extends Component {
-	constructor(props) {
-		super(props);
-		this.state = {
-			temp:"",
-			description: "",
-			iconUrl: ""
-		}
-		this.componentDidMount = this.componentDidMount.bind(this)
-	}
-	componentDidMount() {
-		var url = weatherUrl + this.props.input + urlTail
-		$.getJSON(url, (weatherData) => {
-			// console.log(weatherData)
-			var temp = weatherData.main.temp;
-			// var temp = 3
-			var description = weatherData.weather[0].description;
-			var iconUrl = 'http://openweathermap.org/img/w/' + weatherData.weather[0].icon + ".png";
-			this.setState({
-				temp: temp,
-				iconUrl: iconUrl,
-				description: description
-			})
-		})
-	}
 	render(){
 		return(
-			<div><img alt='aa' src={this.state.iconUrl} /> </div>
+			<div>
+				{this.props.propertyOfResultsNamedParentsState.temp} 
+				<img alt='aa' src={this.props.propertyOfResultsNamedParentsState.iconUrl} /> 
+				{this.props.propertyOfResultsNamedParentsState.name}
+			</div>
 		)
 	}
 }
@@ -44,15 +24,30 @@ class Results extends Component {
 var WeatherSearchSubmit = React.createClass({
 	getInitialState: function() {
 		return({
-			value: ""
+			temp:"",
+			description: "",
+			iconUrl: "",
+			zip: "",
+			name:""
 		})
 	},
 	weatherSearchSubmit: function(event){
 		event.preventDefault();
-		this.setState({
-			value: event.target[0].value
-		}) 
-
+		var url = weatherUrl + event.target[0].value + urlTail
+		$.getJSON(url, (weatherData) => {
+			console.log(weatherData)
+			var temp = weatherData.main.temp;
+			var description = weatherData.weather[0].description;
+			var iconUrl = 'http://openweathermap.org/img/w/' + weatherData.weather[0].icon + ".png";
+			var cityName = weatherData.name;
+			this.setState({
+				temp: temp,
+				iconUrl: iconUrl,
+				description: description,
+				zip:this.props.input,
+				name: cityName
+			})
+		})
 	},
 	render: function(){
 		// console.log(this.state.value)
@@ -64,7 +59,7 @@ var WeatherSearchSubmit = React.createClass({
 		     			Search
 		     		</button>
 			   </form>
-			   <Results input={this.state.value}/>
+			   <Results propertyOfResultsNamedParentsState={this.state}/>
 		   </div>
 		)
 	}
