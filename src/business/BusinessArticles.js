@@ -85,7 +85,7 @@ class Fortune extends Component{
 	}
 	render (){
 		return(
-			<div className="col-xs-11 col-sm-7 col-md-3" style={{float:'right', margin:5, marginTop:50}}>
+			<div className="col-xs-11 col-sm-7 col-md-3" style={{backgroundColor: '#F3F1F4',float:'right', margin:5, marginTop:50}}>
 				<div style={{height:'100%'}}>
 					<img alt='b' src={require('./images/fortune.png')} style={{
 					width:'50%', height:'50%', margin:'20px 24% 20px'}} />

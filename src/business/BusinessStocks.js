@@ -231,11 +231,28 @@ class StockHeader extends Component{
 		)
 	}
 }
+class StockSearch extends Component{
+	render(){
+		return(
+			<div className="stock-wrapper col-xs-4" style={{position:'fixed', left:0, height:'45vh'}}> 
+				<div className="text-center col-xs-12" style={{marginTop:40,padding: 4, backgroundColor:'#2E2B31', height:'35vh', borderBottom:'1px #222222 solid', zIndex:15}}>
+					<form onSubmit={this.stockSearchSubmit}>
+		     			<input type="text" placeholder="Search any stock" />
+		     			<button type="submit" className="btn btn-success">Search</button>
+			   		</form>
+			  	</div>
+			  	<div className="text-center col-xs-12" style={{height:50, borderBottom:'1px #222222 solid', backgroundColor:'blue', zIndex:15}}>
+				</div>
+			</div>
+			
+		)
+	}
+}	
 
 class Stock extends Component{
 	render(){
 		return(
-			<div onClick={this.onHover} className="stock-wrapper col-xs-4" style={{position:'fixed', left:0, height:'93vh'}}>
+			<div onClick={this.onHover} className="stock-wrapper col-xs-4" style={{position:'fixed', top:'45vh', left:0, height:'60vh'}}>
 				<div className="text-center stock-rows">				
 					{this.props.stocks.map(function(stock, index){
 						var bgColor = "";  var arrowImg = ""
@@ -247,6 +264,7 @@ class Stock extends Component{
 							</div>
 						)
 					})}
+				
 				</div>
 			</div>
 		)
@@ -318,9 +336,10 @@ class Stocks extends Component {
 					var eachStock = {
 						symbol: stockArr[i].symbol,
 						price: stockArr[i].LastTradePriceOnly,
-						change: stockArr[i].Change,
+						change: stockArr[i].ChangeFromFiftydayMovingAverage,
 						name: stockArr[i].Name
 					}
+					// ChangeFromFiftydayMovingAverage
 					stockArrMin.push(eachStock)
 
 					
@@ -337,6 +356,7 @@ class Stocks extends Component {
     				<StockHeader />
     			</div>
     			<div>
+    				<StockSearch />
     				<Stock stocks={this.state.stocks} />
     			</div>
     			
