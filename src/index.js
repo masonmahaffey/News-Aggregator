@@ -9,6 +9,8 @@ import Sports from './sports/Sports.js'
 import Business from './business/Business.js'
 import Global from './global/Global.js'
 import SearchResults from './search/SearchResults.js'
+import Nba from './sports/Nba.js';
+import SportsHome from './sports/SportsHome.js';
 
 
 ReactDOM.render(
@@ -16,7 +18,10 @@ ReactDOM.render(
 		<Route path="/" component={App} >
 			<IndexRoute component={General} />
 			<Route path="entertainment" component={Entertainment} />
-			<Route path="sports" component={Sports} />
+			<Route path="sports" component={Sports} >
+				<IndexRoute component={SportsHome} />
+				<Route path="/nba" component={Nba} />
+			</Route>
 			<Route path="business" component={Business} />
 			<Route path="global" component={Global} />
 			<Route path="news-search/:newsToSearchFor" component={SearchResults} />
