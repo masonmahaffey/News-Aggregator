@@ -14,8 +14,17 @@ class ArticleColOne extends React.Component{
 	 			{this.props.articles.map(function(article, index){
 
 			return(
-				<div key={index} className="talkSportsTitles">
-					{article.title}
+				<div>
+					<div style={{marginBottom: 10, float:'left', borderBottom:'1px solid lightgrey'}} key={index}>
+						<div style={{fontSize: 16, margin:'4%'}}><a href={article.url}><img src={article.urlToImage} alt='s'
+							style={{width:'65%', height:'45%'}} /></a>
+							<br/>
+							<a style={{color:'black', fontWeight:500, fontSize:15}} href={article.url}>{article.title}</a>
+						</div>
+					</div>
+					<div key={index} className="talkSportsTitles">
+						{article.title}
+					</div>
 				</div>
 			)
 			})}
@@ -40,7 +49,7 @@ class FirstSportsComponent extends React.Component{
 	render (){
 		// console.log(this.state.sportsArticlesArray)
 		return(
-			<div className="col-xs-11 col-sm-6 col-md-3" style={{marginLeft:20, border:'3px solid lightgrey', height:'70vh', overflow:'scroll'}}>
+			<div className="col-xs-11 col-sm-6 col-md-3" style={{marginLeft:20, border:'3px solid lightgrey', height:'90vh', overflow:'scroll'}}>
 				<img alt='talksports' src={require('./images/talksport')} className="sportsSourcePics" />
 				<ArticleColOne articles={this.state.sportsArticlesOneArray} />
 			</div>
@@ -106,15 +115,25 @@ class ArticleColThree extends React.Component{
 			<div>
 	 			{this.props.articles.map(function(article, index){
 			return(
+				<div>
+					<div style={{marginBottom: 10, float:'left', borderBottom:'1px solid lightgrey'}} key={index}>
+						<div style={{fontSize: 16, margin:'4%'}}><a href={article.url}><img src={article.urlToImage} alt='s'
+							style={{width:'65%', height:'45%'}} /></a>
+							<br/>
+							<a style={{color:'black', fontWeight:500, fontSize:15}} href={article.url}>{article.title}</a>
+						</div>
+					</div>			
 				<div key={index} className="foxSports">
 					{article.title}
 				</div>
+			</div>
 			)
 			})}
 			</div>
 		)
 	}
 }
+
 
 class ArticlesColumnThree extends React.Component{
 		constructor(props){
