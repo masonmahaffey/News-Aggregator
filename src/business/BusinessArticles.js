@@ -9,7 +9,6 @@ class Articles extends Component{
 		return(
 			<div>
 				{this.props.articles.map(function(article, index){
-					
 					return(
 						<div className="each-article" key={index} style={{float:'left'}}>
 							<a style={{fontSize:17.5}} href={article.url}>{article.title}</a><br/>
