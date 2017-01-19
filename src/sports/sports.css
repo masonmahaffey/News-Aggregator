@@ -10,6 +10,20 @@ p{
 	padding: 10px;
 }
 
+.sports_page{
+	margin-top:  15px;
+}
 
+.espn_img{
+	display: block;
+	border-bottom: 5px solid black;
+	height: 100%;
+	padding-bottom: 15px;
+}
 
+.espn_titles{
+	padding-top: 50px;
+	text-align: center;
+	font-size: 15px;
 
+}
