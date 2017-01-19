@@ -1,22 +1,45 @@
 import React, { Component } from 'react';
 import $ from 'jquery';
 
-var weatherUrl = 'http://api.openweathermap.org/data/2.5/weather?units=imperial&zip='+location+', us&appid='+weatherApiKey;
+var weatherUrl = 'http://api.openweathermap.org/data/2.5/weather?units=imperial&zip='
+var urlTail = ',us&appid=0ea662971e6d6306ad9a84ede4d36865'
 //let user input fill in location in URL
 
 
-const weatherApiKey = '0ea662971e6d6306ad9a84ede4d36865';
 
 
-var Results = React.createClass({
-	render: function(){
+class Results extends Component {
+	constructor(props) {
+		super(props);
+		this.state = {
+			temp:"",
+			description: "",
+			iconUrl: ""
+		}
+		this.componentDidMount = this.componentDidMount.bind(this)
+	}
+	componentDidMount() {
+		var url = weatherUrl + this.props.input + urlTail
+		$.getJSON(url, (weatherData) => {
+			// console.log(weatherData)
+			var temp = weatherData.main.temp;
+			// var temp = 3
+			var description = weatherData.weather[0].description;
+			var iconUrl = 'http://openweathermap.org/img/w/' + weatherData.weather[0].icon + ".png";
+			this.setState({
+				temp: temp,
+				iconUrl: iconUrl,
+				description: description
+			})
+		})
+	}
+	render(){
 		return(
-			<div>
-				{this.props.input}
-			</div>
+			<div><img alt='aa' src={this.state.iconUrl} /> </div>
 		)
 	}
-})
+}
+
 
 var WeatherSearchSubmit = React.createClass({
 	getInitialState: function() {
@@ -35,14 +58,13 @@ var WeatherSearchSubmit = React.createClass({
 		// console.log(this.state.value)
 		return(
 			<div>
-			<form onSubmit={this.weatherSearchSubmit}>
-	     		<input type = "text" placeholder="Search by zip code..." />
-	     		<button type = "submit" className="btn btn-success">
-	     			Search weather for location
-	     		</button>
-	     		
-		   </form>
-		   <Results input={this.state.value}/>
+				<form onSubmit={this.weatherSearchSubmit}>
+		     		<input type="text" placeholder="Search by zip code..." />
+		     		<button type="submit" className="btn btn-success">
+		     			Search
+		     		</button>
+			   </form>
+			   <Results input={this.state.value}/>
 		   </div>
 		)
 	}
@@ -50,9 +72,6 @@ var WeatherSearchSubmit = React.createClass({
 })
 
 var Weather = React.createClass({
-
-	
-
 	render: function(){
 		return(
 			<WeatherSearchSubmit />
@@ -60,63 +79,4 @@ var Weather = React.createClass({
 	}
 })
 
-
-
-//location obtained by user input in search box
-
-
-
 export default Weather 
-
-
-
-
-
-
-//location obtained by user input in search box
-// class WeatherChild extends Component{
-// 	render(){
-// 		return(	
-// 			<weatherSearchSubmit />	
-// 				<form onSubmit={this.weatherSearchSubmit}>
-// 		     		<input type = "text" placeholder="Search by zip code..." />
-// 		     		<button type = "submit" className="btn btn-success">
-// 		     			Search weather
-// 		     		</button>
-// 			   </form>
-// 		)
-// 	}
-// }
-
-
-// class weatherSearchSubmit extends Component{
-// 	render(){
-// 		return(
-// 			<div>
-// 			Test
-// 			</div>
-// 		)
-// 	}
-
-// }
-
-// class Weather extends Component{
-// 	constructor(props) {
-// 		super(props);
-
-// 	}
-
-// 	// weatherSearchSubmit(event){
-// 	// 	event.preventDefault();
-// 	// };
-// 	render(){
-// 		return(
-// 			<div>
-// 				<WeatherChild />
-
-// 			</div>
-// 		)
-// 	}
-// }
-
-// export default Weather 
