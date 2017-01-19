@@ -1,0 +1,9 @@
+.article-title{
+	margin: 5px;
+	/* background-color: black; */
+	color: white;
+}
+.article-title:hover{
+	opacity: .3;
+	cursor: pointer;	
+}

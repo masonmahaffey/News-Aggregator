@@ -20,25 +20,25 @@ class ToggleRoutes extends React.Component {
   }
   render(){
     return(
-    <div className="container h-1">
+    <div className="container h-1" style={{fontSize:17, fontFamily:'Roboto'}}>
     <nav className="navbar navbar-inverse navbar-fixed-top h-2" id="nobr">
       <div className="container-fluid nobr">
         <div className="navbar-header hidden-xs">
-          <a className="navbar-brand" href="#">WireFront/Home</a>
+          <a className="navbar-brand" href="#">Upd8d</a>
         </div>
         <ul className="nav navbar-nav hidden-xs">
-          <li><IndexLink to="/" activeClassName="active">General</IndexLink></li>
+          <li><IndexLink to="/" activeClassName="active">Top News</IndexLink></li>
           <li><Link to="/entertainment" activeClassName="active">Entertainment</Link></li>
           <li><Link to="/sports" activeClassName="active">Sports</Link></li>
-          <li><Link to="/business" activeClassName="active">Business</Link></li>
-          <li><Link to="/global" activeClassName="active">Global</Link></li>
+          <li><Link to="/business" activeClassName="active">Money</Link></li>
+          <li><Link to="/global" activeClassName="active">World</Link></li>
         </ul>
         <ul className="nav navbar-nav visible-xs inline-list">
-          <li><IndexLink to="/" activeClassName="active">General</IndexLink></li>
-          <li><Link to="/entertainment" activeClassName="active">Entertainment</Link></li>
-          <li><Link to="/sports" activeClassName="active">Sports</Link></li>
-          <li><Link to="/business" activeClassName="active">Business</Link></li>
-          <li><Link to="/global" activeClassName="active">Global</Link></li>
+          <li><IndexLink to="/" activeClassName="active">TOP</IndexLink></li>
+          <li><Link to="/entertainment" activeClassName="active">ENTMT</Link></li>
+          <li><Link to="/sports" activeClassName="active">football pic</Link></li>
+          <li><Link to="/business" activeClassName="active">$$$</Link></li>
+          <li><Link to="/global" activeClassName="active">globe pic here</Link></li>
         </ul>       
       <form className="navbar-form h-4 hidden-xs">
         <div className="form-group">

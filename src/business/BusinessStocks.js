@@ -17,7 +17,7 @@ class NZX extends Component{
 		if((day===0)||(day===5)){if(hour > 7){day++}};
 		if((day===0)||(day===6)){open = "closed"};
 		if((hour < 16)&&(hour>0)){open = "closed"};
-		var openColor = ''; if(open==='open'){openColor = '#76ff03'}else{openColor = '#ef5350'}
+		var openColor = ''; if(open==='open'){openColor = '#76ff03'}else{openColor = 'grey'}
 		return(
 			<div style={{display:'inline-block'}}>
 				<a style={{color:'white'}} href='https://www.nzx.com/'>NZX:</a> <span style={{color:openColor}}>{open}</span>
@@ -35,7 +35,7 @@ class HKEX extends Component{
 		if((day===0)||(day===5)){if(hour > 11){day++}};
 		if((day===0)||(day===6)){open = "closed"};
 		if((hour < 20)&&(hour > 3)){open = "closed"}
-		var openColor = ''; if(open==='open'){openColor = '#76ff03'}else{openColor = '#ef5350'}	
+		var openColor = ''; if(open==='open'){openColor = '#76ff03'}else{openColor = 'grey'}	
 		return(
 			<div style={{display:'inline-block'}}>
 				<a style={{color:'white'}} href='https://www.hkex.com.hk/'>HKEX:</a> <span style={{color:openColor}}>{open}</span>
@@ -53,7 +53,7 @@ class ASX extends Component{
 		if((day===0)||(day===5)){if(hour > 9){day++}};
 		if((day===0)||(day===6)){open = "closed"};
 		if(hour < 18){open = "closed"};
-		var openColor = ''; if(open==='open'){openColor = '#76ff03'}else{openColor = '#ef5350'}			
+		var openColor = ''; if(open==='open'){openColor = '#76ff03'}else{openColor = 'grey'}			
 		return(
 			<div style={{display:'inline-block'}}>
 				<a style={{color:'white'}} href='https://www.asx.com.au/'>ASX:</a> <span style={{color:openColor}}>{open}</span>
@@ -72,7 +72,7 @@ class TSX extends Component{
 		if((day===0)||(day===6)){open = "closed"};
 		if((hour < 9)||(hour > 16)){open = "closed"};
 		if((hour===9)&&(minutes < 30)){open = "closed"}
-		var openColor = ''; if(open==='open'){openColor = '#76ff03'}else{openColor = '#ef5350'}		
+		var openColor = ''; if(open==='open'){openColor = '#76ff03'}else{openColor = 'grey'}		
 		return(
 			<div style={{display:'inline-block'}}>
 				<a style={{color:'white'}} href='https://www.tsx.com/'>TSX:</a> <span style={{color:openColor}}>{open}</span>
@@ -90,7 +90,7 @@ class KRX extends Component{
 		if((day===0)||(day===5)){if(hour > 10){day++}};
 		if((day===0)||(day===6)){open = "closed"};
 		if((hour < 19)&&(hour > 2)){open = "closed"}
-		var openColor = ''; if(open==='open'){openColor = '#76ff03'}else{openColor = '#ef5350'}			
+		var openColor = ''; if(open==='open'){openColor = '#76ff03'}else{openColor = 'grey'}			
 		return(
 			<div style={{display:'inline-block'}}>
 				<a style={{color:'white'}} href='https://global.krx.co.kr/'>KRX:</a> <span style={{color:openColor}}>{open}</span>
@@ -110,7 +110,7 @@ class LSE extends Component{
 		if((day===0)||(day===6)){open = "closed"};
 		if((hour < 3)||(hour > 11)){open = "closed"}
 		if((hour===11)&&(minutes > 30)){open = "closed"}
-		var openColor = ''; if(open==='open'){openColor = '#76ff03'}else{openColor = '#ef5350'}					
+		var openColor = ''; if(open==='open'){openColor = '#76ff03'}else{openColor = 'grey'}					
 		return(
 			<div style={{display:'inline-block'}}>
 				<a style={{color:'white'}} href='https://www.lse.ac.uk/'>LSE:</a> <span style={{color:openColor}}>{open}</span>
@@ -128,7 +128,7 @@ class JPX extends Component{
 		if((day===0)||(day===5)){if(hour > 10){day++}};
 		if((day===0)||(day===6)){open = "closed"};
 		if((hour < 19)&&(hour > 2)){open = "closed"}
-		var openColor = ''; if(open==='open'){openColor = '#76ff03'}else{openColor = '#ef5350'}					
+		var openColor = ''; if(open==='open'){openColor = '#76ff03'}else{openColor = 'grey'}					
 		return(
 			<div style={{display:'inline-block'}}>
 				<a style={{color:'white'}} href='http://www.jpx.co.jp/english/'>JPX:</a> <span style={{color:openColor}}>{open}</span>
@@ -147,7 +147,7 @@ class NASDAQ extends Component{
 		if((day===0)||(day===6)){open = "closed"};
 		if((hour < 9)||(hour > 16)){open = "closed"};
 		if((hour===9)&&(minutes < 30)){open = "closed"}
-		var openColor = ''; if(open==='open'){openColor = '#76ff03'}else{openColor = '#ef5350'}					
+		var openColor = ''; if(open==='open'){openColor = '#76ff03'}else{openColor = 'grey'}					
 		return(
 			<div style={{display:'inline-block'}}>
 				<a style={{color:'white'}} href='https://www.nasdaq.com/'>NASDAQ:</a> <span style={{color:openColor}}>{open}</span>
@@ -166,7 +166,7 @@ class NYSE extends Component{
 		if((day===0)||(day===6)){open = "closed"};
 		if((hour < 9)||(hour > 16)){open = "closed"};
 		if((hour===9)&&(minutes < 30)){open = "closed"}
-		var openColor = ''; if(open==='open'){openColor = '#76ff03'}else{openColor = '#ef5350'}					
+		var openColor = ''; if(open==='open'){openColor = '#76ff03'}else{openColor = 'grey'}					
 		return(
 			<div style={{display:'inline-block'}}>
 				<a style={{color:'white'}} href='https://www.nyse.com/'>NYSE:</a> <span style={{color:openColor}}>{open}</span>
@@ -178,7 +178,7 @@ class NYSE extends Component{
 class TimeTicker extends Component{
 	render(){
 		return(
-			<div style={{textAlign:'right', width: 220, color:'#ffff8d', fontSize:16, position:'absolute', right:"1px", paddingLeft:20, backgroundColor:'#091749'}}>{this.props.today}</div>
+			<div style={{textAlign:'right', width: 220, color:'#ffff8d', fontSize:16, position:'absolute', right:"1px", paddingLeft:20, backgroundColor:'#333333'}}>{this.props.today}</div>
 		)	
 	}
 }
@@ -235,16 +235,15 @@ class StockHeader extends Component{
 class Stock extends Component{
 	render(){
 		return(
-			<div onClick={this.onHover} className="stock-wrapper">
+			<div onClick={this.onHover} className="stock-wrapper col-xs-4" style={{position:'fixed', left:0, height:'93vh'}}>
 				<div className="text-center stock-rows">				
 					{this.props.stocks.map(function(stock, index){
 						var bgColor = "";  var arrowImg = ""
 						if(stock.change>=0){bgColor='#76ff03'; arrowImg = greenArrow
 						}else{bgColor='#ef5350'; arrowImg = redArrow}
 						return(
-							<div className="col-xs-6 col-sm-4 col-md-3 text-center eachStock" key={index} 
-								style={{padding: 5, backgroundColor:'#091749', color:bgColor, fontSize:18, border: '1px white solid'}}>
-								<BuildStocks stock={stock} arrowImg={arrowImg} />
+							<div key={index}>
+								<BuildStocks bgColor={bgColor} stock={stock} arrowImg={arrowImg} />
 							</div>
 						)
 					})}
@@ -263,7 +262,8 @@ class BuildStocks extends Component{
 	}
 	onClick(event){
 		this.setState({show: !this.state.show})
-		setTimeout(this.showNow, 1200)
+		setTimeout(this.showNow, 5000)
+		zIndexGraph++
 	}	
 	showNow(){
 		this.setState({show:true})
@@ -273,23 +273,33 @@ class BuildStocks extends Component{
 		var showName = "none"
 		if(!this.state.show){hideStock="none"; showName=""
 		}else{hideStock=""; showName="none"}
+		var graphUrl = 'http://chart.finance.yahoo.com/z?s=' + this.props.stock.symbol.toUpperCase() + '&t=6m&q=l&l=on&z=s&p=m50,m200'
 		return(
-			<div onClick={this.onClick}>
-				<div style={{display:hideStock, height:25, overflow:'hidden'}}>
-					<div className="col-xs-4 col-sm-4">{this.props.stock.symbol}</div>
-					<div className="hidden-xs col-sm-4">${this.props.stock.price}</div>
-					<div className="col-xs-7 col-sm-4" style={{padding:0}}>
-						{this.props.stock.change} <img style={{padding:0, float:'right', marginTop:3, marginLeft:5, width:20, height:18}} 
+			<div>
+			<div onClick={this.onClick} className="col-xs-12 text-center" 
+				style={{zIndex:7, padding: 4, height:40, lineHeight:'150%',
+				backgroundColor:'#2E2B31', color:this.props.bgColor, fontSize:20, border: '1px #222222 solid'}}>
+				<div className="eachStock" style={{display:hideStock, overflow:'hidden'}}>
+					<div style={{color:'white'}} className="col-sm-6 col-md-4">{this.props.stock.symbol}</div>
+					<div style={{color:'lightgrey'}} className="hidden-sm col-md-4">${this.props.stock.price}</div>
+					<div className="col-sm-6 col-md-4" style={{padding:0}}>
+						{this.props.stock.change} <img style={{padding:0, float:'right', marginTop:5, marginLeft:5, width:20, height:18}} 
 						src={this.props.arrowImg} alt="." />
 					</div>									
+				</div>	
+				<div style={{color:'white',display:showName}}>{this.props.stock.name}</div>		
+			</div>
+			<div className='stock-graph' onClick={this.onClick} style={{display:showName, zIndex:zIndexGraph, paddingLeft:0}}>
+				<div style={{backgroundColor:'#2E2B31', margin:'2%'}}>
+					<img style={{width: '100%', height:'100%'}} alt='a' src={graphUrl}/>
 				</div>
-				<div style={{display:showName, maxHeight:25}} className="col-xs-12">
-				{this.props.stock.name}</div>		
+			</div>
 			</div>
 		)		
 	}	
 }
-
+var zIndexGraph =10
+// {this.props.stock.name}<br/>
 class Stocks extends Component {
   	constructor(props) {
     	super(props);
@@ -308,7 +318,7 @@ class Stocks extends Component {
 					var eachStock = {
 						symbol: stockArr[i].symbol,
 						price: stockArr[i].LastTradePriceOnly,
-						change: stockArr[i].EPSEstimateNextQuarter,
+						change: stockArr[i].Change,
 						name: stockArr[i].Name
 					}
 					stockArrMin.push(eachStock)
@@ -322,19 +332,20 @@ class Stocks extends Component {
 
   	render() {
     	return(
-    		<div style={{backgroundColor:'#091749'}}>
-    			<div style={{position:'fixed', zIndex:8, backgroundColor:'#091749', color:'white'}}>
+    		<div>
+    			<div style={{position:'fixed', height: 38,zIndex:8, width:'100%',backgroundColor:'#333333', color:'white'}}>
     				<StockHeader />
-    				<Stock stocks={this.state.stocks} />
-    				<div style={{position:'fixed', backgroundColor:'white', width:'100%', zIndex:11, height:4, borderBottom:'solid 3px #091749'}}></div>
     			</div>
-    			<div style={{height:128, marginBottom:20}}></div>
+    			<div>
+    				<Stock stocks={this.state.stocks} />
+    			</div>
+    			
     		</div>
 		)
   	}
 }
 
-// hahaaavar 
+
 export default Stocks;
 
 

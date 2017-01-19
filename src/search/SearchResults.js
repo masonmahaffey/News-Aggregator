@@ -1,5 +1,6 @@
 import React, { Component } from 'react'
 import $ from 'jquery';
+import './searchResults.css';
 const newsApiKey = '275258a3655c449ba4907833f5baf08b';
 const apiMain = 'https://newsapi.org/v1/articles?source=';	
 const apiTail = '&apiKey='
@@ -37,7 +38,7 @@ class SearchResults extends Component{
 	}
 	render(){
 		return(
-			<div style={{fontSize:17}}>
+			<div style={{fontSize:17, height:'93vh', float:'right',overflow:'scroll'}}>
 			 	{this.state.searchedArticlesArray.map((article, index)=>{
 			 		var searchInput = this.props.params.newsToSearchFor.toLowerCase()
 			 		var indexOfTitle = article.title.toLowerCase().indexOf(searchInput)
@@ -69,9 +70,11 @@ class SearchResults extends Component{
 			 			var highlightText = article.title.slice(indexOfTitle, indexOfTitle + searchInput.length)
 			 			var backText = article.title.slice(indexOfTitle + searchInput.length)
 						return(
-							<div className='col-xs-offset-9 col-xs-3' key={index} style={{overflow:'scroll'}} >
-								<RenderSearchedNews imageUrl={article.urlToImage} url={article.url} frontText={frontText} highlightText={highlightText}
+							<div className='col-xs-offset-9 col-xs-3' style={{backgroundColor: '#2E2B31', borderBottom: '1px solid #222222'}}>
+							<div style={{backgroundColor: '#2E2B31', paddingBottom:15}} key={index}>
+								<RenderSearchedNews article={article} imageUrl={article.urlToImage} url={article.url} frontText={frontText} highlightText={highlightText}
 									backText={backText} authorText={authorText} publishText={publishText} />
+							</div>
 							</div>
 						)			 		
 			 		}else{
@@ -82,30 +85,42 @@ class SearchResults extends Component{
 		)
 	}
 }
+var newZ = 0
 class RenderSearchedNews extends Component{
 	constructor(props) {
 		super(props);
 		this.state = {
-			displayVariable: 'none'
+			displayVariable: 'none',
+			zIndex: newZ
 		}
 		this.openOnClick = this.openOnClick.bind(this)
 	}
 	openOnClick(){
+		newZ++
 		this.setState({
-			displayVariable: 'block'
+			displayVariable: 'block',
+			zIndex: newZ
 		})
 	}
 	render(){
 		return(
-			<div onClick={this.openOnClick}>
-				<div>{this.props.frontText}
-					<span style={{backgroundColor:'yellow'}}>{this.props.highlightText}</span>
-					{this.props.backText}
+			<div style={{backgroundColor: '#2E2B31'}}>
+				<div className='article-title' onClick={this.openOnClick}>
+					<div>{this.props.frontText}
+						<span style={{backgroundColor:'yellow', color:'black'}}>{this.props.highlightText}</span>
+						{this.props.backText}
+					</div>
+					<div style={{marginLeft:2, marginTop:5, fontSize:13, color:'lightgrey'}}>
+						<div style={{float:'left'}}>{this.props.authorText}</div>
+						<div style={{float:'right'}}>{this.props.publishText}</div>
+					</div>
 				</div>
+
 				<SearchedNewsDescription imageUrl={this.props.imageUrl} url={this.props.url} frontText={this.props.frontText} 
 				highlightText={this.props.highlightText} backText={this.props.backText} authorText={this.props.authorText} 
-				publishText={this.props.publishText} open={this.state.displayVariable}/>
-				<div style={{fontSize:13, color:'grey'}}><span style={{float:'left'}}>{this.props.authorText}</span><span style={{float:'right'}}>{this.props.publishText}</span></div>
+				publishText={this.props.publishText} open={this.state.displayVariable} zIndex={this.state.zIndex}
+				article={this.props.article}/>
+				
 			</div>
 		)
 	}
@@ -113,8 +128,23 @@ class RenderSearchedNews extends Component{
 class SearchedNewsDescription extends Component{
 	render(){
 		return(
-			<div style={{display:this.props.open, position:'fixed', left:0}}>
-				<img src={this.props.imageUrl} alt='a'/>
+			<div className='article-description' style={{zIndex:this.props.zIndex, display:this.props.open, position:'fixed', left:0, top:50, height:'93vh', width:'70vw', backgroundColor:'#fafafa'}}>
+				<div className='col-md-5 col-xs-offset-1' style={{marginTop:'11vh'}}>
+					<img src={this.props.imageUrl} alt='a' style={{width:'100%',height:'100%'}}/>
+				</div>
+				<div className='col-md-6' style={{marginTop:'10vh'}}>
+					<div style={{fontSize:30, marginBottom:20}}>{this.props.article.title}</div>
+					<div style={{fontSize:20, marginBottom:20}}>{this.props.article.description}</div>
+					
+					
+				</div>
+				<div className="col-sm-11 col-xs-offset-1" style={{fontSize:18, color:'grey', marginTop:20}}>
+					<div style={{float:'left',fontSize:20, marginBottom:20}}>{this.props.article.author}</div>
+					<div style={{float:'right',fontSize:20, marginBottom:20}}>{this.props.publishText}</div>
+				</div>
+				<div className="col-sm-11 col-xs-offset-1" style={{fontSize:22}} >
+					<a href={this.props.url}>Read Full Article</a>
+				</div>
 			</div>
 		)
 	}

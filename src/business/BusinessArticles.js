@@ -11,7 +11,7 @@ class Articles extends Component{
 				{this.props.articles.map(function(article, index){
 					
 					return(
-						<div className="each-article" key={index}>
+						<div className="each-article" key={index} style={{float:'left'}}>
 							<a style={{fontSize:17.5}} href={article.url}>{article.title}</a><br/>
 							{article.description}
 						</div>
@@ -60,10 +60,10 @@ class BusinessInsider extends Component{
 	}
 	render (){
 		return(
-			<div className="col-xs-11 col-sm-6 col-md-3" style={{marginLeft:20, border:'3px solid lightgrey', height:'70vh', overflow:'scroll'}}>
+			<div className="col-xs-11 col-sm-6 col-md-8 col-sm-offset-4" style={{marginLeft:20, border:'3px solid lightgrey', height:'70vh', overflow:'scroll'}}>
 				<div style={{margin:'auto'}}>
 				<img alt='b' src={require('./images/businessinsider.png')} style={{
-				width:'100%', height:'100%',marginBottom:15, marginTop:10}} />
+				width:'50%', height:'50%', margin: '10px, 25%, 15px'}} />
 				</div>
 				<Articles articles={this.state.articlesArray} />
 			</div>
@@ -85,11 +85,12 @@ class Fortune extends Component{
 	}
 	render (){
 		return(
-			<div className="col-xs-11 col-sm-7 col-md-3" style={{float:'right', margin:5}}>
+			<div className="col-xs-11 col-sm-7 col-md-3" style={{float:'right', margin:5, marginTop:50}}>
 				<div style={{height:'100%'}}>
 					<img alt='b' src={require('./images/fortune.png')} style={{
-					float:'left',width:'50%', height:'50%', margin:'20px 23% 20px'}} />
-				</div>
+					width:'50%', height:'50%', margin:'20px 24% 20px'}} />
+
+				</div><br/>
 				<ArticleImages articles={this.state.articlesArray} />
 			</div>
 		);
@@ -111,7 +112,7 @@ class FinancialTimes extends Component{
 	}
 	render (){
 		return(
-			<div className="col-xs-11 col-sm-5 col-md-5" style={{marginLeft: 40}}>
+			<div className="col-xs-11 col-sm-5 col-md-8" style={{marginLeft: 40, marginTop:50}}>
 				<div style={{margin:'auto'}}>
 				<img alt='b' src={require('./images/financialtimes.png')} style={{
 				width:'40%', height:'40%',margin:'13px 25% 20px'}} />
