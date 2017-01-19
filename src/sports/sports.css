@@ -34,3 +34,9 @@ p{
 	font-size: 30px;
 	text-align: center;
 }
+
+.banner_top{
+	height: 100px;
+	width: 100%;
+	background-color: darkslategray;
+}

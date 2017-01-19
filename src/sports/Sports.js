@@ -1,6 +1,7 @@
 import './sports.css';
 import React from 'react';
 import $ from 'jquery'; 
+import SportsScores from './SportsScores.js';
 
 const newsApiKey = '275258a3655c449ba4907833f5baf08b';
 const apiMain = 'https://newsapi.org/v1/articles?source=';	
@@ -169,10 +170,10 @@ class ArticleColThree extends React.Component{
 
 
 class ArticlesColumnThree extends React.Component{
-		constructor(props){
-		super(props);
-		this.state = {sportsArticlesThreeArray: []};
-		this.componentDidMount = this.componentDidMount.bind(this);
+	constructor(props){
+	super(props);
+	this.state = {sportsArticlesThreeArray: []};
+	this.componentDidMount = this.componentDidMount.bind(this);
 	}
 	componentDidMount () {
 		var apiThreeSource = 'fox-sports';
@@ -208,13 +209,16 @@ var ThirdSportsComponent = React.createClass({
 var Sports = React.createClass({
 	render: function(){
 		return(
-			<div className="sports_page">
-				<FirstSportsComponent />
-				<SecondSportsComponent />
-				<ThirdSportsComponent />
+			<div>
+				<SportsScores />
+				<div className="sports_page">
+					<FirstSportsComponent />
+					<SecondSportsComponent />
+					<ThirdSportsComponent />
+				</div>
 			</div>
 		)
 	}
 })
 
-export default Sports
+export default Sports;
