@@ -4,7 +4,7 @@ class TopNewsByCategory extends Component{
 	render (){
 		return(
 			<div>
-			Top News by Category TEST
+				Top News by Category TEST
 			</div>
 		)
 	}	

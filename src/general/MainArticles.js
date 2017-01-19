@@ -13,8 +13,14 @@ var MainArticles = React.createClass({
 		})
 	},
 	componentDidMount: function() {
-		var apiSource = 'bbc-news';
+		var apiSource = 'cnn';
 		var url = apiMain + apiSource + apiTail + newsApiKey;
+
+		// $.getJSON('http://ec2-52-25-56-215.us-west-2.compute.amazonaws.com:3000/api/articles',(returnData) =>{
+
+		// 	console.log(returnData)
+		// });
+
 		$.getJSON(url, (newsData) =>{
 			this.setState({
 				articlesArray: newsData.articles
@@ -36,13 +42,12 @@ var EachMainArticle = React.createClass({
 			<div>
 				{this.props.articles.map(function(article, index){
 					return(
-						<div key={index} style={{borderBottom: "7px solid white", fontSize:18, backgroundColor:'lightgrey', padding:15}}>
-							<a href={article.url}>{article.title}</a><br/>
-								<a href={article.url}><img alt='aaaa' src={article.urlToImage}/></a>
-							<div style={{minHeight:150}}>
+						<div key={index} style={{borderBottom: "3px solid white", fontSize:18, backgroundColor:'lightgrey', padding:10}}>
+							<a href={article.url}><img alt='aaaa' src={article.urlToImage} style={{height: '60px',float: 'left'}}/></a>
+							<a href={article.url}><span style={{fontWeight:'bold',}}>{article.title}</span></a><br/>
+							
+							<div style={{fontSize: '14px',minHeight:'30px'}}>
 								<div>{article.description}</div>
-								<div>Publish date: {article.publishedAt}<br/>logic needed for 'posted ~minutes ago'</div>
-								<div>share article on facebook link</div>
 							</div>
 						</div>
 					)	

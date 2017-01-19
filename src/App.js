@@ -2,8 +2,6 @@ import React from 'react';
 import './index.css';
 import { IndexLink, Link } from 'react-router'
 
-//here is a commented change
-
 
 
 class ToggleRoutes extends React.Component {
@@ -24,7 +22,7 @@ class ToggleRoutes extends React.Component {
     <nav className="navbar navbar-inverse navbar-fixed-top h-2" id="nobr">
       <div className="container-fluid nobr">
         <div className="navbar-header hidden-xs">
-          <a className="navbar-brand" href="#">Upd8d</a>
+          <a className="navbar-brand" href="#">Upd8dNews</a>
         </div>
         <ul className="nav navbar-nav hidden-xs">
           <li><IndexLink to="/" activeClassName="active">Top News</IndexLink></li>
