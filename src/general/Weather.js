@@ -13,7 +13,7 @@ class Results extends Component {
 		return(
 			<div>
 				{this.props.propertyOfResultsNamedParentsState.temp} 
-				<img alt='aa' src={this.props.propertyOfResultsNamedParentsState.iconUrl} /> 
+				<img alt='' src={this.props.propertyOfResultsNamedParentsState.iconUrl} /> 
 				{this.props.propertyOfResultsNamedParentsState.name}
 			</div>
 		)

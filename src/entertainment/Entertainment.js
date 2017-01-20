@@ -5,19 +5,28 @@ import $ from 'jquery';
 
 //Sources to pull from: buzzfeed, entertainment-weekly, and mtv-news
 var entertainmentURL = 'https://newsapi.org/v1/articles?source=';
-var entertainmentURLTail = '&apiKey=09a731f9f7e9481c9deffbec56d9b6c9';
+var entertainmentURLTail = '&sortBy=top&apiKey=09a731f9f7e9481c9deffbec56d9b6c9';
 // var entertainmentAPIKey = '09a731f9f7e9481c9deffbec56d9b6c9';
 
 
 
 //Map through the ewArticlesArray to find the TOP news 
 class EW extends React.Component{
-	render(
+	render(){
 		return(
-
+			<div className="ew">
+			Entertainment Weekly
+				{this.props.articles.map(function(article, index){
+					return (
+						<div key={index} style={{border: '3px solid white', fontSize:18, backgroundColor:'lightgrey', display: 'block', width:'30%' }}>
+							<a href={article.url}>{article.title}</a>
+						</div>
+					) 
+				})}
+			</div>
 		)
-	)
-}
+	}
+} 
 
 class Box1 extends React.Component{
 	constructor(props) {
@@ -33,16 +42,15 @@ class Box1 extends React.Component{
 		//put data into an array to map through it for the TOP news
 		var entertainmentSource1 = 'entertainment-weekly';
 		var url = entertainmentURL + entertainmentSource1 + entertainmentURLTail;
-		$.getJSON(url, (ewArticles) =>){
+		$.getJSON(url, (ewArticles) =>{
 			this.setState({ewArticlesArray: ewArticles.articles});
-		}
+		});
 	}
 	render(){
 		return(
 			<div>
-				//Return articles for entertainment-weekly
-				Test
-				<EW />
+				{/*Return articles for entertainment-weekly through EW*/}
+				<EW articles={this.state.ewArticlesArray}/>
 			</div>
 		)
 	}
