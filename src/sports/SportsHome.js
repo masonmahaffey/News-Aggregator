@@ -3,6 +3,9 @@ import SportsScores from './SportsScores.js';
 import SportsDropDownMenu from './SportsDropDownMenu';
 import $ from 'jquery'
 
+
+
+//to be put in a config file
 const newsApiKey = '275258a3655c449ba4907833f5baf08b';
 const apiMain = 'https://newsapi.org/v1/articles?source=';	
 const apiTail = '&apiKey='
@@ -13,7 +16,7 @@ class ArticleColOne extends React.Component{
 		return(
 			<div>
 	 			{this.props.articles.map(function(article, index){
-	 				//this returns the individual talkSPORT articles and photos
+	 		//this returns the individual talkSPORT articles and photos
 			return(
 				<div key={index}>
 					<div style={{marginBottom: 10, float:'left', borderBottom:'1px solid lightgrey'}}>
@@ -60,14 +63,14 @@ class FirstSportsComponent extends React.Component{
 }
 
 class ArticleColTwo extends React.Component{
-	//this returns individual articles and photos
+	//this returns ESPN individual articles and photos
 	render (){
 		return(
 			<div className="espn_articles">
 	 			{this.props.articles.map(function(article, index){
 	 				if(index == 0){
 	 					return(
-	 						//return the first headline as a BIG picture
+	 						//return the first ESPN headline as a BIG picture
 							<div key={index} style={{textAlign:"center"}}>
 								<div style={{marginBottom: 5, float:'left'}} >
 									<div style={{fontSize: 30, margin:'4%'}}><a href={article.url}><img src={article.urlToImage} alt='s'
@@ -81,7 +84,7 @@ class ArticleColTwo extends React.Component{
 							</div>
 	 					)
 	 				}else if(index !== 0){
-	 					//return the other top headlines as smaller
+	 					//return the other top ESPN headlines as smaller
 						return(
 							<div key={index}>
 								<div style={{marginBottom: 10, float:'left'}} >
@@ -132,8 +135,8 @@ class HeaderImgColumnTwo extends React.Component{
 	}
 }
 
+//this returns the entire second column
 var SecondSportsComponent = React.createClass({
-	//this returns the entire second column
 	render: function(){
 		return(
 			<div>
@@ -143,8 +146,9 @@ var SecondSportsComponent = React.createClass({
 	}
 })
 
+
+//this returns the individual articles and pictures
 class ArticleColThree extends React.Component{
-	//this returns the individual articles and pictures
 	render (){
 		return(
 			<div>
@@ -182,9 +186,9 @@ class ArticlesColumnThree extends React.Component{
 			this.setState({sportsArticlesThreeArray: sportsDataFox.articles})
 		});	
 	}
+	//this returns the FOXSPORTS LOGO IMG
 	render (){
 		// console.log(this.state.sportsArticlesArray)
-		//this returns the FOXSPORTS LOGO
 		return(
 			<div className="col-xs-11 col-sm-7 col-md-3" style={{float:'right', margin:'auto', borderLeft:'3px solid lightgrey'}}>
 			<img alt='fox-sports' src={require('./images/Fox_Sports_Logo.png')}  style={{
@@ -195,8 +199,8 @@ class ArticlesColumnThree extends React.Component{
 	}
 }
 
+//this returns the entire 3rd column
 var ThirdSportsComponent = React.createClass({
-	//this returns the entire 3rd column
 	render: function(){
 		return(
 			<div className='foxsportscolumn'>
@@ -206,6 +210,9 @@ var ThirdSportsComponent = React.createClass({
 	}
 })
 
+
+
+//renders all components of the Sports homepage
 var SportsHome = React.createClass({
 render: function(){
 		return(
@@ -229,3 +236,6 @@ render: function(){
 
 
 export default SportsHome;
+
+
+
