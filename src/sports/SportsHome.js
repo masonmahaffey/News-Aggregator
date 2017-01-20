@@ -52,7 +52,7 @@ class FirstSportsComponent extends React.Component{
 		// console.log(this.state.sportsArticlesArray)
 		//this returns the TalkSPORT logo header
 		return(
-			<div className="col-xs-11 col-sm-6 col-md-3" style={{marginLeft:20, borderRight:'3px solid lightgrey', height:'90vh', overflow:'scroll'}}>
+			<div className="col-xs-11 col-sm-6 col-md-3" style={{marginLeft:20, borderRight:'3px solid lightgrey', borderLeft:'3px solid lightgrey', height:'90vh', overflow:'scroll', backgroundColor:'#F3F1F4'}}>
 				<img alt='talksports' src={require('./images/talksport')} className="sportsSourcePics" />
 				<ArticleColOne articles={this.state.sportsArticlesOneArray} />
 			</div>
@@ -126,7 +126,7 @@ class HeaderImgColumnTwo extends React.Component{
 		})
 		//this returns the ESPN logo header
 		return(
-			<div className="col-xs-11 col-sm-5 col-md-5" style={{marginLeft: 40 }}>
+			<div className="col-xs-11 col-sm-5 col-md-5" style={{marginLeft: 40, backgroundColor:'#F3F1F4', borderRight:'3px solid lightgrey', borderLeft:'3px solid lightgrey', height:'90vh', overflow:'scroll'}}>
 				<div>
 					<img alt='espn' src={require('./images/ESPN.png')} className="espn_img" />
 				</div>
@@ -193,7 +193,7 @@ class ArticlesColumnThree extends React.Component{
 	render (){
 		// console.log(this.state.sportsArticlesArray)
 		return(
-			<div className="col-xs-11 col-sm-7 col-md-3" style={{float:'right', margin:'auto', borderLeft:'3px solid lightgrey', height:'90vh', overflow:'scroll'}}>
+			<div className="col-xs-11 col-sm-7 col-md-3" style={{float:'right', margin:'auto', borderLeft:'3px solid lightgrey', height:'90vh', overflow:'scroll', backgroundColor:'#F3F1F4', borderRight:'3px solid lightgrey'}}>
 			<img alt='fox-sports' src={require('./images/Fox_Sports_Logo.png')}  style={{
 					float:'left',width:'50%', height:'10%', margin:'20px 23% 20px'}} />
 				<ArticleColThree articles={this.state.sportsArticlesThreeArray} />
