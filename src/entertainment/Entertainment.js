@@ -17,6 +17,51 @@ var entertainmentURLTail = '&sortBy=top&apiKey=09a731f9f7e9481c9deffbec56d9b6c9'
 // var entertainmentAPIKey = '09a731f9f7e9481c9deffbec56d9b6c9';
 
 
+//================ MTV goes in Box3 ===================================
+
+
+//We are looking for the title and url of each article
+class MTV extends React.Component{
+	render(){
+		return(
+			<div className="mtv">
+			MTV
+				{this.props.articles.map((article, index)=>{
+					return(
+						<div key={index} style={{border: '3px solid white', fontSize:18, backgroundColor:'lightgrey', display: 'block', width:'30%' }}>
+							<a href={article.url}>{article.title}</a>
+						</div>
+					)
+				})}
+			</div>
+		)
+	}
+}
+
+
+
+//Display MTV articles in Box3
+class Box3 extends React.Component{
+	constructor(props) {
+		super(props);
+		this.state = {mtvArticlesArray: []};
+		this.componentDidMount = this.componentDidMount.bind(this);
+	}
+	componentDidMount() {
+		//Get MTV top articles using getJSON and push them into array for mapping. Set state using array.
+		var entertainmentSource3 = 'mtv-news';
+		var url = entertainmentURL + entertainmentSource3 + entertainmentURLTail;
+		$.getJSON(url, (mtvArticles)=>{
+				this.setState({mtvArticlesArray: mtvArticles.articles});
+		});			
+	}
+	render(){
+		return(
+			<MTV articles={this.state.mtvArticlesArray}/>
+		)
+	}
+}
+
 
 
 
@@ -27,11 +72,12 @@ var entertainmentURLTail = '&sortBy=top&apiKey=09a731f9f7e9481c9deffbec56d9b6c9'
 class BF extends React.Component{
 	render(){
 		return(
-			<div>
+			<div className="bf">
+			Buzzfeed
 				{/* Get the URL and title of each article */}
 				{this.props.articles.map((article, index)=>{
 					return(
-						<div key={index}>
+						<div key={index} style={{border: '3px solid white', fontSize:18, backgroundColor:'lightgrey', display: 'block', width:'30%' }}>
 							<a href={article.url}>{article.title}</a>
 						</div>
 					)
@@ -127,6 +173,7 @@ var Entertainment = React.createClass({
 			<div style={{backgroundColor:'red'}}>
 				<Box1 />
 				<Box2 />
+				<Box3 />
 			</div>
 		)
 	}
