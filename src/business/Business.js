@@ -9,11 +9,11 @@ class Business extends Component{
 		return(
 			<div>
 				<Stocks />
-				<div className='col-sm-offset-4 col-sm-8' style={{marginTop:50}}>
+				<div className='col-sm-offset-4 col-sm-8' style={{marginTop:38, paddingRight:0}}>
 					
-					<FinancialTimes />
-					<Fortune />
 					<BusinessInsider />
+					<FinancialTimes />
+					
 				</div>
 			</div>
 		)		

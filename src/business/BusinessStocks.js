@@ -44,7 +44,6 @@ class Stocks extends Component {
   	render() {
     	return(
     		<div>
-    			
 				<StockHeader />
     			<StockSearch />
     			<Stock stocks={this.state.stocks} />

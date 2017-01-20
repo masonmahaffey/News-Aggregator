@@ -1,4 +1,4 @@
-.stock-wrapper{
+	.stock-wrapper{
 	height: 67px; 
 	overflow: hidden;
 	margin-top: -6px;
@@ -49,5 +49,5 @@
 }
 
 body{
-	background-color: #fafafa;
+	background-color: white;
 }

@@ -9,49 +9,37 @@ const apiMain = 'https://newsapi.org/v1/articles?source=';
 const apiTail = '&apiKey='
 
 
-var Component1Child1 = React.createClass({
+var BreakingNews = React.createClass({
 	getInitialState: function() {
-		return({
-			articlesArray: []
-		})
+		return({articlesArray: []})
 	},
 	componentDidMount: function() {
 		var apiSource = 'bbc-news';
 		var url = apiMain + apiSource + apiTail + newsApiKey;
 		$.getJSON(url, (newsData) =>{
-			// console.log(newsData)
-			this.setState({
-				articlesArray: newsData.articles
-			})
+			this.setState({articlesArray: newsData.articles})
 		});		
 	},
 	render: function(){
 		return(
 			<div className='c1c1'>
-				<Component1child1grandchild articles={this.state.articlesArray} />
+				<div className='scrollingNews hidden-xs'>
+				{this.state.articlesArray.map(function(article, index){
+					return(
+						<div key={index} style={{fontSize:17, marginLeft:40, color:'white', display: 'inline-block'}}>
+							{article.description}
+						</div>
+					)	
+				})}
+				</div>
 			</div>
 		);
 	}
 })
 
 
-var Component1child1grandchild = React.createClass({
-	render: function(){
-		// console.log(this.props.articles)
-		return(
-			<div className='scrollingNews hidden-xs'>
-				{this.props.articles.map(function(article, index){
-					return(
-						<div key={index} style={{fontSize:18, padding:15, display: 'inline-block'}}>
-							{article.description}
-						</div>
-					)	
-				})}
-			</div>
-		)
-	}
-})
-var Component1Child2 = React.createClass({
+
+var SideBar = React.createClass({
 	render: function(){
 		return(
 			<div className='c1c2'>
@@ -65,16 +53,28 @@ var Component1Child2 = React.createClass({
 })
 
 
+class Twitter extends React.Component{
+	render(){
+		return(
+			<div style={{backgroundColor:'#F3F1F4', height:'96vh'}}>
+				
+			</div>
+		)
+	}
+}
 var General = React.createClass({
 	render: function(){
 		return(
-			<div>
-				<Component1Child1 />
-				<div className='col-md-3 hidden-xs hidden-sm'>
-					<Component1Child2 />
+			<div style={{backgroundColor:'white'}}>
+				{/*<BreakingNews />*/}
+				<div className='col-md-3 hidden-xs hidden-sm' style={{position:'fixed', left:0, paddingLeft:0, paddingRight:0}}>
+					<SideBar />
 				</div>
-				<div className='col-md-9'>
+				<div className='col-md-7 col-md-offset-3'>
 					<MainArticles />
+				</div>
+				<div className='col-md-2 hidden-xs hidden-sm' style={{borderLeft:'1px solid #ddd', paddingLeft: 0, paddingRight:0}}>
+					<Twitter />
 				</div>
 			</div>
 		)

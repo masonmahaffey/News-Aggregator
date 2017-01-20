@@ -5,11 +5,11 @@ const newsApiKey = '275258a3655c449ba4907833f5baf08b';
 const apiMain = 'https://newsapi.org/v1/articles?source=';	
 const apiTail = '&apiKey='
 var	sourceArray = [
-		'business-insider-uk', 'ars-technica', 'associated-press', 'buzzfeed', 'bbc-news', 'bbc-sport', 'bild', 'bloomberg', 'business-insider', 'the-verge', 'fox-sports', 'google-news', 'the-wall-street-journal',
-		'cnbc', 'cnn', 'daily-mail', 'der-tagesspiegel','die-zeit', 'engadget', 'entertainment-weekly', 'espn-cric-info', 'financial-times', 'focus', 'football-italia', 'fortune', 'four-four-two', 'polygon',
-		'gruenderszene', 'hacker-news', 'ign', 'handelsblatt', 'independent', 'mashable', 'metro', 'mirror', 'mtv-news', 'mtv-news-uk', 'national-geographic', 'new-scientist', 'newsweek', 'new-york-magazine', 
-		'sky-news', 'sky-sports-news', 'spiegel-online', 't3n', 'talksport', 'techcrunch', 'recode', 'reddit-r-all', 'reuters', 'the-washington-post', 'time', 'usa-today', 'wired-de', 'wirtschafts-woche', 'nfl-news', 
-		'techradar', 'the-economist', 'the-guardian-au', 'the-guardian-uk', 'the-hindu', 'the-huffington-post', 'the-lad-bible', 'the-new-york-times', 'the-next-web','the-sport-bible', 'the-telegraph', 'the-times-of-india'
+		'business-insider-uk', 'ars-technica', 'associated-press', 'buzzfeed', 'bbc-news', 'bbc-sport', 'bloomberg', 'business-insider', 'the-verge', 'fox-sports', 'google-news', 'the-wall-street-journal',
+		'cnbc', 'cnn', 'daily-mail', 'engadget', 'entertainment-weekly', 'financial-times', 'focus', 'fortune', 'four-four-two', 'polygon',
+		'hacker-news', 'ign', 'independent', 'mashable', 'metro', 'mirror', 'mtv-news', 'mtv-news-uk', 'national-geographic', 'new-scientist', 'newsweek', 'new-york-magazine', 
+		'sky-news', 'sky-sports-news', 't3n', 'talksport', 'techcrunch', 'recode', 'reddit-r-all', 'reuters', 'the-washington-post', 'time', 'usa-today', 'wired-de', 'wirtschafts-woche', 'nfl-news', 
+		'techradar', 'the-economist', 'the-guardian-au', 'the-guardian-uk', 'the-huffington-post', 'the-lad-bible', 'the-new-york-times', 'the-next-web','the-sport-bible', 'the-telegraph'
 	]
 
 class SearchResults extends Component{
@@ -38,7 +38,7 @@ class SearchResults extends Component{
 	}
 	render(){
 		return(
-			<div style={{fontSize:17, height:'93vh', float:'right',overflow:'scroll'}}>
+			<div style={{fontSize:17, height:'93vh', float:'right',overflow:'scroll', backgroundColor:'#F3F1F4'}}>
 			 	{this.state.searchedArticlesArray.map((article, index)=>{
 			 		var searchInput = this.props.params.newsToSearchFor.toLowerCase()
 			 		var indexOfTitle = article.title.toLowerCase().indexOf(searchInput)
@@ -128,8 +128,10 @@ class RenderSearchedNews extends Component{
 class SearchedNewsDescription extends Component{
 	render(){
 		return(
-			<div className='article-description' style={{zIndex:this.props.zIndex, display:this.props.open, position:'fixed', left:0, top:50, height:'93vh', width:'70vw', backgroundColor:'#fafafa'}}>
-				<div className='col-md-5 col-xs-offset-1' style={{marginTop:'11vh'}}>
+			<div className='article-description' style={{zIndex:this.props.zIndex, display:this.props.open, 
+				position:'fixed', border:'1px solid #ddd', paddingLeft:15, left:0, top:100, height:'93vh', 
+				width:'70vw', backgroundColor:'white'}}>
+				<div className='col-md-5' style={{marginTop:'11vh'}}>
 					<img src={this.props.imageUrl} alt='a' style={{width:'100%',height:'100%'}}/>
 				</div>
 				<div className='col-md-6' style={{marginTop:'10vh'}}>
@@ -138,11 +140,11 @@ class SearchedNewsDescription extends Component{
 					
 					
 				</div>
-				<div className="col-sm-11 col-xs-offset-1" style={{fontSize:18, color:'grey', marginTop:20}}>
+				<div className="col-sm-11" style={{fontSize:18, color:'grey', marginTop:20}}>
 					<div style={{float:'left',fontSize:20, marginBottom:20}}>{this.props.article.author}</div>
 					<div style={{float:'right',fontSize:20, marginBottom:20}}>{this.props.publishText}</div>
 				</div>
-				<div className="col-sm-11 col-xs-offset-1" style={{fontSize:22}} >
+				<div className="col-sm-11" style={{fontSize:22}} >
 					<a href={this.props.url}>Read Full Article</a>
 				</div>
 			</div>

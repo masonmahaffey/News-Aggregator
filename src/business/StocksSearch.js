@@ -41,18 +41,19 @@ class StockSearch extends Component{
   	};	
 	changeStock () {
 		var url = stockFront + this.state.stockSymbol + stockTail
-		if(this.state.stockSymbol !== null){
-			$.getJSON(url, (stockData) => {			
-				this.setState({stock: stockData.query.results.quote})
-			})
+		if(this.state.stockSymbol.length < 2){
+			url = stockFront + 'aapl' + stockTail
 		}
+		$.getJSON(url, (stockData) => {			
+			this.setState({stock: stockData.query.results.quote})
+			})
 	}
 	render(){
-		console.log(this.state.stock) 
+		// console.log(this.state.stock) 
 		return(
 			<div className="stock-wrapper col-xs-4" style={{position:'fixed', left:0, height:'45vh'}}> 
 				<div className="col-xs-12" style={{marginTop:40,padding: 4, backgroundColor:'#2E2B31', height:'37vh', borderBottom:'1px #222222 solid', zIndex:15}}>
-					<div style={{marginLeft:8, marginTop:8}}>
+					<div style={{marginLeft:8, marginTop:8, paddingRight:20, paddingLeft:5,paddingTop:20}}>
 						<form onSubmit={this.stockSearchSubmit}>
 		     				<input type="text" className="form-control" placeholder="Search any stock symbol" />
 			   			</form>
@@ -86,7 +87,7 @@ class SearchedStockResults extends Component {
 				<div className="col-sm-6">Ask: {stock.Ask}</div>
 				<div className="col-sm-6">Bid: {stock.Bid}</div>
 				<div className="col-sm-6">Change: <div style={{display:'inline-block', color:changeColor}}>{stock.Change}</div></div>
-				<div className="col-sm-6">Volume: {stock.Volume}</div>
+			{/*	<div className="col-sm-6">Volume: {stock.Volume}</div>  */}
 				<div className="col-sm-12" style={{fontSize:16, color:'grey'}}>{stock.symbol.toUpperCase()} stock data from 2016 ~ 2017</div>
 				<div className="col-sm-6">Projection: <div style={{display:'inline-block', color:changeColor2}}>{stock.EPSEstimateCurrentYear}</div></div>
 				<div className="col-sm-6">Change: <div style={{display:'inline-block', color:changeColor3}}>{stock.PercentChange}</div></div>
