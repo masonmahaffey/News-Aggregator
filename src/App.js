@@ -19,10 +19,10 @@ class ToggleRoutes extends React.Component {
   render(){
     return(
     <div className="container h-1" style={{fontSize:17, fontFamily:'Roboto'}}>
-    <nav className="navbar navbar-inverse navbar-fixed-top h-2" id="nobr">
+    <nav className="navbar navbar-inverse navbar-fixed-top h-2" id="nobr" style={{backgroundColor:'#4F4F4F'}}>
       <div className="container-fluid nobr">
         <div className="navbar-header hidden-xs">
-          <a className="navbar-brand" href="#">Upd8dNews</a>
+          <a className="navbar-brand" href="#">logo go here</a>
         </div>
         <ul className="nav navbar-nav hidden-xs">
           <li><IndexLink to="/" activeClassName="active">Top News</IndexLink></li>
