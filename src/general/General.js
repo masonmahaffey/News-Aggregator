@@ -42,9 +42,7 @@ var BreakingNews = React.createClass({
 var SideBar = React.createClass({
 	render: function(){
 		return(
-			<div className='c1c2'>
-			<br/><br/><br/>
-				<h4>&nbsp; Component 1 Child 2</h4>
+			<div style={{height:'100vw', width: '100%', backgroundColor:'#2E2B31', color: 'white'}}>
 				<Weather />
 				<TopNewsByCategory />
 			</div>
@@ -67,13 +65,13 @@ var General = React.createClass({
 		return(
 			<div style={{backgroundColor:'white'}}>
 				{/*<BreakingNews />*/}
-				<div className='col-md-3 hidden-xs hidden-sm' style={{position:'fixed', left:0, paddingLeft:0, paddingRight:0}}>
+				<div className='col-md-2 hidden-xs hidden-sm' style={{position:'fixed', left:0, paddingLeft:0, paddingRight:0}}>
 					<SideBar />
 				</div>
-				<div className='col-md-7 col-md-offset-3'>
+				<div className='col-md-7 col-md-offset-2'>
 					<MainArticles />
 				</div>
-				<div className='col-md-2 hidden-xs hidden-sm' style={{borderLeft:'1px solid #ddd', paddingLeft: 0, paddingRight:0}}>
+				<div className='col-md-3 hidden-xs hidden-sm' style={{borderLeft:'1px solid #ddd', paddingLeft: 0, paddingRight:0}}>
 					<Twitter />
 				</div>
 			</div>
