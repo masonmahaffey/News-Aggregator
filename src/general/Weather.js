@@ -8,7 +8,6 @@ class Results extends Component {
 	render(){
 		var weather = this.props.propertyOfResultsNamedParentsState
 		var today = new Date();
-		var day = today.getDate();
 		var todayString = today.toDateString().slice(0,10)
 		var windDirection = ''
 		if(weather.wind > 45){windDirection='East'}
@@ -28,7 +27,7 @@ class Results extends Component {
 					</div>
 				</div>
 					
-				<div style={{marginBottom:20}}>
+				<div style={{marginBottom:10}}>
 					<div style={{border:'3px solid white', display:'inline-block', padding:5, borderRadius:'50%', fontSize:20}}>{Math.floor(weather.temp)}&deg;</div> 
 					<span style={{fontSize:18, marginLeft:15, color:'#DD3939'}}>{Math.floor(weather.max)} &deg;</span> / <span style={{fontSize:18,color:'#0099FF'}}>{Math.floor(weather.min)} &deg;</span></div>
 				<div >{weather.description} </div>
@@ -60,7 +59,6 @@ var WeatherSearchSubmit = React.createClass({
 		// var url = weatherUrl + event.target[0].value + urlTail
 		var url = weatherUrl + 30033 + urlTail
 		$.getJSON(url, (weatherData) => {
-			console.log(weatherData)
 			var temp = weatherData.main.temp;
 			var description = weatherData.weather[0].description;
 			var iconUrl = 'http://openweathermap.org/img/w/' + weatherData.weather[0].icon + ".png";
@@ -84,15 +82,14 @@ var WeatherSearchSubmit = React.createClass({
 		return(
 			<div>
 				<form onSubmit={this.weatherSearchSubmit} style={{padding:10}}>
-		     		<input type="text" className='form-control' placeholder="Search by zip code..." />
+		     		<input type="text" className='form-control' placeholder="Weather search by zip code" />
 			   </form>
-			   <div className='weather-wrapper' style={{textAlign:'center', backgroundColor: '#4F4F4F', width:'100%', margin:'auto'}}>
+			   <div className='weather-wrapper' style={{textAlign:'center', backgroundColor: '#333333', width:'100%', margin:'auto'}}>
 					<Results propertyOfResultsNamedParentsState={this.state}/>
 			   </div>
 		   </div>
 		)
 	}
-	
 })
 
 var Weather = React.createClass({

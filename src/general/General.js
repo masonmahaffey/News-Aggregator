@@ -54,7 +54,7 @@ var SideBar = React.createClass({
 class Twitter extends React.Component{
 	render(){
 		return(
-			<div style={{backgroundColor:'#F3F1F4', height:'96vh'}}>
+			<div>
 				
 			</div>
 		)
@@ -65,14 +65,14 @@ var General = React.createClass({
 		return(
 			<div style={{backgroundColor:'white'}}>
 				{/*<BreakingNews />*/}
-				<div className='col-md-2 hidden-xs hidden-sm' style={{position:'fixed', left:0, paddingLeft:0, paddingRight:0}}>
+				<div className='col-md-2 hidden-xs hidden-sm' style={{height:'94vh', position:'fixed', paddingLeft:0, paddingRight:0, overflow:'scroll'}}>
 					<SideBar />
 				</div>
 				<div className='col-md-7 col-md-offset-2'>
-					<MainArticles />
-				</div>
-				<div className='col-md-3 hidden-xs hidden-sm' style={{borderLeft:'1px solid #ddd', paddingLeft: 0, paddingRight:0}}>
 					<Twitter />
+				</div>
+				<div className='col-md-3 hidden-xs hidden-sm' style={{paddingLeft: 0, paddingRight:0}}>
+						<MainArticles />
 				</div>
 			</div>
 		)
