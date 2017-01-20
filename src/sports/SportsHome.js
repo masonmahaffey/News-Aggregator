@@ -3,8 +3,6 @@ import SportsScores from './SportsScores.js';
 import SportsDropDownMenu from './SportsDropDownMenu';
 import $ from 'jquery'
 
-
-
 //to be put in a config file
 const newsApiKey = '275258a3655c449ba4907833f5baf08b';
 const apiMain = 'https://newsapi.org/v1/articles?source=';	
@@ -19,14 +17,14 @@ class ArticleColOne extends React.Component{
 	 		//this returns the individual talkSPORT articles and photos
 			return(
 				<div key={index}>
-					<div style={{marginBottom: 10, float:'left', borderBottom:'1px solid lightgrey'}}>
+					<div style={{marginBottom: 10, float:'left'}}>
 						<div style={{fontSize: 16, margin:'4%'}}><a href={article.url}><img src={article.urlToImage} alt='s'
 							style={{width:'65%', height:'45%'}} /></a>
 							<br/>
-							<a style={{color:'black', fontWeight:500, fontSize:15}} href={article.url}>{article.title}</a>
+							<a style={{color:'black', fontWeight:500, fontSize:15}} href={article.url}>{/*{article.title}*/}</a>
 						</div>
 					</div>
-					<div className="talkSportsTitles">
+					<div className="talkSportsTitles" style={{borderBottom:'1px solid lightgrey'}}>
 						{article.title}
 					</div>
 				</div>
@@ -147,7 +145,7 @@ var SecondSportsComponent = React.createClass({
 })
 
 
-//this returns the individual articles and pictures
+//this returns the individual articles and pictures in Column3
 class ArticleColThree extends React.Component{
 	render (){
 		return(
@@ -155,13 +153,15 @@ class ArticleColThree extends React.Component{
 	 			{this.props.articles.map(function(article, index){
 					return(
 						<div key={index}>
-							<div style={{marginBottom: 10, float:'left', borderBottom:'1px solid lightgrey'}} >
+							<div style={{marginBottom: 10, float:'left'}} >
 								<div style={{fontSize: 16, margin:'4%'}}><a href={article.url}><img src={article.urlToImage} alt='s'
 									style={{width:'65%', height:'45%'}} /></a>
-									<a style={{color:'black', fontWeight:500, fontSize:15}} href={article.url}>{article.title}</a>
+									<br/>
+									<a style={{color:'black', fontWeight:500, fontSize:15}} href={article.url}></a>
 								</div>
-							</div>			
-						<div className="foxSports">
+							</div>
+
+						<div className="foxSports" style={{borderBottom:'1px solid lightgrey'}}>
 							{article.title}
 						</div>
 					</div>
@@ -190,16 +190,16 @@ class ArticlesColumnThree extends React.Component{
 	render (){
 		// console.log(this.state.sportsArticlesArray)
 		return(
-			<div className="col-xs-11 col-sm-7 col-md-3" style={{float:'right', margin:'auto', borderLeft:'3px solid lightgrey'}}>
+			<div className="col-xs-11 col-sm-7 col-md-3" style={{float:'right', margin:'auto', borderLeft:'3px solid lightgrey', height:'90vh', overflow:'scroll'}}>
 			<img alt='fox-sports' src={require('./images/Fox_Sports_Logo.png')}  style={{
-					float:'left',width:'50%', height:'50%', margin:'20px 23% 20px'}} />
+					float:'left',width:'50%', height:'10%', margin:'20px 23% 20px'}} />
 				<ArticleColThree articles={this.state.sportsArticlesThreeArray} />
 			</div>
 		);
 	}
 }
 
-//this returns the entire 3rd column
+//this returns the entire third column
 var ThirdSportsComponent = React.createClass({
 	render: function(){
 		return(
@@ -217,7 +217,6 @@ var SportsHome = React.createClass({
 render: function(){
 		return(
 			<div>
-			<SportsDropDownMenu />
 				<SportsScores />
 				<div className="sports_page">
 					<FirstSportsComponent />
@@ -228,10 +227,6 @@ render: function(){
 		)
 	}
 })
-
-
-
-
 
 
 

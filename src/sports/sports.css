@@ -10,14 +10,31 @@ p{
 	padding: 10px;
 }
 
+.nfl_articles{
+	position: relative;
+	margin-left: 10%;
+	background-color: #0099ff;
+}
+
+.packers{
+	background-image: url(images/packers);
+}
+
+.sportsnav{
+
+}
+
 .sports_page{
 	margin-top:  15px;
+	margin-left: 15%;
+	margin-right: 15%;
+	background-color: #0099ff;
 }
 
 .espn_img{
 	display: block;
 	border-bottom: 5px solid black;
-	height: 100%;
+	height: 60%;
 	padding-bottom: 15px;
 }
 
@@ -43,10 +60,6 @@ p{
 	font-size: 30px;
 	text-align: center;
 }
-
-
-
-
 
 
 
