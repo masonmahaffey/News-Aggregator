@@ -7,7 +7,12 @@ import $ from 'jquery';
 //Box1 = entertainment-weekly
 //Box2 = buzzfeed
 //Box3 = mtv
+//Box4 = mtv-uk
+//Box5 = daily-mail
+
+
 //To display entertainment data, we can use inspiration from Pinterest. Display small images and brief summary of article.
+//To make it visually appealing, we need more articles and smaller images.
 
 
 
@@ -17,28 +22,50 @@ var entertainmentURLTail = '&sortBy=top&apiKey=09a731f9f7e9481c9deffbec56d9b6c9'
 // var entertainmentAPIKey = '09a731f9f7e9481c9deffbec56d9b6c9';
 
 
-//================ MTV goes in Box3 ===================================
-
-
-//We are looking for the title and url of each article
-class MTV extends React.Component{
+//=========================== Daily-Mail goes in Box5 ================================
+class Box5 extends React.Component{
+	constructor(props) {
+		super(props);
+		this.state = {dailyMailArticlesArray:[]};
+		this.componentDidMount = this.componentDidMount.bind(this);
+	}
+	componentDidMount() {
+		var entertainmentSource5 = 'daily-mail';
+		var url = entertainmentURL + entertainmentSource5 + entertainmentURLTail;
+		$.getJSON(url, (dailyMailArticles)=>{
+			this.setState({dailyMailArticlesArray: dailyMailArticles.articles});
+		});
+	}
 	render(){
 		return(
-			<div className="mtv">
-			MTV
-				{this.props.articles.map((article, index)=>{
-					return(
-						<div key={index} style={{border: '3px solid white', fontSize:18, backgroundColor:'lightgrey', display: 'block', width:'30%' }}>
-							<a href={article.url}>{article.title}</a>
-						</div>
-					)
-				})}
-			</div>
+			<EW  articles={this.state.dailyMailArticlesArray}/>
+		)
+	}
+}
+
+//============================ MTV-UK goes in Box4 ===================================
+class Box4 extends React.Component{
+	constructor(props) {
+		super(props);
+		this.state = {mtvUKArticlesArray:[]};
+		this.componentDidMount = this.componentDidMount.bind(this); 
+	}
+	componentDidMount() {
+		var entertainmentSource4 = 'mtv-uk';
+		var url = entertainmentURL + entertainmentSource4 + entertainmentURLTail;
+		$.getJSON(url, (mtvUKArticles)=>{
+			this.setState({mtvUKArticlesArray: mtvUKArticles.articles});
+		});
+	}
+	render(){
+		return(
+			<EW articles={this.state.mtvUKArticlesArray}/>
 		)
 	}
 }
 
 
+//============================ MTV goes in Box3 ===================================
 
 //Display MTV articles in Box3
 class Box3 extends React.Component{
@@ -53,11 +80,12 @@ class Box3 extends React.Component{
 		var url = entertainmentURL + entertainmentSource3 + entertainmentURLTail;
 		$.getJSON(url, (mtvArticles)=>{
 				this.setState({mtvArticlesArray: mtvArticles.articles});
-		});			
+			// console.log(mtvArticles)	
+		});		
 	}
 	render(){
 		return(
-			<MTV articles={this.state.mtvArticlesArray}/>
+			<EW articles={this.state.mtvArticlesArray}/>
 		)
 	}
 }
@@ -65,28 +93,7 @@ class Box3 extends React.Component{
 
 
 
-//================ Buzzfeed(BF) goes in Box2 ==========================
-
-//Use this to map through bfArticlesArray to find TOP news. Display in Box2.
-//Map through each "article" in the array and call each of them "index". Need to have key.
-class BF extends React.Component{
-	render(){
-		return(
-			<div className="bf">
-			Buzzfeed
-				{/* Get the URL and title of each article */}
-				{this.props.articles.map((article, index)=>{
-					return(
-						<div key={index} style={{border: '3px solid white', fontSize:18, backgroundColor:'lightgrey', display: 'block', width:'30%' }}>
-							<a href={article.url}>{article.title}</a>
-						</div>
-					)
-				})}
-			</div>
-
-		)
-	}
-}
+//======================= Buzzfeed(BF) goes in Box2 ==========================
 
 
 //Display BF articles in Box2.
@@ -105,11 +112,12 @@ class Box2 extends React.Component{
 		$.getJSON(url, (buzzfeedArticles)=>{
 			//Put articles into array and setState with it
 			this.setState({buzzfeedArticlesArray: buzzfeedArticles.articles});
+			// console.log(buzzfeedArticles)	
 		});
 	}
 	render(){
 		return(
-			<BF articles={this.state.buzzfeedArticlesArray}/>
+			<EW articles={this.state.buzzfeedArticlesArray}/>
 		)
 	}
 }
@@ -122,11 +130,15 @@ class EW extends React.Component{
 	render(){
 		return(
 			<div className="ew">
-			Entertainment Weekly
 				{this.props.articles.map(function(article, index){
 					return (
-						<div key={index} style={{border: '3px solid white', fontSize:18, backgroundColor:'lightgrey', display: 'block', width:'30%' }}>
-							<a href={article.url}>{article.title}</a>
+						<div key={index} style={{border: '3px solid white', fontSize:18, backgroundColor:'lightgrey', display: 'block', width:'100%', padding:'10px', margin:'20px', borderRadius: '3%'}}>
+							<img alt='a' src={article.urlToImage} style={{width:'100%', height:'100%'}}/>
+							<a href={article.url}>{article.title}</a> 
+							<br/>
+							<div style={{fontSize:16, fontWeight:'small'}}>
+								{article.description}
+							</div>
 						</div>
 					) 
 				})}
@@ -158,7 +170,8 @@ class Box1 extends React.Component{
 	render(){
 		return(
 			<div>
-				{/*Return articles for entertainment-weekly through EW*/}
+				{/* Return articles through EW */}
+				{/* EW can actually be resused for the other sources */}
 				<EW articles={this.state.ewArticlesArray}/>
 			</div>
 		)
@@ -170,10 +183,25 @@ class Box1 extends React.Component{
 var Entertainment = React.createClass({
 	render: function(){
 		return(
-			<div style={{backgroundColor:'red'}}>
-				<Box1 />
-				<Box2 />
-				<Box3 />
+			<div>
+				<div className='col-lg-3 col-md-4 col-sm-6 col-xs-12'> 
+					<Box1 />
+				</div>
+				<div className='col-lg-3 col-md-4 col-sm-6 col-xs-12'> 
+					<Box2 />
+				</div>
+				<div className='col-lg-3 col-md-4 col-sm-6 col-xs-12'> 
+					<Box3 />
+				</div>
+				<div className='col-lg-3 col-md-4 col-sm-6 col-xs-12'>
+					<Box4 />
+				</div>
+				<div className='col-lg-3 col-md-4 col-sm-6 col-xs-12'>
+					<Box4 />
+				</div>
+				<div className='col-lg-3 col-md-4 col-sm-6 col-xs-12'>
+					<Box5 />
+				</div>
 			</div>
 		)
 	}

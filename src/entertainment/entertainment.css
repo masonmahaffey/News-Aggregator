@@ -1,5 +1,6 @@
-.ew, .bf, .mtv{
+.ew{
 	font-size: 20px;
 	font-weight: bold;
+	/* border-radius:10px; */
 }
 
