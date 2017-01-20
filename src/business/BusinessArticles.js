@@ -57,15 +57,16 @@ class ArticleImages extends Component{
 					if(article.title.length > 75){
 						article.title = article.title.slice(0,75) + "..."
 					}
+					if(article.url.length!==null){
 					return(
 						<div style={{marginBottom: 10, float:'left', borderBottom:'1px solid lightgrey'}} key={index}>
 							<div style={{fontSize: 16, margin:'4%'}}><a href={article.url}><img src={article.urlToImage} alt='s'
-							style={{width:'95%', height:'85%'}} /></a>
-							<br/>
-							<a style={{color:'black', fontWeight:500, fontSize:18}} href={article.url}>{article.title}</a>
+								style={{width:'95%', height:'85%'}} /></a>
+								<br/>
+								<a style={{color:'black', fontWeight:500, fontSize:18}} href={article.url}>{article.title}</a>
 							</div>
 						</div>
-					)	
+					)}	
 				})}
 			</div>
 		)

@@ -1,4 +1,4 @@
-import React from 'react';
+import React, { Component } from 'react';
 import '../index.css';
 import $ from 'jquery'
 
@@ -6,61 +6,63 @@ const newsApiKey = '275258a3655c449ba4907833f5baf08b';
 const apiMain = 'https://newsapi.org/v1/articles?source=';	
 const apiTail = '&apiKey='
 
-var MainArticles = React.createClass({	
-	getInitialState: function() {
-		return({
+class ArticleDescription extends Component{
+	render(){
+		return(
+			<div className='col-sm-8' style={{backgroundColor:'yellow'}}>
+			</div>
+		)
+	}
+}
+
+class Article extends Component{
+	constructor(props) {
+		super(props);
+		this.state = {
+			display: 'none',
+			article: this.props.article
+		}
+	}
+	render(){
+		return(
+			<div className='row'>
+				<div onClick={this.props.onClick} className='col-sm-3' style={{backgroundColor:'blue'}}>
+					<div style={{position:'relative'}}>{this.props.article.title}</div>
+				</div>
+				<ArticleDescription article={this.state.article} display={this.state.display}/>
+			</div>
+		)
+	}
+}
+
+class MainArticles extends Component{
+	constructor(props) {
+		super(props);
+		this.state = {
 			articlesArray: []
-		})
-	},
-	componentDidMount: function() {
+		}
+	}
+	componentDidMount() {
 		var apiSource = 'cnn';
-		var url = apiMain + apiSource + apiTail + newsApiKey;
-
-		// $.getJSON('http://ec2-52-25-56-215.us-west-2.compute.amazonaws.com:3000/api/articles',(returnData) =>{
-
-		// 	console.log(returnData)
-		// });
-
+		var url = apiMain + apiSource + apiTail + newsApiKey;		
 		$.getJSON(url, (newsData) =>{
 			this.setState({
 				articlesArray: newsData.articles
 			})
-		});		
-	},
-	render: function(){
-		return(
-			 <div style={{height:'96vh'}}>
-				<EachMainArticle articles={this.state.articlesArray} />
-			</div>
-		);
+		});				
 	}
-})
-
-var EachMainArticle = React.createClass({
-	render: function(){
+	render(){
 		return(
-			<div style={{backgroundColor: 'white'}}>
-				{this.props.articles.map(function(article, index){
-					var title = article.title
-					var description = article.description
-					// if(title.length > 70){title = title.slice(0,70)+'...'}
-					// if(description.length > 185){description = description.slice(0,185)+'...'}
-					return(
-						<div className='row each-article-row' key={index} style={{
-							marginRight:2,
-							marginBottom:10, fontSize:18, backgroundColor:'#F3F1F4', border:'1px solid #ddd', padding:10}}>
-							<a href={article.url} style={{color:'black'}}>
-								
-								<div style={{display:'inline-block'}}>
-									<div style={{fontWeight:'bold'}}>{title}</div>
-								</div>
-							</a>
-						</div>
-					)	
+			<div className='col-sm-10'>
+				{this.state.articlesArray.map((article,index)=>{
+				return(<Article key={index} article={article} />)
 				})}
 			</div>
-		)
+			)			
+
+
 	}
-})
+}
 
 export default MainArticles
+

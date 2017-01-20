@@ -8,7 +8,6 @@ const newsApiKey = '275258a3655c449ba4907833f5baf08b';
 const apiMain = 'https://newsapi.org/v1/articles?source=';	
 const apiTail = '&apiKey='
 
-
 var BreakingNews = React.createClass({
 	getInitialState: function() {
 		return({articlesArray: []})
@@ -42,7 +41,7 @@ var BreakingNews = React.createClass({
 var SideBar = React.createClass({
 	render: function(){
 		return(
-			<div style={{height:'100vw', width: '100%', backgroundColor:'#2E2B31', color: 'white'}}>
+			<div style={{height:'100vh', width: '100%', backgroundColor:'#2E2B31', color: 'white'}}>
 				<Weather />
 				<TopNewsByCategory />
 			</div>
@@ -65,15 +64,12 @@ var General = React.createClass({
 		return(
 			<div style={{backgroundColor:'white'}}>
 				{/*<BreakingNews />*/}
-				<div className='col-md-2 hidden-xs hidden-sm' style={{height:'94vh', position:'fixed', paddingLeft:0, paddingRight:0, overflow:'scroll'}}>
-					<SideBar />
-				</div>
-				<div className='col-md-7 col-md-offset-2'>
-					<Twitter />
-				</div>
-				<div className='col-md-3 hidden-xs hidden-sm' style={{paddingLeft: 0, paddingRight:0}}>
+
 						<MainArticles />
-				</div>
+
+				<div className='col-md-2 hidden-xs hidden-sm' style={{height:'94vh', position:'fixed', right:0, paddingLeft:0, paddingRight:0, overflow:'scroll'}}>
+					<SideBar />
+				</div>				
 			</div>
 		)
 	}

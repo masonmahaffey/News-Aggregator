@@ -14,7 +14,6 @@ class Results extends Component {
 		else if(weather.wind > 135){windDirection='South'}
 		else if(weather.wind > 225){windDirection='West'}
 		else{windDirection='North'}	
-		
 		return(
 			<div style={{fontSize:16, color:'white', paddingTop:10, paddingBottom:10}}>
 				<div style={{position:'relative'}}>
@@ -26,21 +25,16 @@ class Results extends Component {
 						<img style={{margin:'auto', height:'100%', width:'100%'}} alt='' src={weather.iconUrl} /> 
 					</div>
 				</div>
-					
 				<div style={{marginBottom:10}}>
 					<div style={{border:'3px solid white', display:'inline-block', padding:5, borderRadius:'50%', fontSize:20}}>{Math.floor(weather.temp)}&deg;</div> 
 					<span style={{fontSize:18, marginLeft:15, color:'#DD3939'}}>{Math.floor(weather.max)} &deg;</span> / <span style={{fontSize:18,color:'#0099FF'}}>{Math.floor(weather.min)} &deg;</span></div>
 				<div >{weather.description} </div>
-			
-				
 				<div> Humidty: {weather.humidity}% </div>
 				<div> Wind: {windDirection} at {Math.round(weather.windSpeed)} MPH</div>
-				
 			</div>
 		)
 	}
 }
-
 
 var WeatherSearchSubmit = React.createClass({
 	getInitialState: function() {
@@ -50,7 +44,6 @@ var WeatherSearchSubmit = React.createClass({
 			min:"", wind:"", windSpeed:""
 		})
 	},
-
 	componentDidMount: function() {
 		this.weatherSearchSubmit();
 	},

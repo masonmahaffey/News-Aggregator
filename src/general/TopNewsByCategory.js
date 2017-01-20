@@ -70,7 +70,6 @@ class World extends Component{
 	}
 }
 
-
 class Money extends Component{
 	constructor(props){
 		super(props);
@@ -93,7 +92,6 @@ class Money extends Component{
 		);
 	}
 }
-
 
 class Sports extends Component{
 	constructor(props){
@@ -118,11 +116,10 @@ class Sports extends Component{
 	}
 }
 
-
 class TopNewsByCategory extends Component{
 	render (){
 		return(
-			<div style={{fontSize:20}}>
+			<div style={{fontSize:20, backgroundColor:'#2E2B31'}}>
 				<Entertainment />
 				<Sports />
 				<Money />
