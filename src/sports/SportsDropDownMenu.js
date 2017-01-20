@@ -23,8 +23,6 @@ class SportsDropDownMenu extends Component{
 		document.getElementById("myDropdown").classList.toggle("show");
 	}
 
-
-
 	render(){
 		return(
 			<div>

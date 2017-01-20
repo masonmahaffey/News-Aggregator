@@ -64,6 +64,10 @@ animation: scroll 300s linear infinite}
 	font-size: 18px;
 }
 
+
+.navbar{
+margin-bottom:0;}
+
 .navbar-inverse .navbar-nav li a:hover{
 	color: grey;
 }

@@ -68,19 +68,22 @@ class ArticleColTwo extends React.Component{
 	 			{this.props.articles.map(function(article, index){
 	 				if(index == 0){
 	 					return(
-	 						//return the first ESPN headline as a BIG picture
-							<div key={index} style={{textAlign:"center"}}>
-								<div style={{marginBottom: 5, float:'left'}} >
-									<div style={{fontSize: 30, margin:'4%'}}><a href={article.url}><img src={article.urlToImage} alt='s'
-										style={{width:'100%', height:'65%'}} /></a>
-										<a className="big_espn_title" href={article.url}>{article.title}</a>
+	 						<div key={index}>
+	 							{/*return the first ESPN headline as a BIG picture*/}
+								<div key={index} style={{textAlign:"center"}}>
+									<div style={{marginBottom: 5, float:'left'}} >
+										<div style={{fontSize: 30, margin:'4%'}}><a href={article.url}><img src={article.urlToImage} alt='s'
+											style={{width:'100%', height:'65%'}} /></a>
+											<a className="big_espn_title" href={article.url}>{article.title}</a>
+										</div>
+									</div>		
+									<div className="espn_desc" style={{marginBottom: 10, borderBottom:'1px solid lightgrey'}}>
+										{article.description}
 									</div>
-								</div>		
-								<div className="espn_desc" style={{marginBottom: 10, borderBottom:'1px solid lightgrey'}}>
-									{article.description}
 								</div>
 							</div>
 	 					)
+
 	 				}else if(index !== 0){
 	 					//return the other top ESPN headlines as smaller
 						return(
@@ -123,7 +126,7 @@ class HeaderImgColumnTwo extends React.Component{
 		})
 		//this returns the ESPN logo header
 		return(
-			<div className="col-xs-11 col-sm-5 col-md-5" style={{marginLeft: 40}}>
+			<div className="col-xs-11 col-sm-5 col-md-5" style={{marginLeft: 40 }}>
 				<div>
 					<img alt='espn' src={require('./images/ESPN.png')} className="espn_img" />
 				</div>
