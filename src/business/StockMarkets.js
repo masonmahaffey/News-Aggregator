@@ -207,7 +207,7 @@ class StockHeader extends Component{
 	}
 	render(){
 		return(
-			<div style={{position:'fixed', height: 38,zIndex:8, width:'100%',backgroundColor:'#333333', color:'white'}}>
+			<div style={{overflow:'hidden',position:'fixed', height: 38,zIndex:8, width:'100%',backgroundColor:'#333333', color:'white'}}>
 				<div className="stock-header"  style={{display:'inline-block'}}>
 					<TimeTicker today={this.state.today} />
 					<NYSE today={this.state}/>

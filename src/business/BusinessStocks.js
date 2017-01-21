@@ -18,7 +18,7 @@ class Stocks extends Component {
 	};
   	componentDidMount() {
 		$.getJSON(stockUrl, (stockData) =>{
-			console.log(stockData)
+			// console.log(stockData)
 			var stockArr = stockData.query.results.quote
 			var stockArrMin = []
 			for(let i = 0; i < stockArr.length; i++){

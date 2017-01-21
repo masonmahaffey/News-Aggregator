@@ -45,12 +45,30 @@ var WeatherSearchSubmit = React.createClass({
 		})
 	},
 	componentDidMount: function() {
-		this.weatherSearchSubmit();
+		var url = weatherUrl + 30033 + urlTail
+		$.getJSON(url, (weatherData) => {
+			var temp = weatherData.main.temp;
+			var description = weatherData.weather[0].description;
+			var iconUrl = 'http://openweathermap.org/img/w/' + weatherData.weather[0].icon + ".png";
+			var cityName = weatherData.name;
+			this.setState({
+				temp: temp,
+				iconUrl: iconUrl,
+				description: description,
+				zip:this.props.input,
+				name: cityName,
+				humidity: weatherData.main.humidity, 
+				max: weatherData.main.temp_max,
+				min: weatherData.main.temp_min,
+				wind: weatherData.wind.deg,
+				windSpeed: weatherData.wind.speed
+			})
+		})
 	},
 	weatherSearchSubmit: function(event){
-		// event.preventDefault();
-		// var url = weatherUrl + event.target[0].value + urlTail
-		var url = weatherUrl + 30033 + urlTail
+		event.preventDefault();
+		var url = weatherUrl + event.target[0].value + urlTail
+		// var url = weatherUrl + 30033 + urlTail
 		$.getJSON(url, (weatherData) => {
 			var temp = weatherData.main.temp;
 			var description = weatherData.weather[0].description;

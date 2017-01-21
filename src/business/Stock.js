@@ -5,7 +5,7 @@ import redArrow from './images/red.png'
 class Stock extends Component{
 	render(){
 		return(
-			<div onClick={this.onHover} className="stock-wrapper col-xs-4" style={{position:'fixed', top:'45vh', marginTop:40, left:0, height:'60vh'}}>
+			<div onClick={this.onHover} className="stock-wrapper hidden-xs col-sm-3" style={{position:'fixed', top:'45vh', marginTop:40, left:0, height:'60vh'}}>
 				<div className="text-center stock-rows">				
 					{this.props.stocks.map(function(stock, index){
 						var bgColor = "";  var arrowImg = ""
@@ -47,9 +47,9 @@ class BuildStocks extends Component{
 		var graphUrl = 'http://chart.finance.yahoo.com/z?s=' + this.props.stock.symbol.toUpperCase() + '&t=6m&q=l&l=on&z=s&p=m50,m200'
 		return(
 			<div>
-				<div onClick={this.onClick} className="col-xs-12 text-center" 
+				<div onClick={this.onClick} className="col-sm-12 text-center" 
 					style={{zIndex:7, padding: 4, height:40, lineHeight:'150%',
-					backgroundColor:'#2E2B31', color:this.props.bgColor, fontSize:20, borderTop: '1px #222222 solid'}}>
+					backgroundColor:'#2E2B31', color:this.props.bgColor, fontSize:17, borderTop: '1px #222222 solid'}}>
 					<div className="eachStock" style={{display:hideStock, overflow:'hidden'}}>
 						<div style={{color:'white'}} className="col-sm-6 col-md-4">
 							{this.props.stock.symbol}
