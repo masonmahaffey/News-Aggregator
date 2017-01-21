@@ -15,10 +15,10 @@ class Results extends Component {
 		else if(weather.wind > 225){windDirection='West'}
 		else{windDirection='North'}	
 		return(
-			<div style={{fontSize:16, color:'white', paddingTop:10, paddingBottom:10}}>
+			<div style={{fontSize:18, color:'white', paddingTop:10, paddingBottom:10}}>
 				<div style={{position:'relative'}}>
 					<div >
-						<div style={{fontSize:19}}> {todayString} </div>
+						<div style={{fontSize:21}}> {todayString} </div>
 						<div> {weather.name} </div> 
 					</div>
 					<div style={{width:60, height:60, margin:'auto', textAlign:'center'}}>
@@ -27,7 +27,7 @@ class Results extends Component {
 				</div>
 				<div style={{marginBottom:10}}>
 					<div style={{border:'3px solid white', display:'inline-block', padding:5, borderRadius:'50%', fontSize:20}}>{Math.floor(weather.temp)}&deg;</div> 
-					<span style={{fontSize:18, marginLeft:15, color:'#DD3939'}}>{Math.floor(weather.max)} &deg;</span> / <span style={{fontSize:18,color:'#0099FF'}}>{Math.floor(weather.min)} &deg;</span></div>
+					<span style={{fontSize:20, marginLeft:15, color:'#DD3939'}}>{Math.floor(weather.max)} &deg;</span> / <span style={{fontSize:18,color:'#0099FF'}}>{Math.floor(weather.min)} &deg;</span></div>
 				<div >{weather.description} </div>
 				<div> Humidty: {weather.humidity}% </div>
 				<div> Wind: {windDirection} at {Math.round(weather.windSpeed)} MPH</div>
@@ -90,13 +90,26 @@ var WeatherSearchSubmit = React.createClass({
 	},
 	render: function(){
 		// console.log(this.state.value)
+		var weatherSource = './images/'
+		if(this.state.description.indexOf('cloud')>-1){
+			weatherSource+='cloud.png'
+		}else if(this.state.description.indexOf('mist')>-1){
+			weatherSource+='mist.png'
+		}else if(this.state.description.indexOf('rain')>-1){
+			weatherSource+='rain.png'
+		}else if(this.state.description.indexOf('snow')>-1){
+			weatherSource+='snow.png'
+		}else if(this.state.description.indexOf('thunder')>-1){
+			weatherSource+='thunder.png'}			
 		return(
 			<div>
 				<form onSubmit={this.weatherSearchSubmit} style={{padding:10}}>
 		     		<input type="text" className='form-control' placeholder="Weather search by zip code" />
 			   </form>
+			   <div className='weather-move' style={{position:'absolute'}}><img src={require('./images/mist.png')}/></div>
 			   <div className='weather-wrapper' style={{textAlign:'center', backgroundColor: '#333333', width:'100%', margin:'auto'}}>
 					<Results propertyOfResultsNamedParentsState={this.state}/>
+
 			   </div>
 		   </div>
 		)

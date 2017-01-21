@@ -1,5 +1,6 @@
 body{
-	font-family: 'Source Sans Pro'
+	font-family: 'Source Sans Pro';
+
 }
 .active{
 	background-color: #0099ff !important;
@@ -70,4 +71,27 @@ margin-bottom:0;}
 
 .navbar-inverse .navbar-nav li a:hover{
 	color: grey;
+}
+
+.image-hover:hover{
+	opacity: .7
+}
+.weather-move img{
+	animation: weather-move 15s linear infinite;
+
+}
+
+@keyframes weather-move{
+	0%{
+		width: 80%;
+		height: 80%;
+	}
+	50%{
+		width: 40%;
+		height: 40%;
+	}
+	100%{
+		width: 80%;
+		height: 80%;
+	}
 }

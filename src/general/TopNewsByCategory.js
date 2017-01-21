@@ -13,7 +13,7 @@ var CategoryArticle = React.createClass({
 				{articles.map(function(article, index){
 					var title = article.title
 					return(
-						<div key={index} style={{padding:10, fontSize:14}}>
+						<div key={index} style={{padding:10, fontSize:16}}>
 							<a href={article.url} style={{color:'white'}}>{title}</a>
 						</div>
 					)	
@@ -40,7 +40,7 @@ class Entertainment extends Component{
 	render (){
 		return(
 			<div style={{margin:'10px 0'}}>
-				<div className='text-center'><Link to="/entertainment" style={{color:'white'}}>Entertainment</Link></div>
+				<div className='text-center'><Link to="/entertainment" style={{color:'white'}}>changing this c. Entertainment</Link></div>
 				<CategoryArticle articles={this.state.articlesArray} />
 			</div>
 		);
@@ -119,7 +119,7 @@ class Sports extends Component{
 class TopNewsByCategory extends Component{
 	render (){
 		return(
-			<div style={{fontSize:20, backgroundColor:'#2E2B31'}}>
+			<div style={{fontSize:22, backgroundColor:'#2E2B31'}}>
 				<Entertainment />
 				<Sports />
 				<Money />

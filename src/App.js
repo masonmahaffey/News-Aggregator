@@ -28,7 +28,7 @@ class ToggleRoutes extends React.Component {
           <li><IndexLink to="/" activeClassName="active">Top News</IndexLink></li>
           <li><Link to="/entertainment" activeClassName="active">Entertainment</Link></li>
           <li><Link to="/sports" activeClassName="active">Sports</Link></li>
-          <li><Link to="/business" activeClassName="active">Money</Link></li>
+          <li><Link to="/business" activeClassName="active">Business</Link></li>
           <li><Link to="/global" activeClassName="active">World</Link></li>
         </ul>
         <ul className="nav navbar-nav visible-xs inline-list">

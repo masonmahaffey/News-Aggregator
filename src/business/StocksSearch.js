@@ -51,8 +51,8 @@ class StockSearch extends Component{
 	render(){
 		// console.log(this.state.stock) 
 		return(
-			<div className="stock-wrapper col-sm-3 hidden-xs" style={{position:'fixed', left:0, height:'45vh'}}> 
-				<div className="col-xs-12" style={{marginTop:40,padding: 4, backgroundColor:'#2E2B31', height:'37vh', borderBottom:'1px #222222 solid', zIndex:15}}>
+			<div className="stock-wrapper col-sm-3 hidden-xs" style={{position:'fixed', left:0, height:'50vh', paddingRight:0}}> 
+				<div className="col-xs-12" style={{marginTop:40,padding: 4, backgroundColor:'#2E2B31', height:'43vh', borderBottom:'1px #222222 solid', zIndex:15}}>
 					<div style={{marginLeft:8, marginTop:8, paddingRight:20, paddingLeft:5,paddingTop:15}}>
 						<form onSubmit={this.stockSearchSubmit}>
 		     				<input type="text" className="form-control" placeholder="Search any stock symbol" />
@@ -76,7 +76,7 @@ class SearchedStockResults extends Component {
 		var stock = this.props.stock
 		var changeColor = ''
 		var changeColor2 = ''
-		var changeColor3 = ''
+		// var changeColor3 = ''
 		var positive = ''
 		if(stock.Change>=0){changeColor='#76ff03'}else{changeColor='#ef5350'}
 		if(stock.EPSEstimateCurrentYear>=0){changeColor2='#76ff03'; positive="+"}else{changeColor2='#ef5350'}

@@ -3,17 +3,24 @@
 	overflow: hidden;
 	margin-top: -6px;
 	padding-left: 0;
-}
-.stock-graph:hover{
-	opacity: .5
+	padding-right:0
 }
 .stock-rows{
 	animation: 85s linear scrollStock infinite;
 }
 .stock-rows div:hover{
-	background-color: #0099ff;
 	color: white;
 	cursor: pointer;
+	animation: stockHover 1s
+}
+@keyframes stockHover{
+	0%{
+		/* opacity: 1; */
+	}
+	100%{
+		/* opacity: .8; */
+   		background-color: #0099ff;
+	}
 }
 
 @keyframes scrollStock{
@@ -41,13 +48,28 @@
 	padding: 2px;
 }
 
-.each-article{
-	margin: 20px 10px 15px 5px;
-	font-size: 15px;
-	border-bottom: 1px solid lightgrey;
-	padding-bottom: 10px;
-}
 
-body{
-	background-color: white;
+.click-article{
+	background-color: #F3F3F3;
+	filter: brightness(95%);
+}
+.click-article:hover{
+	animation: darker .4s linear;
+    cursor: pointer;
+    opacity: 1;
+   	filter: brightness(63%);
+}
+@keyframes darker{
+	0%{
+		opacity: .4;
+		filter: brightness(100%);
+	}
+	50%{
+		opacity: .5;
+   		filter: brightness(70%);
+	}
+	100%{
+		opacity: 1;
+   		filter: brightness(63%);
+	}
 }

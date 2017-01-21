@@ -5,7 +5,7 @@ import redArrow from './images/red.png'
 class Stock extends Component{
 	render(){
 		return(
-			<div onClick={this.onHover} className="stock-wrapper hidden-xs col-sm-3" style={{position:'fixed', top:'45vh', marginTop:40, left:0, height:'60vh'}}>
+			<div onClick={this.onHover} className="stock-wrapper hidden-xs col-sm-3" style={{position:'fixed', top:'40vh', marginTop:40, left:0, height:'60vh'}}>
 				<div className="text-center stock-rows">				
 					{this.props.stocks.map(function(stock, index){
 						var bgColor = "";  var arrowImg = ""
