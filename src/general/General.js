@@ -1,30 +1,35 @@
+//Page made in one file for easier access, to keep layouts among pages consistent
 import React, { Component } from 'react'
 import '../index.css';
 import $ from 'jquery'
 import Weather from './Weather'
 import TopNewsByCategory from './TopNewsByCategory'
-import MainArticles from './MainArticles'
 const newsApiKey = '275258a3655c449ba4907833f5baf08b';
 const apiMain = 'https://newsapi.org/v1/articles?source=';	
 const apiTail = '&apiKey='
 
+//article Sources
 var	sourceArray = [
 		'business-insider', 'financial-times', 'business-insider-uk', 'fortune', 'the-economist'
 ]
 
+//header for news feed on the right (child of news feed)
 class LatestNews extends Component{
 	render() {
 		return(
-		<div style={{padding:7, borderLeft:'1px solid #ddd',borderBottom:'5px solid black',
+		<div className='hidden-xs' style={{padding:7, borderLeft:'1px solid #ddd',borderBottom:'5px solid black',
 			fontFamily:'Days One', fontSize:25, textAlign:'center'}}>
 			Latest News
 		</div>
 		)
 	}
 }
+
+//mid section of page, Description
 class Description extends Component{
 	render(){
 		var article = this.props.article
+		//facebook share link
 		var href='https://www.facebook.com/sharer/sharer.php?u=' + article.url 
 			return(
 			<div style={{padding:'1%'}}>
@@ -43,6 +48,7 @@ class Description extends Component{
 	}
 }
 
+//News Feed on right
 class JustTitles extends Component{
 	constructor(props) {
 		super(props);
@@ -59,6 +65,8 @@ class JustTitles extends Component{
 
 	}
 	render(){
+
+		//logic for changing json date object to a string, then math for posted time
 		var article = this.props.article
 		var json = JSON.stringify(article.publishedAt)
 		var jsonToDate = JSON.parse(json)
@@ -68,6 +76,8 @@ class JustTitles extends Component{
 		var hoursAgo = daysAgo*24; 
 		var authorText = ""
 		var publishText = ""
+
+		//creating author string and published time string to display, order of lines must stay same.
 		if(article.author){authorText = "By " + article.author + " "}
 		if(daysAgo>1){
 			hoursAgo = (daysAgo - Math.floor(daysAgo))*24; 
@@ -96,6 +106,7 @@ class JustTitles extends Component{
 	}
 }
 
+//parent of description and newsfeed
 class ArticleTitles extends Component{
 	constructor(props) {
 		super(props);
@@ -125,28 +136,37 @@ class ArticleTitles extends Component{
     	})
 	}	
 	render(){
+		//defaulting justTitles array to <LatestNews/> (which is header on top of newsfeed)
 		var justTitles=[<LatestNews />]
 		this.state.articlesArray.map((article, index)=>{
 			justTitles.push(<JustTitles onClick={this.parentOnClick} key={index} article={article}/>)
 		})
+		//bootstrap for mobile friendly with hidden components and changing column size
 		return(
 			<div>
-				<div className='col-md-offset-3 col-md-6'style={{marginTop:3}}>
+				<div className='hidden-xs col-md-offset-3 col-md-6 col-sm-9'style={{marginTop:3}}>
 					<Description article={this.state.article} />
 				</div>
-				<div className='col-md-3' style={{
-				padding:0, marginRight:0, backgroundColor:'#F3F1F4', borderLeft:'1px solid #ddd', 
-				height:'100vh', position:'fixed', right:0, overflow:'scroll'}}>
+				<div className='col-sm-3 hidden-xs' style={{padding:0, marginRight:0, backgroundColor:'#F3F1F4', 
+					borderLeft:'1px solid #ddd', height:'100vh', position:'fixed', right:0, overflow:'scroll'}}>
 					{justTitles}
 				</div>
+
+					{/********************** Mobile View *********************/}
+					<div className='visible-xs'style={{marginTop:3, height:'70vh',overflow:'scroll'}}>
+						<Description article={this.state.article} />
+					</div>
+					<div className='col-xs-12 visible-xs' style={{height:'25vh',padding:0, marginRight:0, 
+						backgroundColor:'#F3F1F4', borderLeft:'1px solid #ddd', right:0, overflow:'scroll'}}>
+						{justTitles}
+					</div>
+					{/********************** Mobile View *********************/}
 			</div>
 		)
 	}
 }
 
-
-
-
+//left side bar(children are in different files)
 class SideBar extends Component{
 	render(){
 		return(
@@ -158,14 +178,11 @@ class SideBar extends Component{
 	}
 }
 
+// the big grand daddy for the front page
 class General extends Component{
 	render(){
 		return(
 			<div style={{backgroundColor:'#F8F8F8'}}>
-				{/*<BreakingNews />*/}
-
-						
-
 				<div className='col-md-3 hidden-xs hidden-sm' style={{height:'94vh', position:'fixed', left:0, paddingLeft:0, paddingRight:0, overflow:'scroll'}}>
 					<SideBar />
 				</div>				

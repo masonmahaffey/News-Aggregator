@@ -4,6 +4,7 @@ import $ from 'jquery';
 var weatherUrl = 'http://api.openweathermap.org/data/2.5/weather?units=imperial&zip='
 var urlTail = ',us&appid=0ea662971e6d6306ad9a84ede4d36865'
 
+//rendering weather, styling done here
 class Results extends Component {
 	render(){
 		var weather = this.props.propertyOfResultsNamedParentsState
@@ -36,6 +37,7 @@ class Results extends Component {
 	}
 }
 
+// getJSON for weather data and passing it down as props
 var WeatherSearchSubmit = React.createClass({
 	getInitialState: function() {
 		return({
@@ -46,6 +48,7 @@ var WeatherSearchSubmit = React.createClass({
 	},
 	componentDidMount: function() {
 		var url = weatherUrl + 30033 + urlTail
+		//defaulted weather to the zipcode 30033
 		$.getJSON(url, (weatherData) => {
 			var temp = weatherData.main.temp;
 			var description = weatherData.weather[0].description;
@@ -66,9 +69,9 @@ var WeatherSearchSubmit = React.createClass({
 		})
 	},
 	weatherSearchSubmit: function(event){
+		//getting weather data on submit of the weather input box
 		event.preventDefault();
 		var url = weatherUrl + event.target[0].value + urlTail
-		// var url = weatherUrl + 30033 + urlTail
 		$.getJSON(url, (weatherData) => {
 			var temp = weatherData.main.temp;
 			var description = weatherData.weather[0].description;
@@ -89,7 +92,7 @@ var WeatherSearchSubmit = React.createClass({
 		})
 	},
 	render: function(){
-		// console.log(this.state.value)
+		// changing background animation depening on current weather.description
 		var weatherSource = './images/'
 		if(this.state.description.indexOf('cloud')>-1){
 			weatherSource+='cloud.png'
@@ -102,12 +105,12 @@ var WeatherSearchSubmit = React.createClass({
 		}else if(this.state.description.indexOf('thunder')>-1){
 			weatherSource+='thunder.png'}			
 		return(
-			<div>
+			<div style={{paddingBottom:10}}>
 				<form onSubmit={this.weatherSearchSubmit} style={{padding:10}}>
 		     		<input type="text" className='form-control' placeholder="Weather search by zip code" />
 			   </form>
 			   <div className='weather-move' style={{position:'absolute'}}><img src={require('./images/mist.png')}/></div>
-			   <div className='weather-wrapper' style={{textAlign:'center', backgroundColor: '#333333', width:'100%', margin:'auto'}}>
+			   <div className='weather-wrapper' style={{textAlign:'center', backgroundColor: '#2E2B31', width:'100%', margin:'auto'}}>
 					<Results propertyOfResultsNamedParentsState={this.state}/>
 
 			   </div>
@@ -116,6 +119,7 @@ var WeatherSearchSubmit = React.createClass({
 	}
 })
 
+// weather boss
 var Weather = React.createClass({
 	render: function(){
 		return(

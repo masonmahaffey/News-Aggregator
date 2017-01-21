@@ -1,10 +1,108 @@
+//left side column on front page
 import React, { Component } from 'react';
 import $ from 'jquery'
 const newsApiKey = '275258a3655c449ba4907833f5baf08b';
 const apiMain = 'https://newsapi.org/v1/articles?source=';	
 const apiTail = '&apiKey='
 import { Link } from 'react-router'
+var symbol = 'GOOG+FB+AAPL+AMZN'
+var stockFront = 'http://query.yahooapis.com/v1/public/yql?q=select%20*%20from%20yahoo.finance.quotes%20where%20symbol%20in%20("'
+var stockTail = '")%0A%09%09&env=http%3A%2F%2Fdatatables.org%2Falltables.env&format=json'
+var stockUrl = stockFront + symbol + stockTail
 
+
+
+//business category
+//displaying stocks
+class BuildStocks extends Component{
+	render() {
+		return(
+			<div className='col-sm-6' style={{fontSize:18,minHeight:100, padding:10}}>	
+				<div style={{color:'white'}} className="col-sm-6">
+					{this.props.stock.symbol}
+				</div>
+				<div style={{color:'lightgrey'}} className="col-sm-6">
+					${this.props.stock.price}
+				</div>
+				<div className='col-sm-12' style={{fontSize:14}}>
+					{this.props.stock.name}
+				</div>
+				<div className="col-sm-12" style={{fontSize:25,color:this.props.bgColor}}>
+					{this.props.stock.change} 
+				</div>									
+			</div>
+		)		
+	}	
+}
+
+//targetting each of the four stocks
+class Stock extends Component{
+	render(){
+		return(
+			<div>
+				{this.props.stocks.map(function(stock, index){
+					var bgColor = ""
+					if(stock.change>=0){bgColor='#76ff03';
+					}else{bgColor='#ef5350';}
+						return(
+							<div key={index}>
+								<BuildStocks bgColor={bgColor} stock={stock}/>
+							</div>
+						)
+					})}
+			</div>
+		)
+	}
+}
+
+//getJSON for stocks and passing it down as props
+class Stocks extends Component {
+  	constructor(props) {
+    	super(props);
+    	this.state = {stocks: []};
+    	this.componentDidMount = this.componentDidMount.bind(this);
+	};
+  	componentDidMount() {
+		$.getJSON(stockUrl, (stockData) =>{
+			var stockArr = stockData.query.results.quote
+			var stockArrMin = []
+			for(let i = 0; i < stockArr.length; i++){
+				var eachStock = {
+					symbol: stockArr[i].symbol,
+					price: stockArr[i].LastTradePriceOnly,
+					change: stockArr[i].Change,
+					name: stockArr[i].Name
+				}
+				stockArrMin.push(eachStock)
+			}
+			this.setState({stocks: stockArrMin})
+		});		
+  	}
+
+  	render() {
+    	return(
+    		<Stock stocks={this.state.stocks} />
+		)
+  	}
+}
+
+//business category box parent
+class Money extends Component{
+	render (){
+		return(
+			<div style={{height:220, paddingTop:18}}>
+				<div style={{fontSize:27,height:20,borderTop:'1px solid white', width:'100%'}}>
+				</div>
+					<div className='col-sm-8 col-sm-offset-2' style={{position:'absolute',textAlign:'center',marginTop:-35}}>
+						<Link to="/business" style={{paddingLeft:5,paddingRight:5,fontFamily:'Days One', color:'white',backgroundColor:'#2E2B31'}}>Business</Link>
+					</div>
+				<Stocks />
+			</div>
+		);
+	}
+}
+
+//building each category articles
 var CategoryArticle = React.createClass({
 	render: function(){
 		var articles = this.props.articles.slice(0,3)
@@ -23,7 +121,7 @@ var CategoryArticle = React.createClass({
 	}
 })
 
-
+//entertainment category box parent
 class Entertainment extends Component{
 	constructor(props){
 		super(props);
@@ -39,14 +137,19 @@ class Entertainment extends Component{
 	}
 	render (){
 		return(
-			<div style={{margin:'10px 0'}}>
-				<div className='text-center'><Link to="/entertainment" style={{color:'white'}}>changing this c. Entertainment</Link></div>
+			<div style={{marginTop:20, paddingTop:15}}>
+				<div style={{fontSize:27,height:15,borderTop:'1px solid white', width:'100%'}}></div>
+				<div className='col-sm-8 col-sm-offset-2' style={{position:'absolute',textAlign:'center',marginTop:-30}}>
+					<Link to="/entertainment" style={{paddingLeft:5,paddingRight:5,fontFamily:'Days One', 
+						color:'white',backgroundColor:'#2E2B31'}}>Entertainment</Link>
+				</div>
 				<CategoryArticle articles={this.state.articlesArray} />
 			</div>
 		);
 	}
 }
 
+//world category box parent
 class World extends Component{
 	constructor(props){
 		super(props);
@@ -62,37 +165,19 @@ class World extends Component{
 	}
 	render (){
 		return(
-			<div style={{margin:'10px 0', backgroundColor:'#333333'}}>
-				<div className='text-center'><Link to="/entertainment" style={{color:'white'}}>World</Link></div>
+			<div style={{marginTop:20, paddingTop:15}}>
+				<div style={{fontSize:27,height:15,borderTop:'1px solid white', width:'100%'}}></div>
+				<div className='col-sm-8 col-sm-offset-2' style={{position:'absolute',textAlign:'center',marginTop:-30}}>
+					<Link to="/world" style={{paddingLeft:5,paddingRight:5,fontFamily:'Days One', 
+						color:'white',backgroundColor:'#2E2B31'}}>World</Link>
+				</div>
 				<CategoryArticle articles={this.state.articlesArray} />
 			</div>
 		);
 	}
 }
 
-class Money extends Component{
-	constructor(props){
-		super(props);
-		this.state = {articlesArray: [], bigArticle:{}};
-		this.componentDidMount = this.componentDidMount.bind(this);
-	}
-	componentDidMount () {
-		var apiSource = 'business-insider';
-		var url = apiMain + apiSource + apiTail + newsApiKey;
-		$.getJSON(url, (newsData) =>{
-			this.setState({articlesArray: newsData.articles, 
-				bigArticle:newsData.articles[newsData.articles.length-1]})});	
-	}
-	render (){
-		return(
-			<div style={{margin:'10px 0'}}>
-				<div className='text-center'><Link to="/business" style={{color:'white'}}>Money</Link></div>
-				<CategoryArticle articles={this.state.articlesArray} />
-			</div>
-		);
-	}
-}
-
+//sports category box parent
 class Sports extends Component{
 	constructor(props){
 		super(props);
@@ -108,21 +193,27 @@ class Sports extends Component{
 	}
 	render (){
 		return(
-			<div style={{margin:'10px 0', backgroundColor:'#333333'}}>
-				<div className='text-center'><Link to="/entertainment" style={{color:'white'}}>Sports</Link></div>
+			<div style={{marginTop:20, paddingTop:15}}>
+				<div style={{fontSize:27,height:15,borderTop:'1px solid white', width:'100%'}}></div>
+				<div className='col-sm-8 col-sm-offset-2' style={{position:'absolute',textAlign:'center',marginTop:-30}}>
+					<Link to="/sports" style={{paddingLeft:5,paddingRight:5,fontFamily:'Days One', 
+						color:'white',backgroundColor:'#2E2B31'}}>Sports</Link>
+				</div>
 				<CategoryArticle articles={this.state.articlesArray} />
 			</div>
 		);
 	}
 }
 
+// grand daddy for categories on left side of front page
 class TopNewsByCategory extends Component{
 	render (){
 		return(
 			<div style={{fontSize:22, backgroundColor:'#2E2B31'}}>
+				<Money />
 				<Entertainment />
 				<Sports />
-				<Money />
+				
 				<World />
 			</div>
 		)

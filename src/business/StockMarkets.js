@@ -1,5 +1,6 @@
 import React, { Component } from 'react';
 
+// Stock market math for calculating open times
 class NZX extends Component{
 	render(){
 		var open = "open";
@@ -166,6 +167,7 @@ class NYSE extends Component{
 	}
 }
 
+//right top corner time display
 class TimeTicker extends Component{
 	render(){
 		return(
@@ -174,6 +176,8 @@ class TimeTicker extends Component{
 	}
 }
 
+// passing down current time for each market open times
+// stockheader parent
 class StockHeader extends Component{
   	constructor(props) {
     	super(props);

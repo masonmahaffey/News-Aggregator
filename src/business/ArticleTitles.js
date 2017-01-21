@@ -1,3 +1,7 @@
+///////////////////////////////////////////////////////////////////////////
+////////////////Layout and Logic consistent with General.js////////////////
+///////////////////////////////////////////////////////////////////////////
+
 import React, { Component } from 'react'
 import $ from 'jquery';
 const newsApiKey = '275258a3655c449ba4907833f5baf08b';
@@ -7,14 +11,12 @@ var	sourceArray = [
 		'business-insider', 'financial-times', 'business-insider-uk', 'fortune', 'the-economist'
 ]
 
-
 class LatestNews extends Component{
 	render() {
 		return(
-		<div style={{padding:7, borderLeft:'1px solid #ddd',borderBottom:'5px solid black',
+		<div className='hidden-xs' style={{padding:7, borderLeft:'1px solid #ddd',borderBottom:'5px solid black',
 			fontFamily:'Days One', fontSize:25, textAlign:'center'}}>
 			Business News
-
 		</div>
 		)
 	}
@@ -29,7 +31,7 @@ class Description extends Component{
 				<div style={{position:'absolute', right:-33, top:50}}><img style={{width:30, height:30}} src={require('../arrow.png')}/></div>
 				<div style={{marginTop:50}}>
 					<img src={this.props.article.urlToImage} alt='not found' style={{width:'100%',height:'120%',marginBottom:20}}/>
-					<div style={{position:'absolute', top:65, right:3}}><a href={href}><img style={{height:45, width:60}} className='image-hover' src={require('../facebook.png')}/></a></div>
+					<div style={{position:'absolute', top:65, right:3}}><a className='hidden-xs' href={href}><img style={{height:45, width:60}} className='image-hover' src={require('../facebook.png')}/></a></div>
 				</div>
 				<div style={{fontSize:30, marginBottom:16}}>{article.title}</div>
 				<div style={{fontSize:20, marginBottom:15}}>{article.description}</div>
@@ -129,12 +131,21 @@ class ArticleTitles extends Component{
 		})
 		return(
 			<div>
-				<div className='col-md-offset-3 col-md-6'style={{marginTop:3}}>
+				<div className='hidden-xs col-md-offset-3 col-md-6 col-sm-9'style={{marginTop:3}}>
 					<Description article={this.state.article} />
 				</div>
-				<div className='col-md-3' style={{marginTop:40,
+				<div className='visible-xs'style={{marginTop:3, height:'70vh',overflow:'scroll'}}>
+					<Description article={this.state.article} />
+				</div>
+				<div className='col-xs-12 visible-xs' style={{
+				height:'25vh', marginTop:40,
 				padding:0, marginRight:0, backgroundColor:'#F3F1F4', borderLeft:'1px solid #ddd', 
-				height:'100vh', position:'fixed', right:0, overflow:'scroll'}}>
+				right:0, overflow:'scroll'}}>
+					{justTitles}
+				</div>
+				<div className='col-sm-3 hidden-xs' style={{
+				padding:0, marginRight:0, backgroundColor:'#F3F1F4', borderLeft:'1px solid #ddd', 
+				height:'100vh', position:'fixed', right:0, marginTop:40,overflow:'scroll'}}>
 					{justTitles}
 				</div>
 			</div>

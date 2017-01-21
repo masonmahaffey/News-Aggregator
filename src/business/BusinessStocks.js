@@ -9,7 +9,7 @@ var stockFront = 'http://query.yahooapis.com/v1/public/yql?q=select%20*%20from%2
 var stockTail = '")%0A%09%09&env=http%3A%2F%2Fdatatables.org%2Falltables.env&format=json'
 var stockUrl = stockFront + symbol + stockTail
 
-// {this.props.stock.name}<br/>
+//parent of Stock.js, StockSearch.js, StockMarkets.js
 class Stocks extends Component {
   	constructor(props) {
     	super(props);
@@ -18,20 +18,19 @@ class Stocks extends Component {
 	};
   	componentDidMount() {
 		$.getJSON(stockUrl, (stockData) =>{
-			// console.log(stockData)
 			var stockArr = stockData.query.results.quote
 			var stockArrMin = []
 			for(let i = 0; i < stockArr.length; i++){
 				if(stockArr[i].symbol!==null){
 					if(stockArr[i].DaysHigh==null){stockArr[i].DaysHigh = "-"};
 					if(stockArr[i].Change==null){stockArr[i].Change = "0"};
+					// changed stock.Change to yearly change for display on weekends
 					var eachStock = {
 						symbol: stockArr[i].symbol,
 						price: stockArr[i].LastTradePriceOnly,
 						change: stockArr[i].ChangeFromFiftydayMovingAverage,
 						name: stockArr[i].Name
 					}
-					// ChangeFromFiftydayMovingAverage
 					stockArrMin.push(eachStock)
 
 					
@@ -42,11 +41,14 @@ class Stocks extends Component {
   	}
 
   	render() {
+  		//left column hidden in phone
     	return(
     		<div>
 				<StockHeader />
-    			<StockSearch />
-    			<Stock stocks={this.state.stocks} />
+				<div className='hidden-sm hidden-xs'>
+    				<StockSearch />
+    				<Stock stocks={this.state.stocks} />
+    			</div>
     		</div>
 		)
   	}
