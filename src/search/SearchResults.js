@@ -86,6 +86,8 @@ class SearchResults extends Component{
 	}
 }
 var newZ = 0
+
+//this is the rendered news in on the search box
 class RenderSearchedNews extends Component{
 	constructor(props) {
 		super(props);
