@@ -13,7 +13,7 @@ var	sourceArray = [
 		'business-insider', 'financial-times', 'business-insider-uk', 'fortune', 'the-economist'
 ]
 
-//header for news feed on the right (child of news feed)
+//header for news feed on the right (child of news feed)  / hidden in mobile
 class LatestNews extends Component{
 	render() {
 		return(
@@ -53,6 +53,7 @@ class JustTitles extends Component{
 	constructor(props) {
 		super(props);
 		this.childOnClick=this.childOnClick.bind(this)
+		// blue 'read' on the right pops up when clicked
 		this.state={
 			read: ''
 		}
@@ -65,7 +66,6 @@ class JustTitles extends Component{
 
 	}
 	render(){
-
 		//logic for changing json date object to a string, then math for posted time
 		var article = this.props.article
 		var json = JSON.stringify(article.publishedAt)
@@ -93,10 +93,13 @@ class JustTitles extends Component{
 		}else{publishText += Math.floor(minutesAgo) + " minutes ago"};
 		if(daysAgo>5){publishText = ""}
 		if(authorText.length>30){authorText=authorText.slice(0,30)+'...'}
+		var readColor = 'black'
+		var authorColor='grey'
+		if(this.state.read== 'seen'){readColor='lightgrey'; authorColor='lightgrey'}
 		return(
-			<div className='click-article' onClick={this.childOnClick} style={{padding:'10px 20px', borderLeft:'1px solid #ddd',borderBottom:'2px solid #ddd'}}>
-				<div style={{fontSize:16}}>{this.props.article.title}<span style={{color:'blue', fontSize:13,marginRight:6,float:'right'}}>{this.state.read}</span></div>
-				<div style={{marginLeft:2, marginTop:5, fontSize:13, color:'grey'}}>
+			<div className='click-article' onClick={this.childOnClick} style={{color:readColor, padding:'10px 20px', borderLeft:'1px solid #ddd',borderBottom:'2px solid #ddd'}}>
+				<div style={{fontSize:16}}>{this.props.article.title}</div>
+				<div style={{marginLeft:2, marginTop:5, fontSize:13, color:authorColor}}>
 					<div style={{float:'left'}}>{authorText}</div>
 					<div style={{float:'right', marginRight:10}}>{publishText}</div>
 				</div>
@@ -112,13 +115,13 @@ class ArticleTitles extends Component{
 		super(props);
 		this.state = {
 			articlesArray : [],
-			article:{
-
-			}
+			article:{}
 		}
     this.componentDidMount = this.componentDidMount.bind(this);		
     this.parentOnClick = this.parentOnClick.bind(this);		
 	}
+	// this function is called in its child, and the child will run this function with
+	// the input value as this functions parameter
 	parentOnClick(article){
 		this.setState({
 			article:article
