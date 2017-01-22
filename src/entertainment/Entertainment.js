@@ -132,11 +132,11 @@ class EW extends React.Component{
 			<div className="ew">
 				{this.props.articles.map(function(article, index){
 					return (
-						<div key={index} style={{border: '3px solid white', fontSize:18, backgroundColor:'lightgrey', display: 'block', width:'100%', padding:'10px', margin:'20px', borderRadius: '3%'}}>
-							<img alt='a' src={article.urlToImage} style={{width:'100%', height:'100%'}}/>
-							<a href={article.url}>{article.title}</a> 
+						<div key={index} style={{border: '3px solid white', display: 'block', width:'100%', padding:'15px', marginBottom:'20px', borderRadius: '3%'}}>
+							<img alt='a' src={article.urlToImage} style={{width:'100%', height:'100%', borderRadius: '3%'}}/>
+							<a href={article.url} style={{font:'Helvetica', fontSize:16, fontWeight:'bold', color:'black'}} >{article.title}</a> 
 							<br/>
-							<div style={{fontSize:16, fontWeight:'small'}}>
+							<div style={{fontSize:12}}>
 								{article.description}
 							</div>
 						</div>
@@ -208,4 +208,5 @@ var Entertainment = React.createClass({
 })
 
 export default Entertainment;
+
 

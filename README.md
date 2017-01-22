@@ -1,3 +1,86 @@
+##Description/overview
+Upd8ed, a news aggregator, is a demonstration of the front-end skills we have learned during our time thus far in coding bootcamp. We have created a one-stop shop for news by pulling Business, Entertainment, Global, Sports and other Top news from a variety of sources for the viewer. 
+
+
+-URL to live demo and live project
+
+-[GitHub Link](https://github.com/mason0958/News-Aggregator)
+
+
+##Table of contents
+-[Description](#description/overview)
+-[How to install](#how-to-install)
+-[Technologies Used](#technologies)
+-[Challenges and Solutions](#challenges-and-solutions)
+-[Screenshots](#screenshots)
+-[Contributions](#contributions)
+-[License](#license)
+
+
+##How to install
+  -dependencies
+
+##Technologies
+The following languages, frameworks and APIs were used:
+  -HTML
+  -CSS
+  -Javascript
+  -jQuery
+  -Bootstrap
+  -React
+  -News API
+  -OpenWeatherMap API
+  -Yahoo Finance API
+
+##Challenges and Solutions
+ 1. LAYOUTS
+
+##Screenshots
+
+##Contributions
+<!-- -who contributed including their parts. include contact info, links to github, website, email, etc -->
+
+Paul Kang
+Mason Mahaffey
+Anna Sedlar
+Connie Dang
+
+If you would like to report an issue with our code or a suggest a way to improve it, simply contact one of us. We are always looking for ways to improve! 
+
+<!-- -list 3 contributions you want others to add to the project -->
+If you would like to contribute to our project, we would like to add the the following:
+
+1. Upvote/downvote option for users
+
+2. Ability to share the news article to social media (mainly Twitter)
+
+3. 
+
+
+
+
+
+##license? -optional
+-if it's an open source code and others can contribute, you need to tell what they can and cannot do with your code
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+<!-- 
 This project was bootstrapped with [Create React App](https://github.com/facebookincubator/create-react-app).
 
 Below you will find some information on how to perform common tasks.<br>
@@ -1241,4 +1324,4 @@ It is reported that `npm run build` can fail on machines with no swap space, whi
 
 ## Something Missing?
 
-If you have ideas for more “How To” recipes that should be on this page, [let us know](https://github.com/facebookincubator/create-react-app/issues) or [contribute some!](https://github.com/facebookincubator/create-react-app/edit/master/packages/react-scripts/template/README.md)
+If you have ideas for more “How To” recipes that should be on this page, [let us know](https://github.com/facebookincubator/create-react-app/issues) or [contribute some!](https://github.com/facebookincubator/create-react-app/edit/master/packages/react-scripts/template/README.md) -->
