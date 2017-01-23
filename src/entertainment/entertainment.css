@@ -1,12 +1,27 @@
 .eachArticle{
 	font-size: 20px;
 	font-weight: bold;
-	background-color: #f1f3f4;
+	background-color: white;
 }
 
 .eachArticle:hover{
-	background-color:#b7b2b2;
-	transition: linear 0.15s;
-	transition-delay: 0.04s;
-	opacity: 0.8;
+	animation: entertainment .4s linear;
+    opacity: 1;
+   	filter: brightness(70%);
 }
+
+@keyframes entertainment{
+	0%{
+		opacity: .4;
+		filter: brightness(100%);
+	}
+	50%{
+		opacity: .5;
+   		filter: brightness(85%);
+	}
+	100%{
+		opacity: 1;
+   		filter: brightness(70%);
+	}
+}
+
