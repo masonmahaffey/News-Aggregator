@@ -17,11 +17,11 @@ class ArticleColOne extends React.Component{
 	 		//this returns the individual talkSPORT articles and photos
 			return(
 				<div key={index}>
-					<div style={{marginBottom: 10, float:'left', textAlign:'center'}}>
-						<div style={{fontSize: 16, margin:'4%'}}><a href={article.url}><img src={article.urlToImage} alt='s'
-							style={{width:'65%', height:'45%', margin:'auto'}} /></a>
+					<div style={{marginBottom: 10, float:'left', textAlign:'center'}} className="row">
+						<div style={{fontSize: 16, margin:'4%'}}><a target="_blank" href={article.url}><img src={article.urlToImage} alt='s'
+							style={{width:'65%', height:'45%', margin:'auto', border:'1px solid black'}} /></a>
 							<br/>
-							<a style={{color:'black', fontWeight:500, fontSize:15}} href={article.url}></a>
+							<a target="_blank" style={{color:'black', fontWeight:500, fontSize:15}} href={article.url}></a>
 						</div>
 					</div>
 					<div className="talkSportsTitles" style={{borderBottom:'1px solid lightgrey'}}>
@@ -71,8 +71,8 @@ class ArticleColTwo extends React.Component{
 	 						<div key={index}>
 	 							{/*return the first ESPN headline as a BIG picture*/}
 								<div key={index} style={{ marginBottom: 5, fontSize: 30, margin:'4%'}}>
-									<a href={article.url}><img src={article.urlToImage} alt='s' style={{width:'100%', height:'80%', border: '1px solid black'}} /></a>
-									<a className="big_espn_title" href={article.url}>{article.title}</a>
+									<a target="_blank" href={article.url}><img src={article.urlToImage} alt='s' style={{width:'100%', height:'80%', border: '1px solid black'}} /></a>
+									<a target="_blank" className="big_espn_title" href={article.url}>{article.title}</a>
 								</div>		
 								<div className="espn_desc" style={{borderBottom:'1px solid lightgrey'}}>
 									{article.description}
@@ -84,9 +84,9 @@ class ArticleColTwo extends React.Component{
 	 					//return the other ESPN headlines as smaller
 						return(
 							<div key={index} style={{marginBottom: 10}} className='row' style={{borderBottom:'1px solid lightgrey'}}>
-								<div style={{fontSize: 16, margin:'4%'}}><a href={article.url}>
-									<img src={article.urlToImage} alt='s' style={{width:'50%', height:'35%'}} /></a>
-									<a style={{color:'black', fontWeight:500, fontSize:15}} href={article.url}>{article.title}</a>
+								<div style={{fontSize: 16, margin:'4%'}}><a target="_blank" href={article.url}>
+									<img src={article.urlToImage} alt='s' style={{width:'50%', height:'35%', border:'1px solid black'}} /></a>
+									<a target="_blank" style={{color:'black', fontWeight:500, fontSize:15}} href={article.url}>{article.title}</a>
 								</div>	
 								<div className="espn_desc" style={{paddingBottom: 10, marginBottom: 10}}>
 									{article.description}
@@ -134,9 +134,9 @@ class ArticleColThree extends React.Component{
 	 			{this.props.articles.map(function(article, index){
 					return(
 						<div key={index} style={{borderBottom:'1px solid lightgrey', padding:10}} className="row">
-								<div><a href={article.url}>
-									<img src={article.urlToImage} alt='s'style={{width:'45%', height:'45%'}} /></a>
-									<a style={{color:'black', fontWeight:500, fontSize:14}} href={article.url}>{article.title}</a>
+								<div><a target="_blank" href={article.url}>
+									<img src={article.urlToImage} alt='s'style={{width:'45%', height:'45%', border:'1px solid black'}} /></a>
+									<a target="_blank" style={{color:'black', fontWeight:500, fontSize:14}} href={article.url}>{article.title}</a>
 								</div>			
 						</div>
 					)
