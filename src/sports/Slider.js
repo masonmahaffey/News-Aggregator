@@ -13,17 +13,22 @@ var SimpleSlider = React.createClass({
       slidesToShow: 1,
       slidesToScroll: 1
     };
+
     console.log(this.props.articles)
+    var imgURL = []
+         {this.props.articles.map(function(article, index){
+          imgURL.push(<div key={index}><img src={article.urlToImage} /></div>)}
+        )}
+    
     return (
+ 
       <div className="slider">
         <Slider{...settings}>
-            <div></div>
-
-            <div><h3>2</h3></div>
-            <div><h3>3</h3></div>
-            <div><h3>4</h3></div>
-            <div><h3>5</h3></div>
-            <div><h3>6</h3></div>
+          <div>{imgURL[0]}</div>
+          <div>{imgURL[1]}</div>
+          <div>{imgURL[2]}</div>
+          <div>{imgURL[3]}</div>
+          <div>{imgURL[4]}</div>
         </Slider>
       </div>
     );
