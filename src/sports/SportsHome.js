@@ -11,7 +11,6 @@ const apiMain = 'https://newsapi.org/v1/articles?source=';
 const apiTail = '&apiKey='
 // var giveToSliderUrl = [];
 // var giveToSliderTitle = [];
-// var giveToSliderPhoto = [];
 
 
 class ArticleColOne extends React.Component{
@@ -68,25 +67,14 @@ class FirstSportsComponent extends React.Component{
 }
 
 class ArticleColTwo extends React.Component{
-	constructor(props){
-		super(props);
-		this.state = {giveToSliderPhoto: []};
-		this.componentDidMount = this.componentDidMount.bind(this);
-	}
-	componentDidMount () {
-		var apiOneSource = 'espn';
-		var url = apiMain + apiOneSource + apiTail + newsApiKey;
-		$.getJSON(url, (espn) =>{
-			console.log(espn)
-			this.setState({giveToSliderPhoto: espn.articles.urlToImage})
-		});	
-	}
-
 	render (){
+		var photos = []
+			
+		
 		return(
-			console.log(this.state.giveToSliderPhoto),
+		
 			<div className="espn_articles">
-				<SimpleSlider photos={this.state.giveToSliderPhoto} />
+				<SimpleSlider articles={this.props.articles} />
 	 			{this.props.articles.map(function(article, index){
 	 					//return the other ESPN headlines as smaller
 						return(
@@ -119,7 +107,8 @@ class SecondSportsComponent extends React.Component{
 		var url = apiMain + apiTwoSource + apiTail + newsApiKey;
 		$.getJSON(url, (sportsData) =>{
 			this.setState({sportsArticlesTwoArray: sportsData.articles})
-		});	
+		});
+		console.log(this.state.sportsArticlesTwoArray)	
 	}
 	render (){
 		var articlesArrayTwo =[];

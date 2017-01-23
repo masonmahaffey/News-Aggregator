@@ -13,11 +13,11 @@ var SimpleSlider = React.createClass({
       slidesToShow: 1,
       slidesToScroll: 1
     };
+    console.log(this.props.articles)
     return (
-      console.log(this.props.photos),
       <div className="slider">
         <Slider{...settings}>
-            <div>{this.props.photos}</div>
+            <div></div>
 
             <div><h3>2</h3></div>
             <div><h3>3</h3></div>
