@@ -10,14 +10,23 @@ p{
 	padding: 10px;
 }
 
+img{
+	border: 1px solid black;
+}
+
+.third{
+
+	margin: auto;
+	border: 3px solid lightgrey;
+	height: 90vh;
+	overflow: scroll;
+	background-color: #F3F1F4;
+}
+
 .nfl_articles{
 	position: relative;
 	margin-left: 10%;
 	background-color: #0099ff;
-}
-
-.packers{
-	background-image: url(images/packers);
 }
 
 .sports_page{
