@@ -14,13 +14,35 @@ img{
 	border: 1px solid black;
 }
 
-.third{
+img.hover{
+	background-color: grey;
+	opacity: 0.8;
+}
 
+.second{
 	margin: auto;
+	text-align: center;
+	background-color:#F3F1F4;
+	border: 3px solid lightgrey;
+	height: 90vh;
+	overflow: scroll
+}
+
+.second_articles{
+	padding-bottom: 10px;
+}
+
+.third{
+	margin: auto;
+	padding-top: 10px;
 	border: 3px solid lightgrey;
 	height: 90vh;
 	overflow: scroll;
 	background-color: #F3F1F4;
+}
+
+.espn-articles{
+	margin: auto;
 }
 
 .nfl_articles{
@@ -33,13 +55,6 @@ img{
 	margin-top:  15px;
 	margin-left: 6%;
 	margin-right: 6%;
-}
-
-.espn_img{
-	display: block;
-	border-bottom: 5px solid black;
-	height: 60%;
-	padding-bottom: 15px;
 }
 
 .espn_titles{
@@ -65,14 +80,11 @@ img{
 	text-align: center;
 }
 
-
-
-
-
-
-
-
-
+.fox_sports{
+	position: relative;
+	margin: auto;
+	margin-bottom: 8px;
+}
 
 
 

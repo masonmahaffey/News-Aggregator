@@ -35,7 +35,7 @@ var Sports = React.createClass({
 	render: function(){
 		return(
 			<div>
-				<SportButtons displaySport={this.displaySport}/>
+				{/*<SportButtons displaySport={this.displaySport}/>*/}
 				{this.props.children}
 			</div>
 		)

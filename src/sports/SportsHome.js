@@ -17,9 +17,9 @@ class ArticleColOne extends React.Component{
 	 		//this returns the individual talkSPORT articles and photos
 			return(
 				<div key={index}>
-					<div style={{marginBottom: 10, float:'left'}}>
+					<div style={{marginBottom: 10, float:'left', textAlign:'center'}}>
 						<div style={{fontSize: 16, margin:'4%'}}><a href={article.url}><img src={article.urlToImage} alt='s'
-							style={{width:'65%', height:'45%'}} /></a>
+							style={{width:'65%', height:'45%', margin:'auto'}} /></a>
 							<br/>
 							<a style={{color:'black', fontWeight:500, fontSize:15}} href={article.url}></a>
 						</div>
@@ -70,16 +70,12 @@ class ArticleColTwo extends React.Component{
 	 					return(
 	 						<div key={index}>
 	 							{/*return the first ESPN headline as a BIG picture*/}
-								<div key={index} style={{textAlign:"center"}}>
-									<div style={{marginBottom: 5, float:'left'}} >
-										<div style={{fontSize: 30, margin:'4%'}}><a href={article.url}><img src={article.urlToImage} alt='s'
-											style={{width:'100%', height:'65%', border: '1px solid black'}} /></a>
-											<a className="big_espn_title" href={article.url}>{article.title}</a>
-										</div>
-									</div>		
-									<div className="espn_desc" style={{marginBottom: 10, borderBottom:'1px solid lightgrey'}}>
-										{article.description}
-									</div>
+								<div key={index} style={{ marginBottom: 5, fontSize: 30, margin:'4%'}}>
+									<a href={article.url}><img src={article.urlToImage} alt='s' style={{width:'100%', height:'80%', border: '1px solid black'}} /></a>
+									<a className="big_espn_title" href={article.url}>{article.title}</a>
+								</div>		
+								<div className="espn_desc" style={{borderBottom:'1px solid lightgrey'}}>
+									{article.description}
 								</div>
 							</div>
 	 					)
@@ -87,14 +83,12 @@ class ArticleColTwo extends React.Component{
 	 				}else if(index !== 0){
 	 					//return the other ESPN headlines as smaller
 						return(
-							<div key={index}>
-								<div style={{marginBottom: 10}} >
-									<div style={{fontSize: 16, margin:'4%'}}><a href={article.url}><img src={article.urlToImage} alt='s'
-										style={{width:'65%', height:'45%'}} /></a>
-										<a style={{color:'black', fontWeight:500, fontSize:15}} href={article.url}>{article.title}</a>
-									</div>
-								</div>		
-								<div className="espn_desc" style={{marginBottom: 10, borderBottom:'1px solid lightgrey'}}>
+							<div key={index} style={{marginBottom: 10}} className='row' style={{borderBottom:'1px solid lightgrey'}}>
+								<div style={{fontSize: 16, margin:'4%'}}><a href={article.url}>
+									<img src={article.urlToImage} alt='s' style={{width:'50%', height:'35%'}} /></a>
+									<a style={{color:'black', fontWeight:500, fontSize:15}} href={article.url}>{article.title}</a>
+								</div>	
+								<div className="espn_desc" style={{paddingBottom: 10, marginBottom: 10}}>
 									{article.description}
 								</div>
 							</div>
@@ -125,14 +119,12 @@ class SecondSportsComponent extends React.Component{
 			articlesArrayTwo.push(article.title)
 		})
 		return(
-			<div className="col-xs-11 col-sm-5 col-md-5" style={{margin:'auto', backgroundColor:'#F3F1F4', borderRight:'3px solid lightgrey', borderLeft:'3px solid lightgrey', height:'90vh', overflow:'scroll'}}>
+			<div className="col-xs-11 col-sm-5 col-md-6 second" >
 				 <ArticleColTwo articles={this.state.sportsArticlesTwoArray} />
 			</div>
 		);
 	}
 }
-
-
 
 //this returns the individual articles and pictures in Column3
 class ArticleColThree extends React.Component{
@@ -141,14 +133,11 @@ class ArticleColThree extends React.Component{
 			<div>
 	 			{this.props.articles.map(function(article, index){
 					return(
-						<div key={index} style={{margin:'auto'}}>
-								<div style={{float:'left'}}><a href={article.url}>
-									<img src={article.urlToImage} alt='s'style={{width:'45%', height:'35%'}} /></a>
-									<a style={{color:'black', fontWeight:500, fontSize:15}} href={article.url}></a>
+						<div key={index} style={{margin:'auto'}} className="second_articles">
+								<div><a href={article.url}>
+									<img src={article.urlToImage} alt='s'style={{width:'55%', height:'45%'}} /></a>
+									<a style={{color:'black', fontWeight:500, fontSize:14}} href={article.url}>{article.title}</a>
 								</div>			
-								<div className="foxSports" style={{float:'right', marginBottom:'8px'}}>
-									{article.title}
-								</div>
 						</div>
 					)
 				})}
@@ -156,6 +145,12 @@ class ArticleColThree extends React.Component{
 		)
 	}
 }
+
+
+
+
+
+
 
 //This returns third column
 class ThirdSportsComponent extends React.Component{

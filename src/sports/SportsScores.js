@@ -22,7 +22,7 @@ var ScorePanel = React.createClass({
 	},
 	render: function(){
 		return(
-			<div className="col-xs-11">
+			<div className="col-xs-11" style={{backgroundColor:'#2E2B31'}}>
 				{this.state.name}
 			</div>
 		);
