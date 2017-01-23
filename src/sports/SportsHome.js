@@ -1,7 +1,8 @@
 import React from 'react'; 
 import SportsScores from './SportsScores.js';
 import SportsDropDownMenu from './SportsDropDownMenu';
-import $ from 'jquery'
+import $ from 'jquery';
+
 
 //to be put in a config file
 const newsApiKey = '275258a3655c449ba4907833f5baf08b';
