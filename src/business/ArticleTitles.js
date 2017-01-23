@@ -28,15 +28,15 @@ class Description extends Component{
 		var href='https://www.facebook.com/sharer/sharer.php?u=' + article.url 
 			return(
 			<div style={{padding:'1%'}}>
-				<div style={{position:'absolute', right:-33, top:50}}><img style={{width:30, height:30}} src={require('../arrow.png')}/></div>
+				<div style={{position:'absolute', right:-33, top:50}}><img alt='what' style={{width:30, height:30}} src={require('../arrow.png')}/></div>
 				<div style={{marginTop:50}}>
 					<img src={this.props.article.urlToImage} alt='not found' style={{width:'100%',height:'120%',marginBottom:20}}/>
-					<div style={{position:'absolute', top:65, right:3}}><a className='hidden-xs' href={href}><img style={{height:45, width:60}} className='image-hover' src={require('../facebook.png')}/></a></div>
+					<div style={{position:'absolute', top:65, right:3}}><a target='_blank' className='hidden-xs' href={href}><img alt='what' style={{height:45, width:60}} className='image-hover' src={require('../facebook.png')}/></a></div>
 				</div>
 				<div style={{fontSize:30, marginBottom:16}}>{article.title}</div>
 				<div style={{fontSize:20, marginBottom:15}}>{article.description}</div>
 				<div style={{fontSize:20, marginBottom:10, color:'grey', textAlign:'right', width:'100%'}}>
-				<a href={article.url}><img className='image-hover' style={{width:'30%', height:'30%'}} src={require('../read.jpg')}/></a>{this.props.article.author}
+				<a target='_blank' href={article.url}><img alt='what' className='image-hover' style={{width:'30%', height:'30%'}} src={require('../read.jpg')}/></a>{this.props.article.author}
 				</div>
 			</div>
 		)
@@ -47,7 +47,7 @@ class JustTitles extends Component{
 	constructor(props) {
 		super(props);
 		this.childOnClick=this.childOnClick.bind(this)
-		this.state={
+		this.state = {
 			read: ''
 		}
 	}
@@ -82,11 +82,13 @@ class JustTitles extends Component{
 		}else{publishText += Math.floor(minutesAgo) + " minutes ago"};
 		if(daysAgo>5){publishText = ""}
 		if(authorText.length>30){authorText=authorText.slice(0,30)+'...'}
-			
+		var readColor = 'black'
+		var authorColor='grey'
+		if(this.state.read === 'seen'){readColor='lightgrey'; authorColor='lightgrey'}
 		return(
-			<div className='click-article' onClick={this.childOnClick} style={{padding:'10px 20px', borderLeft:'1px solid #ddd',borderBottom:'2px solid #ddd'}}>
-				<div style={{fontSize:16}}>{this.props.article.title}<span style={{color:'blue', marginRight:6,fontSize:13,float:'right'}}>{this.state.read}</span></div>
-				<div style={{marginLeft:2, marginTop:5, fontSize:13, color:'grey'}}>
+			<div className='click-article' onClick={this.childOnClick} style={{color:readColor, padding:'10px 20px', borderLeft:'1px solid #ddd',borderBottom:'2px solid #ddd'}}>
+				<div style={{fontSize:16}}>{this.props.article.title}</div>
+				<div style={{marginLeft:2, marginTop:5, fontSize:13, color:authorColor}}>
 					<div style={{float:'left'}}>{authorText}</div>
 					<div style={{float:'right', marginRight:10}}>{publishText}</div>
 				</div>
@@ -101,9 +103,7 @@ class ArticleTitles extends Component{
 		super(props);
 		this.state = {
 			articlesArray : [],
-			article:{
-
-			}
+			article:{}
 		}
     this.componentDidMount = this.componentDidMount.bind(this);		
     this.parentOnClick = this.parentOnClick.bind(this);		
@@ -114,20 +114,21 @@ class ArticleTitles extends Component{
 		})
 	}
 	componentDidMount() {
-		sourceArray.map((source, index)=>{
-			var url = apiMain + source + apiTail + newsApiKey;
-    		$.getJSON(url, (data) =>{
+		for(let i = 0; i < sourceArray.length; i++){
+			var url = apiMain + sourceArray[i] + apiTail + newsApiKey;
+    		$.getJSON(url, (data) => {
     			this.setState({
     				articlesArray:this.state.articlesArray.concat(data.articles),
     				article:data.articles[1]
     			})
     		})
-    	})
+    	}
 	}	
 	render(){
-		var justTitles=[<LatestNews />]
+		var justTitles=[ <LatestNews key='LatestNews'/> ]
 		this.state.articlesArray.map((article, index)=>{
 			justTitles.push(<JustTitles onClick={this.parentOnClick} key={index} article={article}/>)
+			return 'why'
 		})
 		return(
 			<div>

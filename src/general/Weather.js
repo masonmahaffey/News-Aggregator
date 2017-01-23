@@ -11,10 +11,11 @@ class Results extends Component {
 		var today = new Date();
 		var todayString = today.toDateString().slice(0,10)
 		var windDirection = ''
-		if(weather.wind > 45){windDirection='East'}
-		else if(weather.wind > 135){windDirection='South'}
-		else if(weather.wind > 225){windDirection='West'}
-		else{windDirection='North'}	
+		// logic for wind direction
+		if(weather.wind > 45){windDirection='East'
+		}else if(weather.wind > 135){windDirection='South'
+		}else if(weather.wind > 225){windDirection='West'
+		}else{windDirection='North'}	
 		return(
 			<div style={{fontSize:18, color:'white', paddingTop:10, paddingBottom:10}}>
 				<div style={{position:'relative'}}>
@@ -61,8 +62,8 @@ var WeatherSearchSubmit = React.createClass({
 				zip:this.props.input,
 				name: cityName,
 				humidity: weatherData.main.humidity, 
-				max: weatherData.main.temp_max,
-				min: weatherData.main.temp_min,
+				max: weatherData.main.temp_max+1,
+				min: weatherData.main.temp_min-1,
 				wind: weatherData.wind.deg,
 				windSpeed: weatherData.wind.speed
 			})
@@ -93,23 +94,24 @@ var WeatherSearchSubmit = React.createClass({
 	},
 	render: function(){
 		// changing background animation depening on current weather.description
-		var weatherSource = './images/'
-		if(this.state.description.indexOf('cloud')>-1){
-			weatherSource+='cloud.png'
-		}else if(this.state.description.indexOf('mist')>-1){
-			weatherSource+='mist.png'
-		}else if(this.state.description.indexOf('rain')>-1){
-			weatherSource+='rain.png'
-		}else if(this.state.description.indexOf('snow')>-1){
-			weatherSource+='snow.png'
-		}else if(this.state.description.indexOf('thunder')>-1){
-			weatherSource+='thunder.png'}			
+		// var weatherSource = './images/'
+		// if(this.state.description.indexOf('cloud')>-1){
+		// 	weatherSource+='cloud.png'
+		// }else if(this.state.description.indexOf('mist')>-1){
+		// 	weatherSource+='mist.png'
+		// }else if(this.state.description.indexOf('rain')>-1){
+		// 	weatherSource+='rain.png'
+		// }else if(this.state.description.indexOf('snow')>-1){
+		// 	weatherSource+='snow.png'
+		// }else if(this.state.description.indexOf('thunder')>-1){
+		// 	weatherSource+='thunder.png'}			
+		// <img alt=' ' src={require('./images/mist.png')}/>
 		return(
 			<div style={{paddingBottom:10}}>
 				<form onSubmit={this.weatherSearchSubmit} style={{padding:10}}>
 		     		<input type="text" className='form-control' placeholder="Weather search by zip code" />
 			   </form>
-			   <div className='weather-move' style={{position:'absolute'}}><img src={require('./images/mist.png')}/></div>
+			   <div className='weather-move' style={{position:'absolute'}}></div>
 			   <div className='weather-wrapper' style={{textAlign:'center', backgroundColor: '#2E2B31', width:'100%', margin:'auto'}}>
 					<Results propertyOfResultsNamedParentsState={this.state}/>
 

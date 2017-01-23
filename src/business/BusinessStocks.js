@@ -32,8 +32,6 @@ class Stocks extends Component {
 						name: stockArr[i].Name
 					}
 					stockArrMin.push(eachStock)
-
-					
 				}
 			}
 			this.setState({stocks: stockArrMin})
@@ -42,15 +40,24 @@ class Stocks extends Component {
 
   	render() {
   		//left column hidden in phone
-    	return(
-    		<div>
-				<StockHeader />
-				<div className='hidden-sm hidden-xs'>
-    				<StockSearch />
-    				<Stock stocks={this.state.stocks} />
-    			</div>
-    		</div>
-		)
+  		if(this.state.stocks.length > 4){
+	    	return(
+	    		<div>
+					<StockHeader />
+					<div className='hidden-sm hidden-xs'>
+	    				<StockSearch />
+	    				<Stock stocks={this.state.stocks} />
+	    			</div>
+	    		</div>
+			)
+		}else{
+			return(
+				<div>
+					<StockHeader />
+					<div className='blinkingLetters' style={{marginTop:35,fontSize: 30,position:'fixed',marginLeft:10}}>Loading Stocks...</div>
+				</div>
+			)
+		}
   	}
 }
 
