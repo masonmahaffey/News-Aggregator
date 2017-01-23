@@ -13,15 +13,23 @@ var	sourceArray = [
 ]
 
 
-const countries = ['australia','united kingdom','Great Britain','canada','mexico','belize','Guatemala','Puerto Rico', 'El Salvador','Panama','Columbia'];
+const countries = ['Australia','United Kingdom','Great Britain','Canada','Mexico','Belize','Guatemala','Puerto Rico', 'El Salvador','Panama','Columbia', 'Germany', 'Turkey', 'China', 'Japan', 'Norway', 'Sweden', 'Denmark', 'India', 'Europe','Africa','Taiwan'];
 
 class Countries extends Component {
 
+	constructor(props) {
+		super(props);
+		this.state = {
+			countryName: this.props.countryData
+		}
+	}
 
 	render(){
 		return(
 			<div overflow='scroll'>
-				<h1>countrynamehere</h1>
+				<a>
+					<h3 style={{color: 'white'}}>{this.state.countryName}</h3>
+				</a>
 			</div>
 
 		)
@@ -54,19 +62,20 @@ class Global extends Component {
 
 	handleInputChange(event){
 		var newFilterValue = event.target.value;
-		var filteredCountries = [''];
+		var filteredCountries = [];
+		this.setState({
+			countryList: []
+		})
 		// console.log(this.state.countryList)
+		console.log(newFilterValue);
 		countries.map(function(currCountry, index){
-
 			if(currCountry.indexOf(newFilterValue) != -1){
 				filteredCountries.push(currCountry)
 			}
 		})
-		console.log(filteredCountries);
-		console.log(this.state.countryList);
 
 			this.setState({
-			countryList: filteredCountries
+				countryList: filteredCountries
 			})
 		
 
@@ -89,20 +98,20 @@ class Global extends Component {
 	render() {
 		var countryRows = [];
 	    this.state.countryList.map(function(currentCountry, index){
-	    	countryRows.push(<Countries key={index} />);
+	    	countryRows.push(<Countries countryData={currentCountry} key={index} />);
 		});
 
 		return(
-			<div className="container-fluid" style={{paddingRight: '0px',paddingLeft: '0px',backgroundColor: 'black'}}>
+			<div className="container" style={{paddingRight: '0px',paddingLeft: '0px',backgroundColor: 'back', width: '100vw', height: '400px'}}>
 			<div style={{height: '40px', width: '100%', backgroundColor: '#4F4F4F',borderTop: '1px solid black'}}></div>
-			<div className='col-sm-2' style={{backgroundColor:'#2E2B31', height:'100vh',marginRight: '-13px'}}>
+			<div className='col-sm-2' style={{backgroundColor:'#2E2B31', height:'87vh', width:' 23vw',marginRight: '-13px', float: 'left', overflow: 'scroll'}}>
 				 <input onChange={this.handleInputChange} type="text" className="form-control h-5" placeholder="Name Of Country" style={{marginTop: '10px'}}/>
 				 <div style={{marginTop: '20px'}}>
 				 	{countryRows}
-				 </div>
+				</div>
 			</div>
-				<div className="col-md-3">
-				  <div style={{fontSize:17, height:'93vh',overflow:'scroll', backgroundColor:'#F3F1F4'}}>
+				<div className="col-md-3" style={{float: 'right'}}>
+				  <div style={{fontSize:17, height:'87vh',overflow:'scroll', backgroundColor:'#F3F1F4'}}>
 			 		{	
 			 		//map through the searchedArticles array
 				  	//====================================================================================================
@@ -168,7 +177,6 @@ class Global extends Component {
 			 			// }
 					})}
 				</div>
-
 
 				</div>
 			</div>
@@ -244,24 +252,22 @@ class SearchedNewsDescription extends Component{
 	render(){
 		return(
 			<div className='article-description' style={{zIndex:this.props.zIndex, display:this.props.open, 
-				position:'fixed', border:'1px solid #ddd', paddingLeft:15, right:0, top:127, height:'70vh', 
-				width:'57vw', backgroundColor:'white',marginTop: '-5px'}}>
-
-				<div className='col-md-5' style={{marginTop:'11vh'}}>
+				position:'fixed', right: '27%', top:117, height:'90vh', 
+				width:'48vw', backgroundColor:'white',marginTop: '-7px'}}>
+				
+				<div className='col-md-12' style={{marginTop:'2vh'}}>
 					<img src={this.props.imageUrl} alt='a' style={{width:'100%',height:'100%'}}/>
 				</div>
-				<div className='col-md-6' style={{marginTop:'10vh'}}>
-					<div style={{fontSize:30, marginBottom:20}}>{this.props.article.title}</div>
-					<div style={{fontSize:20, marginBottom:20}}>{this.props.article.description}</div>
-					
+
+				<div className='col-md-12' style={{marginTop:'2vh',}}>
+					<div style={{fontSize:22,float: 'left', fontWeight: 'bold', marginBottom: -3, marginLeft: 8}}><h2>{this.props.article.title}</h2></div>
+					<div style={{fontSize:18, float: 'left', marginBottom:7}}><p>{this.props.article.description}</p></div>
 					
 				</div>
-				<div className="col-sm-11" style={{fontSize:18, color:'grey', marginTop:20}}>
-					<div style={{float:'left',fontSize:20, marginBottom:20}}>{this.props.article.author}</div>
-					<div style={{float:'right',fontSize:20, marginBottom:20}}>{this.props.publishText}</div>
-				</div>
-				<div className="col-sm-11" style={{fontSize:22}} >
-					<a href={this.props.url}>Read Full Article</a>
+				<div className="col-sm-11" style={{fontSize: 16, color:'lightgrey'}}>
+					<div style={{float:'left',fontSize: 16, color:'grey', marginBottom:20, marginRight: 10}}>{this.props.article.author}</div>
+					<div style={{float:'left',fontSize: 16, color:'darkgrey', marginBottom:20}}>{this.props.publishText}</div>
+					<div style={{float: 'right'}}><a href={this.props.url}>Read Full Article</a></div>
 				</div>
 			</div>
 		)
