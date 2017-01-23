@@ -165,11 +165,18 @@ class SearchResults extends Component{
 	render(){
 		//defaulting justTitles array to <LatestNews/> (which is header on top of newsfeed)
 		var justTitles=[ <LatestNews key='LatestNews'/> ]
+		var shown = false
 		this.state.articlesArray.map((article, index)=>{
 			var searchInput = this.props.params.newsToSearchFor.toLowerCase()
 			var indexOfTitle = article.title.toLowerCase().indexOf(searchInput)
+			
+
 			if((indexOfTitle > -1)&&(searchInput.length > 0)){
-				if(this.state.displayFirst){this.displayFirstArticle(article); }
+
+				if(!shown){
+					this.displayFirstArticle(article); 
+					shown=true;
+				}
 				var frontText = article.title.slice(0, indexOfTitle)
 			 	var highlightText = article.title.slice(indexOfTitle, indexOfTitle + searchInput.length)
 			 	var backText = article.title.slice(indexOfTitle + searchInput.length)
