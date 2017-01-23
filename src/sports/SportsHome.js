@@ -119,7 +119,7 @@ class SecondSportsComponent extends React.Component{
 			articlesArrayTwo.push(article.title)
 		})
 		return(
-			<div className="col-xs-11 col-sm-5 col-md-6 second" >
+			<div className="col-xs-11 col-sm-5 col-md-5 second" style={{marginLeft:20, marginRight:20}} >
 				 <ArticleColTwo articles={this.state.sportsArticlesTwoArray} />
 			</div>
 		);
@@ -133,9 +133,9 @@ class ArticleColThree extends React.Component{
 			<div>
 	 			{this.props.articles.map(function(article, index){
 					return(
-						<div key={index} style={{margin:'auto'}} className="second_articles">
+						<div key={index} style={{borderBottom:'1px solid lightgrey', padding:10}} className="row">
 								<div><a href={article.url}>
-									<img src={article.urlToImage} alt='s'style={{width:'55%', height:'45%'}} /></a>
+									<img src={article.urlToImage} alt='s'style={{width:'45%', height:'45%'}} /></a>
 									<a style={{color:'black', fontWeight:500, fontSize:14}} href={article.url}>{article.title}</a>
 								</div>			
 						</div>

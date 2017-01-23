@@ -21,6 +21,8 @@ img.hover{
 
 .second{
 	margin: auto;
+	padding-left: 20px;
+	padding-right: 20px;
 	text-align: center;
 	background-color:#F3F1F4;
 	border: 3px solid lightgrey;
