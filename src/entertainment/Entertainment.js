@@ -132,13 +132,16 @@ class EW extends React.Component{
 			<div className="ew">
 				{this.props.articles.map(function(article, index){
 					return (
-						<div key={index} style={{border: '3px solid white', display: 'block', width:'100%', padding:'15px', marginBottom:'20px', borderRadius: '3%'}}>
+						<div className='eachArticle col-lg-3 col-md-4 col-sm-6 col-xs-12' key={index} style={{border: '3px solid white', display: 'block', width:'100%', padding:'15px', marginBottom:'20px', borderRadius: '3%'}}>
 							<img alt='a' src={article.urlToImage} style={{width:'100%', height:'100%', borderRadius: '3%'}}/>
-							<a href={article.url} style={{font:'Helvetica', fontSize:16, fontWeight:'bold', color:'black'}} >{article.title}</a> 
+							<div className='col-xs-6 col-sm-7 col-lg-8'>
+								<a href={article.url} style={{font:'Helvetica', fontSize:16, fontWeight:'bold', color:'black', paddingLeft:'0'}} >{article.title}</a> 
+							</div>
 							<br/>
-							<div style={{fontSize:12}}>
+							<div className='col-xs-12' style={{fontSize:12, width: '100%'}}>
 								{article.description}
 							</div>
+
 						</div>
 					) 
 				})}

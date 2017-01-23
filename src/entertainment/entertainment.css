@@ -1,9 +1,12 @@
-.ew{
+.eachArticle{
 	font-size: 20px;
 	font-weight: bold;
+	background-color: #f1f3f4;
 }
 
-.ew:hover{
-	background-color:#f3f3f3;
+.eachArticle:hover{
+	background-color:#b7b2b2;
+	transition: linear 0.15s;
+	transition-delay: 0.04s;
+	opacity: 0.8;
 }
-

@@ -1,35 +1,51 @@
 ##Description/overview
-Upd8ed, a news aggregator, is a demonstration of the front-end skills we have learned during our time thus far in coding bootcamp. We have created a one-stop shop for news by pulling Business, Entertainment, Global, Sports and other Top news from a variety of sources for the viewer. 
+Upd8ed, a news aggregator, is a demonstration of the front-end skills we have learned during our time thus far in coding bootcamp. We have created a one-stop shop by pulling the top business, entertainment, global, sports news from a variety of sources for the viewer. 
 
 
 -URL to live demo and live project
 
--[GitHub Link](https://github.com/mason0958/News-Aggregator)
+[GitHub Link](https://github.com/mason0958/News-Aggregator)
 
 
 ##Table of contents
--[Description](#description/overview)
--[How to install](#how-to-install)
--[Technologies Used](#technologies)
--[Challenges and Solutions](#challenges-and-solutions)
--[Screenshots](#screenshots)
--[Contributions](#contributions)
--[License](#license)
+
+[Description](#description/overview)
+
+[How to install](#how-to-install)
+
+[Technologies Used](#technologies)
+
+[Challenges and Solutions](#challenges-and-solutions)
+
+[Screenshots](#screenshots)
+
+[Contributions](#contributions)
+
+[License](#license)
 
 
 ##How to install
-  -dependencies
+  dependencies
 
 ##Technologies
 The following languages, frameworks and APIs were used:
+
   -HTML
+
   -CSS
+
   -Javascript
+
   -jQuery
+
   -Bootstrap
+
   -React
+
   -News API
+
   -OpenWeatherMap API
+
   -Yahoo Finance API
 
 ##Challenges and Solutions
@@ -40,9 +56,12 @@ The following languages, frameworks and APIs were used:
 ##Contributions
 <!-- -who contributed including their parts. include contact info, links to github, website, email, etc -->
 
-Paul Kang
+Paul Kang - Scrum Master
+
 Mason Mahaffey
+
 Anna Sedlar
+
 Connie Dang
 
 If you would like to report an issue with our code or a suggest a way to improve it, simply contact one of us. We are always looking for ways to improve! 
