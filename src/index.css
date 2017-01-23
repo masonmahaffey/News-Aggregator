@@ -1,6 +1,8 @@
 body{
 	font-family: 'Source Sans Pro';
-
+}
+.activeBorder{
+	opacity: .5
 }
 .active{
 	background-color: #0099ff !important;
@@ -21,8 +23,26 @@ img {
 	max-height: 100% !important;
 }
 
-
-
+.blinkingLetters{
+	animation: 1s linear blinkingLetters infinite;
+}
+@keyframes blinkingLetters{
+	0%{
+		color: aliceblue;
+	}
+	25%{
+		color: skyblue;
+	}
+	50%{
+		color: lightblue;
+	}
+	75%{
+		color: darkblue;
+	}
+	100%{
+		color: cadetblue;
+	}
+}
 /* .h-1{width: 100%; position: fixed; z-index: 9; background-color: #F3F3F3;} */
 .h-2{border: none; width: 100%; background-color: #333333;}
 .h-3{color:white;}
@@ -67,7 +87,8 @@ animation: scroll 300s linear infinite}
 
 
 .navbar{
-margin-bottom:0;}
+	margin-bottom:0;
+}
 
 .navbar-inverse .navbar-nav li a:hover{
 	color: grey;

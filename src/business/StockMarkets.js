@@ -12,7 +12,7 @@ class NZX extends Component{
 		var openColor = ''; if(open==='open'){openColor = '#76ff03'}else{openColor = 'grey'}
 		return(
 			<div style={{display:'inline-block'}}>
-				<a style={{color:'white'}} href='https://www.nzx.com/'>NZX:</a> <span style={{color:openColor}}>{open}</span>
+				<a target='_blank' style={{color:'white'}} href='https://www.nzx.com/'>NZX:</a> <span style={{color:openColor}}>{open}</span>
 			</div>
 		)
 	}
@@ -30,7 +30,7 @@ class HKEX extends Component{
 		var openColor = ''; if(open==='open'){openColor = '#76ff03'}else{openColor = 'grey'}	
 		return(
 			<div style={{display:'inline-block'}}>
-				<a style={{color:'white'}} href='https://www.hkex.com.hk/'>HKEX:</a> <span style={{color:openColor}}>{open}</span>
+				<a target='_blank' style={{color:'white'}} href='https://www.hkex.com.hk/'>HKEX:</a> <span style={{color:openColor}}>{open}</span>
 			</div>
 		)
 	}
@@ -48,7 +48,7 @@ class ASX extends Component{
 		var openColor = ''; if(open==='open'){openColor = '#76ff03'}else{openColor = 'grey'}			
 		return(
 			<div style={{display:'inline-block'}}>
-				<a style={{color:'white'}} href='https://www.asx.com.au/'>ASX:</a> <span style={{color:openColor}}>{open}</span>
+				<a target='_blank' style={{color:'white'}} href='https://www.asx.com.au/'>ASX:</a> <span style={{color:openColor}}>{open}</span>
 			</div>
 		)
 	}
@@ -67,7 +67,7 @@ class TSX extends Component{
 		var openColor = ''; if(open==='open'){openColor = '#76ff03'}else{openColor = 'grey'}		
 		return(
 			<div style={{display:'inline-block'}}>
-				<a style={{color:'white'}} href='https://www.tsx.com/'>TSX:</a> <span style={{color:openColor}}>{open}</span>
+				<a target='_blank' style={{color:'white'}} href='https://www.tsx.com/'>TSX:</a> <span style={{color:openColor}}>{open}</span>
 			</div>
 		)
 	}
@@ -85,7 +85,7 @@ class KRX extends Component{
 		var openColor = ''; if(open==='open'){openColor = '#76ff03'}else{openColor = 'grey'}			
 		return(
 			<div style={{display:'inline-block'}}>
-				<a style={{color:'white'}} href='https://global.krx.co.kr/'>KRX:</a> <span style={{color:openColor}}>{open}</span>
+				<a target='_blank' style={{color:'white'}} href='https://global.krx.co.kr/'>KRX:</a> <span style={{color:openColor}}>{open}</span>
 			</div>
 		)
 	}
@@ -105,7 +105,7 @@ class LSE extends Component{
 		var openColor = ''; if(open==='open'){openColor = '#76ff03'}else{openColor = 'grey'}					
 		return(
 			<div style={{display:'inline-block'}}>
-				<a style={{color:'white'}} href='https://www.lse.ac.uk/'>LSE:</a> <span style={{color:openColor}}>{open}</span>
+				<a target='_blank' style={{color:'white'}} href='https://www.lse.ac.uk/'>LSE:</a> <span style={{color:openColor}}>{open}</span>
 			</div>
 		)
 	}
@@ -123,7 +123,7 @@ class JPX extends Component{
 		var openColor = ''; if(open==='open'){openColor = '#76ff03'}else{openColor = 'grey'}					
 		return(
 			<div style={{display:'inline-block'}}>
-				<a style={{color:'white'}} href='http://www.jpx.co.jp/english/'>JPX:</a> <span style={{color:openColor}}>{open}</span>
+				<a target='_blank' style={{color:'white'}} href='http://www.jpx.co.jp/english/'>JPX:</a> <span style={{color:openColor}}>{open}</span>
 			</div>
 		)
 	}
@@ -142,7 +142,7 @@ class NASDAQ extends Component{
 		var openColor = ''; if(open==='open'){openColor = '#76ff03'}else{openColor = 'grey'}					
 		return(
 			<div style={{display:'inline-block'}}>
-				<a style={{color:'white'}} href='https://www.nasdaq.com/'>NASDAQ:</a> <span style={{color:openColor}}>{open}</span>
+				<a target='_blank' style={{color:'white'}} href='https://www.nasdaq.com/'>NASDAQ:</a> <span style={{color:openColor}}>{open}</span>
 			</div>
 		)
 	}
@@ -161,7 +161,7 @@ class NYSE extends Component{
 		var openColor = ''; if(open==='open'){openColor = '#76ff03'}else{openColor = 'grey'}					
 		return(
 			<div style={{display:'inline-block'}}>
-				<a style={{color:'white'}} href='https://www.nyse.com/'>NYSE:</a> <span style={{color:openColor}}>{open}</span>
+				<a target='_blank' style={{color:'white'}} href='https://www.nyse.com/'>NYSE:</a> <span style={{color:openColor}}>{open}</span>
 			</div>
 		)
 	}

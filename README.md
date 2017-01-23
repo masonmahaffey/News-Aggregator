@@ -1,31 +1,30 @@
 ##Description/overview
-Upd8ed, a news aggregator, is a demonstration of the front-end skills we have learned during our time thus far in coding bootcamp. We have created a one-stop shop by pulling the top business, entertainment, global, sports news from a variety of sources for the viewer. 
+Upd8ed, a news aggregator, is a demonstration of the front-end skills we have learned during our time thus far in coding bootcamp. We have created a one-stop shop by pulling the latest business, entertainment, global, sports news from a variety of sources for the viewer. 
 
 
--URL to live demo and live project
-
-[GitHub Link](https://github.com/mason0958/News-Aggregator)
 
 
 ##Table of contents
 
 [Description](#description/overview)
 
-[How to install](#how-to-install)
-
 [Technologies Used](#technologies)
 
 [Challenges and Solutions](#challenges-and-solutions)
 
+[GitHub Link](#github-link)
+
 [Screenshots](#screenshots)
 
-[Contributions](#contributions)
+[MVP](#mvp)
 
-[License](#license)
+[Stretch Goals](#stretch-goals)
+
+[Team Members and Contributions](#team-members-and-contributions)
+
+[Project Timeline](#project-timeline)
 
 
-##How to install
-  dependencies
 
 ##Technologies
 The following languages, frameworks and APIs were used:
@@ -42,48 +41,74 @@ The following languages, frameworks and APIs were used:
 
   -React
 
+  -NodeJS
+
   -News API
 
   -OpenWeatherMap API
 
   -Yahoo Finance API
 
+
 ##Challenges and Solutions
- 1. LAYOUTS
+1. Search bar 
+
+2. Blank space - Entertainment
+
+3. Organizing styling and layout when working with ReactDOM, bootstrap, and original CSS
+
+
+
+##GitHub Link
+[GitHub Link](https://github.com/mason0958/News-Aggregator)
 
 ##Screenshots
 
-##Contributions
-<!-- -who contributed including their parts. include contact info, links to github, website, email, etc -->
+##MVP
+-Top news page: displaying weather and a few top news articles from each page (entertainment, sports, business and world)
+-Entertainment page: displaying articles from Entertainment-Weekly, Buzzfeed, MTV, MTV-UK and Dialy Mail
+-Sports news: displaying articles from talkSPORT, ESPN and FOX sports.
+-Business page: displaying articles from Business Insider, Financial Times, Business Insider UK, Fortune' and The Economist
+-World: display top articles from each continent
 
-Paul Kang - Scrum Master
+##Stretch Goals
+1. Upvote/downvote option for users
+2. Backend server
+3. Displaying articles in an Iframe modal
 
-Mason Mahaffey
+##Team Members and Contributions
 
-Anna Sedlar
+[Paul Kang](https://github.com/pdwkang)  
+**bold** Role: Scrum Master, Data wizard
+**bold** Contributions: 
 
-Connie Dang
+[Mason Mahaffey](https://github.com/mason0958) 
+**bold** Role: THE MSON.object Idea guy
+**bold** Contributions: Global news
+
+[Anna Sedlar](https://github.com/annasedlar) 
+**bold** Role: Packers gurl  
+**bold** Contributions: Sports page
+
+[Connie Dang](https://github.com/dangconnie) 
+**bold** Role: 
+**bold** Contributions: Entertainment page, weather widget, README file
 
 If you would like to report an issue with our code or a suggest a way to improve it, simply contact one of us. We are always looking for ways to improve! 
 
-<!-- -list 3 contributions you want others to add to the project -->
 If you would like to contribute to our project, we would like to add the the following:
 
-1. Upvote/downvote option for users
+1. Add categories to include technology, health, nearby events and local news
 
-2. 
+2. Add more to sports page to include scores, schedules and stats
 
-3. 
-
-
+3. Improve UI/UX (hover effects on articles where appropriate, better CSS styling)
 
 
 
-##license? -optional
--if it's an open source code and others can contribute, you need to tell what they can and cannot do with your code
-
-
-
+##Project Timeline
+Project start: 1/18/2017
+Project completion: 1/24/2017
 
 
 

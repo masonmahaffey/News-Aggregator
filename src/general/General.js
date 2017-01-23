@@ -9,8 +9,8 @@ const apiMain = 'https://newsapi.org/v1/articles?source=';
 const apiTail = '&apiKey='
 
 //article Sources
-var	sourceArray = [
-		'business-insider', 'financial-times', 'business-insider-uk', 'fortune', 'the-economist'
+const sourceArray = [
+		'cnn', 'daily-mail'
 ]
 
 //header for news feed on the right (child of news feed)  / hidden in mobile
@@ -33,15 +33,15 @@ class Description extends Component{
 		var href='https://www.facebook.com/sharer/sharer.php?u=' + article.url 
 			return(
 			<div style={{padding:'1%'}}>
-				<div style={{position:'absolute', right:-33, top:10}}><img style={{width:30, height:30}} src={require('../arrow.png')}/></div>			
+				<div style={{position:'absolute', right:-33, top:10}}><img alt='what' style={{width:30, height:30}} src={require('../arrow.png')}/></div>			
 				<div style={{marginTop:5}}>
 					<img src={this.props.article.urlToImage} alt='not found' style={{width:'100%',height:'120%',marginBottom:20}}/>
-					<div style={{position:'absolute', top:15, right:0}}><a href={href}><img style={{height:45, width:60}} className='image-hover' src={require('../facebook.png')}/></a></div>
+					<div style={{position:'absolute', top:15, right:0}}><a target='_blank' href={href}><img alt='what' style={{height:45, width:60}} className='image-hover' src={require('../facebook.png')}/></a></div>
 				</div>
 				<div style={{fontSize:30, marginBottom:24}}>{article.title}</div>
 				<div style={{fontSize:20, marginBottom:24}}>{article.description}</div>
 				<div style={{fontSize:20, marginBottom:10, color:'grey', textAlign:'right', width:'100%'}}>
-				<a href={article.url}><img className='image-hover' style={{width:'30%', height:'30%'}} src={require('../read.jpg')}/></a>{this.props.article.author}
+					<a target='_blank' href={article.url}><img alt='what' className='image-hover' style={{width:'30%', height:'30%'}} src={require('../read.jpg')}/></a>{this.props.article.author}
 				</div>
 			</div>
 		)
@@ -53,7 +53,7 @@ class JustTitles extends Component{
 	constructor(props) {
 		super(props);
 		this.childOnClick=this.childOnClick.bind(this)
-		// blue 'read' on the right pops up when clicked
+		// changes color of news feed when clicked
 		this.state={
 			read: ''
 		}
@@ -95,7 +95,7 @@ class JustTitles extends Component{
 		if(authorText.length>30){authorText=authorText.slice(0,30)+'...'}
 		var readColor = 'black'
 		var authorColor='grey'
-		if(this.state.read== 'seen'){readColor='lightgrey'; authorColor='lightgrey'}
+		if(this.state.read === 'seen'){readColor='lightgrey'; authorColor='lightgrey'}
 		return(
 			<div className='click-article' onClick={this.childOnClick} style={{color:readColor, padding:'10px 20px', borderLeft:'1px solid #ddd',borderBottom:'2px solid #ddd'}}>
 				<div style={{fontSize:16}}>{this.props.article.title}</div>
@@ -128,21 +128,22 @@ class ArticleTitles extends Component{
 		})
 	}
 	componentDidMount() {
-		sourceArray.map((source, index)=>{
-			var url = apiMain + source + apiTail + newsApiKey;
-    		$.getJSON(url, (data) =>{
+		for(let i = 0; i < sourceArray.length; i++){
+			var url = apiMain + sourceArray[i] + apiTail + newsApiKey;
+    		$.getJSON(url, (data) => {
     			this.setState({
     				articlesArray:this.state.articlesArray.concat(data.articles),
     				article:data.articles[1]
     			})
     		})
-    	})
+    	}
 	}	
 	render(){
 		//defaulting justTitles array to <LatestNews/> (which is header on top of newsfeed)
-		var justTitles=[<LatestNews />]
+		var justTitles=[ <LatestNews key='LatestNews'/> ]
 		this.state.articlesArray.map((article, index)=>{
 			justTitles.push(<JustTitles onClick={this.parentOnClick} key={index} article={article}/>)
+			return 'something'
 		})
 		//bootstrap for mobile friendly with hidden components and changing column size
 		return(
@@ -156,7 +157,7 @@ class ArticleTitles extends Component{
 				</div>
 
 					{/********************** Mobile View *********************/}
-					<div className='visible-xs'style={{marginTop:3, height:'70vh',overflow:'scroll'}}>
+					<div className='visible-xs'style={{marginTop:3, height:'65vh',overflow:'scroll'}}>
 						<Description article={this.state.article} />
 					</div>
 					<div className='col-xs-12 visible-xs' style={{height:'25vh',padding:0, marginRight:0, 

@@ -10,8 +10,6 @@ var stockFront = 'http://query.yahooapis.com/v1/public/yql?q=select%20*%20from%2
 var stockTail = '")%0A%09%09&env=http%3A%2F%2Fdatatables.org%2Falltables.env&format=json'
 var stockUrl = stockFront + symbol + stockTail
 
-
-
 //business category
 //displaying stocks
 class BuildStocks extends Component{
@@ -38,20 +36,24 @@ class BuildStocks extends Component{
 //targetting each of the four stocks
 class Stock extends Component{
 	render(){
-		return(
-			<div>
-				{this.props.stocks.map(function(stock, index){
-					var bgColor = ""
-					if(stock.change>=0){bgColor='#76ff03';
-					}else{bgColor='#ef5350';}
-						return(
-							<div key={index}>
-								<BuildStocks bgColor={bgColor} stock={stock}/>
-							</div>
-						)
-					})}
-			</div>
-		)
+		if(this.props.stocks.length>2){
+			return(
+				<div>
+					{this.props.stocks.map(function(stock, index){
+						var bgColor = ""
+						if(stock.change>=0){bgColor='#76ff03';
+						}else{bgColor='#ef5350';}
+							return(
+								<div key={index}>
+									<BuildStocks bgColor={bgColor} stock={stock}/>
+								</div>
+							)
+						})}
+				</div>
+			)
+		}else{
+			return(<div className='blinkingLetters' style={{marginTop: 10, marginLeft:10}}>Loading Stocks...</div>)
+		}
 	}
 }
 
@@ -61,8 +63,9 @@ class Stocks extends Component {
     	super(props);
     	this.state = {stocks: []};
     	this.componentDidMount = this.componentDidMount.bind(this);
+    	
 	};
-  	componentDidMount() {
+	 componentDidMount() {
 		$.getJSON(stockUrl, (stockData) =>{
 			var stockArr = stockData.query.results.quote
 			var stockArrMin = []
@@ -76,9 +79,8 @@ class Stocks extends Component {
 				stockArrMin.push(eachStock)
 			}
 			this.setState({stocks: stockArrMin})
-		});		
-  	}
-
+		});	
+	}
   	render() {
     	return(
     		<Stock stocks={this.state.stocks} />
@@ -90,7 +92,7 @@ class Stocks extends Component {
 class Money extends Component{
 	render (){
 		return(
-			<div style={{height:220, paddingTop:18}}>
+			<div style={{height:230, paddingTop:18}}>
 				<div style={{fontSize:27,height:20,borderTop:'1px solid white', width:'100%'}}>
 				</div>
 					<div className='col-sm-8 col-sm-offset-2' style={{position:'absolute',textAlign:'center',marginTop:-35}}>
@@ -101,6 +103,24 @@ class Money extends Component{
 		);
 	}
 }
+
+var CategoryArticleImage = React.createClass({
+	render: function(){
+		var articles = this.props.articles.slice(0,1)
+		return(
+			<div>
+				{articles.map(function(article, index){
+					return(
+						<div key={index} style={{marginTop:6,padding:10, fontSize:19}}>
+							<img src={article.urlToImage} alt="not found" style={{height:'100%', width:'100%', border:'1px solid white'}}/>
+							<a href={article.url} style={{color:'white'}}>{article.title}</a>
+						</div>
+					)	
+				})}
+			</div>
+		)
+	}
+})
 
 //building each category articles
 var CategoryArticle = React.createClass({
@@ -137,13 +157,13 @@ class Entertainment extends Component{
 	}
 	render (){
 		return(
-			<div style={{marginTop:20, paddingTop:15}}>
+			<div style={{marginTop:15, paddingTop:15}}>
 				<div style={{fontSize:27,height:15,borderTop:'1px solid white', width:'100%'}}></div>
 				<div className='col-sm-8 col-sm-offset-2' style={{position:'absolute',textAlign:'center',marginTop:-30}}>
 					<Link to="/entertainment" style={{paddingLeft:5,paddingRight:5,fontFamily:'Days One', 
 						color:'white',backgroundColor:'#2E2B31'}}>Entertainment</Link>
 				</div>
-				<CategoryArticle articles={this.state.articlesArray} />
+				<CategoryArticleImage articles={this.state.articlesArray} />
 			</div>
 		);
 	}
@@ -165,7 +185,7 @@ class World extends Component{
 	}
 	render (){
 		return(
-			<div style={{marginTop:20, paddingTop:15}}>
+			<div style={{marginTop:10, paddingTop:15}}>
 				<div style={{fontSize:27,height:15,borderTop:'1px solid white', width:'100%'}}></div>
 				<div className='col-sm-8 col-sm-offset-2' style={{position:'absolute',textAlign:'center',marginTop:-30}}>
 					<Link to="/world" style={{paddingLeft:5,paddingRight:5,fontFamily:'Days One', 
@@ -193,7 +213,7 @@ class Sports extends Component{
 	}
 	render (){
 		return(
-			<div style={{marginTop:20, paddingTop:15}}>
+			<div style={{marginTop:10, paddingTop:15}}>
 				<div style={{fontSize:27,height:15,borderTop:'1px solid white', width:'100%'}}></div>
 				<div className='col-sm-8 col-sm-offset-2' style={{position:'absolute',textAlign:'center',marginTop:-30}}>
 					<Link to="/sports" style={{paddingLeft:5,paddingRight:5,fontFamily:'Days One', 
@@ -213,7 +233,6 @@ class TopNewsByCategory extends Component{
 				<Money />
 				<Entertainment />
 				<Sports />
-				
 				<World />
 			</div>
 		)
