@@ -52,7 +52,7 @@ If you would like to contribute to our project, we would like to add the the fol
 
 1. Upvote/downvote option for users
 
-2. Ability to share the news article to social media (mainly Twitter)
+2. 
 
 3. 
 
