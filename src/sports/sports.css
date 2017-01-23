@@ -6,6 +6,14 @@ h1{
 	text-align: center;
 }
 
+.slider{
+  margin: 0 auto;
+  padding: 40px;
+  width: 80%;
+  color: #000;
+  background: #0099ff;
+}
+
 .second{
 	margin: auto;
 	text-align: center;

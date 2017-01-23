@@ -2,12 +2,16 @@ import React from 'react';
 import SportsScores from './SportsScores.js';
 import SportsDropDownMenu from './SportsDropDownMenu';
 import $ from 'jquery';
+import SimpleSlider from './Slider.js';
 
 
 //to be put in a config file
 const newsApiKey = '275258a3655c449ba4907833f5baf08b';
 const apiMain = 'https://newsapi.org/v1/articles?source=';	
 const apiTail = '&apiKey='
+// var giveToSliderUrl = [];
+// var giveToSliderTitle = [];
+// var giveToSliderPhoto = [];
 
 
 class ArticleColOne extends React.Component{
@@ -18,15 +22,17 @@ class ArticleColOne extends React.Component{
 	 		//this returns the individual talkSPORT articles and photos
 			return(
 				<div key={index}>
-					<div style={{marginBottom: 10, float:'left', textAlign:'center'}} className="row">
-						<div style={{fontSize: 16, margin:'4%'}}><a target="_blank" href={article.url}><img src={article.urlToImage} alt='s'
-							style={{width:'65%', height:'45%', margin:'auto', border:'1px solid black'}} /></a>
-							<br/>
-							<a target="_blank" style={{color:'black', fontWeight:500, fontSize:15}} href={article.url}></a>
+					<div key={index}>
+						<div style={{marginBottom: 10, float:'left', textAlign:'center'}} className="row">
+							<div style={{fontSize: 16, margin:'4%'}}><a target="_blank" href={article.url}><img src={article.urlToImage} alt='s'
+								style={{width:'65%', height:'45%', margin:'auto', border:'1px solid black'}} /></a>
+								<br/>
+								<a target="_blank" style={{color:'black', fontWeight:500, fontSize:15}} href={article.url}></a>
+							</div>
 						</div>
-					</div>
-					<div className="talkSportsTitles" style={{borderBottom:'1px solid lightgrey'}}>
-						{article.title}
+						<div className="talkSportsTitles" style={{borderBottom:'1px solid lightgrey'}}>
+							{article.title}
+						</div>
 					</div>
 				</div>
 			)
@@ -62,40 +68,41 @@ class FirstSportsComponent extends React.Component{
 }
 
 class ArticleColTwo extends React.Component{
-	//this returns ESPN individual articles and photos
+	constructor(props){
+		super(props);
+		this.state = {giveToSliderPhoto: []};
+		this.componentDidMount = this.componentDidMount.bind(this);
+	}
+	componentDidMount () {
+		var apiOneSource = 'espn';
+		var url = apiMain + apiOneSource + apiTail + newsApiKey;
+		$.getJSON(url, (espn) =>{
+			console.log(espn)
+			this.setState({giveToSliderPhoto: espn.articles.urlToImage})
+		});	
+	}
+
 	render (){
 		return(
+			console.log(this.state.giveToSliderPhoto),
 			<div className="espn_articles">
+				<SimpleSlider photos={this.state.giveToSliderPhoto} />
 	 			{this.props.articles.map(function(article, index){
-	 				if(index == 0){
-	 					return(
-	 						<div key={index}>
-	 							{/*return the first ESPN headline as a BIG picture*/}
-								<div key={index} style={{ marginBottom: 5, fontSize: 30, margin:'4%'}}>
-									<a target="_blank" href={article.url}><img src={article.urlToImage} alt='s' style={{width:'100%', height:'80%', border: '1px solid black'}} /></a>
-									<a target="_blank" className="big_espn_title" href={article.url}>{article.title}</a>
-								</div>		
-								<div className="espn_desc" style={{borderBottom:'1px solid lightgrey'}}>
-									{article.description}
-								</div>
-							</div>
-	 					)
-
-	 				}else if(index !== 0){
 	 					//return the other ESPN headlines as smaller
 						return(
-							<div key={index} style={{marginBottom: 10}} className='row' style={{borderBottom:'1px solid lightgrey'}}>
-								<div style={{fontSize: 16, margin:'4%'}}><a target="_blank" href={article.url}>
-									<img src={article.urlToImage} alt='s' style={{width:'50%', height:'35%', border:'1px solid black'}} /></a>
-									<a target="_blank" style={{color:'black', fontWeight:500, fontSize:15}} href={article.url}>{article.title}</a>
-								</div>	
-								<div className="espn_desc" style={{paddingBottom: 10, marginBottom: 10}}>
-									{article.description}
+							<div key={index}>
+								<div key={index} style={{marginBottom: 10}} className='row' style={{borderBottom:'1px solid lightgrey'}}>
+									<div style={{fontSize: 16, margin:'4%'}}><a target="_blank" href={article.url}>
+										<img src={article.urlToImage} alt='s' style={{width:'50%', height:'35%', border:'1px solid black'}} /></a>
+										<a target="_blank" style={{color:'black', fontWeight:500, fontSize:15}} href={article.url}>{article.title}</a>
+									</div>	
+									<div className="espn_desc" style={{paddingBottom: 10, marginBottom: 10}}>
+										{article.description}
+									</div>
 								</div>
 							</div>
 						)
-					}
-				})}
+					})}
 			</div>
 		)
 	}
