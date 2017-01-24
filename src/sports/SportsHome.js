@@ -23,7 +23,7 @@ class ArticleColOne extends React.Component{
 				<div key={index}>
 					<div key={index}>
 						<div style={{margin:'auto', marginBottom: 10, textAlign:'center'}} className="row">
-							<div style={{fontSize: 16, margin:'4%'}}><a target="_blank" href={article.url}><img src={article.urlToImage} alt='s'
+							<div style={{fontSize: 16, margin:'4%', textAlign:'center'}}><a target="_blank" href={article.url}><img src={article.urlToImage} alt='s'
 								style={{width:'65%', height:'45%', margin:'auto', textAlign:'center', border:'1px solid black'}} /></a>
 								<br/>
 								<a target="_blank" style={{color:'black', fontWeight:500, fontSize:15}} href={article.url}></a>
@@ -58,7 +58,7 @@ class FirstSportsComponent extends React.Component{
 		// console.log(this.state.sportsArticlesArray)
 		//this returns the TalkSPORT logo header
 		return(
-			<div className="col-xs-11 col-sm-6 col-md-3" style={{border:'3px solid lightgrey', height:'90vh', overflow:'scroll', backgroundColor:'#F3F1F4'}}>
+			<div className="col-xs-11 col-sm-6 col-md-3" style={{border:'2px solid lightgrey', height:'90vh', overflow:'scroll', backgroundColor:'#F3F1F4'}}>
 				{/*<img alt='talksports' src={require('./images/talksport')} className="sportsSourcePics" />*/}
 				<ArticleColOne articles={this.state.sportsArticlesOneArray} />
 			</div>

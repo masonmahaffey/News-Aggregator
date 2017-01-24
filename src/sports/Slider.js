@@ -12,9 +12,9 @@ var SimpleSlider = React.createClass({
       slidesToShow: 1,
       slidesToScroll: 1,
       autoplay: true,
-      autoplaySpeed: 3000,
+      autoplaySpeed: 4000,
       adaptiveHeight: true,
-      className: 'row',
+      className: 'indiv_slide',
       arrows: false,
       pauseOnHover: true,
       useCSS: true,
@@ -26,7 +26,7 @@ var SimpleSlider = React.createClass({
     var imgURL = []
          {this.props.articles.map(function(article, index){
           imgURL.push(<div key={index}><a target="_blank" href={article.url}>
-                        <img src={article.urlToImage} /></a></div>)}
+                        <img src={article.urlToImage} styles={{padding:50}}/></a></div>)}
         )}
     var titles = []
       {this.props.articles.map(function(article, index){
@@ -38,7 +38,7 @@ var SimpleSlider = React.createClass({
       <div className="slider">
         <Slider{...settings}>
           <div>
-            <div>{imgURL[0]}</div>
+            <div >{imgURL[0]}</div>
             <div>{titles[0]}</div>
           </div>
           <div>
