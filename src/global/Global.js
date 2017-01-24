@@ -22,13 +22,19 @@ class Countries extends Component {
 		this.state = {
 			countryName: this.props.countryData
 		}
+		// this.countryLoad = this.countryLoad.bind(this);
 	}
+	// countryLoad(event){
+	// 	event.preventDefault;
+
+	// 	this.props.countryLoad(this.state.countryName)
+	// }
 
 	render(){
 		return(
-			<div overflow='scroll'>
-				<a>
-					<h3 style={{color: 'white'}}>{this.state.countryName}</h3>
+			<div>
+				<a style={{cursor: 'pointer'}} onClick={this.props.countryLoad}>
+					<h3 style={{color: 'white',cursor: 'pointer'}}>{this.state.countryName}</h3>
 				</a>
 			</div>
 
@@ -48,6 +54,7 @@ class Global extends Component {
 	    this.componentDidMount = this.componentDidMount.bind(this);		
 	    this.getArticles = this.getArticles.bind(this);	
 	    this.handleInputChange = this.handleInputChange.bind(this);	
+	    this.countryLoadMethod = this.countryLoadMethod.bind(this);
 	}
 
 	getArticles(source){
@@ -88,6 +95,13 @@ class Global extends Component {
 		})
 	}
 
+	countryLoadMethod(){
+		console.log('whichCountry')
+		// $.getJSON('https://newsapi.org/v1/sources?language=en',function(returnData){
+		// 	console.log(returnData);
+		// });
+	}
+
  // <section className="stage">
  //    <figure className="ball"><span className="shadow"></span></figure>
  //  </section>
@@ -98,14 +112,15 @@ class Global extends Component {
 	render() {
 		var countryRows = [];
 	    this.state.countryList.map(function(currentCountry, index){
-	    	countryRows.push(<Countries countryData={currentCountry} key={index} />);
-		});
+	    	countryRows.push(<Countries countryLoad={this.countryLoadMethod} countryData={currentCountry} key={index} />)
+		}.bind(this))
 
+	    // <input onChange={this.handleInputChange} type="text" className="form-control h-5" placeholder="Name Of Country" style={{marginTop: '10px'}}/>
 		return(
 			<div className="container" style={{paddingRight: '0px',paddingLeft: '0px',backgroundColor: 'back', width: '100vw', height: '400px'}}>
 			<div style={{height: '40px', width: '100%', backgroundColor: '#4F4F4F',borderTop: '1px solid black'}}></div>
 			<div className='col-sm-2' style={{backgroundColor:'#2E2B31', height:'87vh', width:' 23vw',marginRight: '-13px', float: 'left', overflow: 'scroll'}}>
-				 <input onChange={this.handleInputChange} type="text" className="form-control h-5" placeholder="Name Of Country" style={{marginTop: '10px'}}/>
+				
 				 <div style={{marginTop: '20px'}}>
 				 	{countryRows}
 				</div>
