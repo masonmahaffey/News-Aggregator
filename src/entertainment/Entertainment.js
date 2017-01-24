@@ -102,28 +102,6 @@ class ArticleImages extends Component{
         )
     }   
 }
-// {imageArrayColumnThree.map(function(article, index){return}
-// We need map to return images, titles, descriptions, authors
-	// return(
-	// 	<div className='col-lg-3 col-md-4 col-sm-6 col-xs-12'>
-
-			// <div className='column1'>
-			// 	<img alt='a' src={article.urlToImage} style={{width:'100%', height:'100%', borderRadius: '3%'}}/>
-			// 	<div className='col-xs-6 col-sm-7 col-lg-8'>
-			// 		<a href={article.url} style={{font:'Helvetica', fontSize:16, fontWeight:'bold', color:'black', paddingLeft:'0'}} >{article.title}</a> 
-			// 	</div>
-			// 	<div className='col-xs-12' style={{fontSize:12, width: '100%'}}>
-			// 		{article.description}
-			// 	</div>
-			// 	<div className='col-xs-12' style={{fontSize:12, width: '100%'}}>
-			// 		{article.author}
-			// 	</div>
-			// </div>
-
-		// </div>	
-// 	)}
-// }
-
 
 //========= Gather info for all articles (JSON calls here). Stash into an array ===============
 //Combine the images and articles by concatenating after the getJSON call.

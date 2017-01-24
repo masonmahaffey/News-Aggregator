@@ -1,7 +1,7 @@
+#The MSON Objects - Upd8ed#
+
 ##Description/overview
-Upd8ed, a news aggregator, is a demonstration of the front-end skills we have learned during our time thus far in coding bootcamp. We have created a one-stop shop by pulling the latest business, entertainment, global, sports news from a variety of sources for the viewer. 
-
-
+Upd8ed, a news aggregator, is a demonstration of the front-end skills we have learned during our time thus far in coding bootcamp. We have created a one-stop shop by pulling the latest business, entertainment, global, sports news from a variety of sources for the viewer. Upd8ed replicates the functionality of google news with the influence of Reddit.com and Pinterest.com.
 
 
 ##Table of contents
@@ -14,9 +14,9 @@ Upd8ed, a news aggregator, is a demonstration of the front-end skills we have le
 
 [GitHub Link](#github-link)
 
-[Screenshots](#screenshots)
+[Code Snippets](#code-snippets)
 
-[MVP](#mvp)
+[MVP (Minimal Viable Product)](#mvp)
 
 [Stretch Goals](#stretch-goals)
 
@@ -29,47 +29,125 @@ Upd8ed, a news aggregator, is a demonstration of the front-end skills we have le
 ##Technologies
 The following languages, frameworks and APIs were used:
 
-  -HTML
+  *HTML
 
-  -CSS
+  *CSS
 
-  -Javascript
+  *Javascript
 
-  -jQuery
+  *Bootstrap
 
-  -Bootstrap
+  *React.JS
 
-  -React
+  *node.JS
 
-  -NodeJS
+  *News API
 
-  -News API
+  *OpenWeatherMap API
 
-  -OpenWeatherMap API
-
-  -Yahoo Finance API
+  *Yahoo Finance API
 
 
 ##Challenges and Solutions
-1. Search bar 
+1.  **Challenge:** Organizing styling and layout when working with ReactDOM, bootstrap, and original CSS
 
-2. Blank space - Entertainment
+   **Solution:**
 
-3. Organizing styling and layout when working with ReactDOM, bootstrap, and original CSS
+2. **Challenge:** Search bar 
 
+   **Solution:** 
+
+3. **Challenge:** We wanted to make the entertainment page visually appealing while remaining mobile-friendly at the same time. Originally, the code was written so that all articles were placed into four divs depending on their source. Because differnet sources pulled different amounts of articles, there were some glaring blank spaces at the end of the page for the sources that pulled the least amount of articles. This became especially true when the page was resized to mimic a mobile device. 
+
+   **Solution:** The code was condensed and rewritten for styling purposes. By putting all the articles and their pieces into an array and dividing them up into four divs, we were able to present the same number of articles per div regardless of the number of articles each source pulled in. Visually, the number of gaps minimized and were replaced by articles from other news sources. This allowed for easier bootstrap styling.
+
+4. **Challenge:** Slider for sports page
+
+   **Solution:**
 
 
 ##GitHub Link
-[GitHub Link](https://github.com/mason0958/News-Aggregator)
+[Upd8ed](https://github.com/mason0958/News-Aggregator)
 
-##Screenshots
+##Code Snippets
 
-##MVP
--Top news page: displaying weather and a few top news articles from each page (entertainment, sports, business and world)
--Entertainment page: displaying articles from Entertainment-Weekly, Buzzfeed, MTV, MTV-UK and Dialy Mail
--Sports news: displaying articles from talkSPORT, ESPN and FOX sports.
--Business page: displaying articles from Business Insider, Financial Times, Business Insider UK, Fortune' and The Economist
--World: display top articles from each continent
+```js
+
+var symbol = 'BAC+FB+TSLA+WPX+WFC+RAD+FCX+AAPL+F+GE+JCP+JPM+VALE+FCAU+FTI+T+GOOG+S+DOW+TWTR+CSCO+INTC+QQQ+MU+XIV+NVDA+NFLX+JNJ+HBAN+ARRY+CMCSA+TVIX+GRPN+ARIA+MSFT+SIRI'
+var stockFront = 'http://query.yahooapis.com/v1/public/yql?q=select%20*%20from%20yahoo.finance.quotes%20where%20symbol%20in%20("'
+var stockTail = '")%0A%09%09&env=http%3A%2F%2Fdatatables.org%2Falltables.env&format=json'
+var stockUrl = stockFront + symbol + stockTail
+
+//parent of Stock.js, StockSearch.js, StockMarkets.js
+class Stocks extends Component {
+    constructor(props) {
+      super(props);
+      this.state = {stocks: []};
+      this.componentDidMount = this.componentDidMount.bind(this);
+  };
+    componentDidMount() {
+    $.getJSON(stockUrl, (stockData) =>{
+      var stockArr = stockData.query.results.quote
+      var stockArrMin = []
+      for(let i = 0; i < stockArr.length; i++){
+        if(stockArr[i].symbol!==null){
+          if(stockArr[i].DaysHigh==null){stockArr[i].DaysHigh = "-"};
+          if(stockArr[i].Change==null){stockArr[i].Change = "0"};
+          // changed stock.Change to yearly change for display on weekends
+          var eachStock = {
+            symbol: stockArr[i].symbol,
+            price: stockArr[i].LastTradePriceOnly,
+            change: stockArr[i].ChangeFromFiftydayMovingAverage,
+            name: stockArr[i].Name
+          }
+          stockArrMin.push(eachStock)
+        }
+      }
+      this.setState({stocks: stockArrMin})
+    });   
+    }
+
+    render() {
+      //left column hidden in phone
+      if(this.state.stocks.length > 4){
+        return(
+          <div>
+          <StockHeader />
+          <div className='hidden-sm hidden-xs'>
+              <StockSearch />
+              <Stock stocks={this.state.stocks} />
+            </div>
+          </div>
+      )
+    }else{
+      return(
+        <div>
+          <StockHeader />
+          <div className='blinkingLetters' style={{marginTop:35,fontSize: 30,position:'fixed',marginLeft:10}}>Loading Stocks...</div>
+        </div>
+      )
+    }
+    }
+}
+
+
+export default Stocks;
+```
+Although not necessarily apparent in this screenshot, the stocks on the left side of the page are constantly being updated. Notice also that header below the nav bar displays up to date information on whether a stock market is currently open.
+
+![alt](screenshots/NewsProjectScreenshots/stockSearch.png)
+
+
+##MVP(Minimal Viable Product)
+*Top news page: displaying weather and a few top news articles from each page (entertainment, sports, business and world)
+
+*Entertainment page: displaying articles from Entertainment-Weekly, Buzzfeed, MTV, MTV-UK and Daily Mail
+
+*Sports news: displaying articles from talkSPORT, ESPN and FOX sports.
+
+*Business page: displaying articles from Business Insider, Financial Times, Business Insider UK, Fortune' and The Economist
+
+*World: display top articles from each continent
 
 ##Stretch Goals
 1. Upvote/downvote option for users
@@ -77,22 +155,31 @@ The following languages, frameworks and APIs were used:
 3. Displaying articles in an Iframe modal
 
 ##Team Members and Contributions
+All team members are full stack web development students of the [DigitalCrafts](http://www.digitalcrafts.com/) November 2016 cohort. This project utilizes our frontend skills that we have learned along with pair programming and SCRUM agile development methodology.
 
-[Paul Kang](https://github.com/pdwkang)  
-**bold** Role: Scrum Master, Data wizard
-**bold** Contributions: 
+*[Paul Kang](https://github.com/pdwkang) 
 
-[Mason Mahaffey](https://github.com/mason0958) 
-**bold** Role: THE MSON.object Idea guy
-**bold** Contributions: Global news
+**Role:** Dungeon Master, Data wizard
 
-[Anna Sedlar](https://github.com/annasedlar) 
-**bold** Role: Packers gurl  
-**bold** Contributions: Sports page
+**Contributions:** Designed the top news and business pages. Built layout from scratch. General styling throughout website. Troubleshooting. Helping everyone who gets stuck with ease.
 
-[Connie Dang](https://github.com/dangconnie) 
-**bold** Role: 
-**bold** Contributions: Entertainment page, weather widget, README file
+*[Mason Mahaffey](https://github.com/mason0958) 
+
+**Role:** THE MSON.object Idea guy. 
+
+**Contributions:**  Initial project idea. Global news. Planning. Development. Suggestion for features to add. Backend knowledge. App name.
+
+*[Anna Sedlar](https://github.com/annasedlar) 
+
+**Role:** Packers gurl  
+
+**Contributions:** Sports page. Slider for sports page. 
+
+*[Connie Dang](https://github.com/dangconnie) 
+
+**Role:** 
+
+**Contributions:** Entertainment page. Weather widget. README file.
 
 If you would like to report an issue with our code or a suggest a way to improve it, simply contact one of us. We are always looking for ways to improve! 
 
@@ -108,6 +195,7 @@ If you would like to contribute to our project, we would like to add the the fol
 
 ##Project Timeline
 Project start: 1/18/2017
+
 Project completion: 1/24/2017
 
 
