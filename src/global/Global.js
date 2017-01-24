@@ -4,16 +4,13 @@ import './global.css';
 const newsApiKey = '275258a3655c449ba4907833f5baf08b';
 const apiMain = 'https://newsapi.org/v1/articles?source=';	
 const apiTail = '&apiKey='
+
 var	sourceArray = [
-		'business-insider-uk', 'ars-technica', 'associated-press', 'buzzfeed', 'bbc-news', 'bbc-sport', 'bloomberg', 'business-insider', 'the-verge', 'fox-sports', 'google-news', 'the-wall-street-journal',
-		'cnbc', 'cnn', 'daily-mail', 'engadget', 'entertainment-weekly', 'financial-times', 'focus', 'fortune', 'four-four-two', 'polygon',
-		'hacker-news', 'ign', 'independent', 'mashable', 'metro', 'mirror', 'mtv-news', 'mtv-news-uk', 'national-geographic', 'new-scientist', 'newsweek', 'new-york-magazine', 
-		'sky-news', 'sky-sports-news', 't3n', 'talksport', 'techcrunch', 'recode', 'reddit-r-all', 'reuters', 'the-washington-post', 'time', 'usa-today', 'wired-de', 'wirtschafts-woche', 'nfl-news', 
-		'techradar', 'the-economist', 'the-guardian-au', 'the-guardian-uk', 'the-huffington-post', 'the-lad-bible', 'the-new-york-times', 'the-next-web','the-sport-bible', 'the-telegraph'
+		'business-insider-uk', 'the-guardian-au', 'the-guardian-au',  'ars-technica', 'associated-press', 'buzzfeed', 'bbc-news', 'bbc-sport', 'daily-mail', 'mtv-news-uk', 'reuters', 'the-guardian-au', 'the-guardian-uk', 'the-telegraph'
 ]
 
 
-const countries = ['Australia','United Kingdom','Great Britain','Canada','Mexico','Belize','Guatemala','Puerto Rico', 'El Salvador','Panama','Columbia', 'Germany', 'Turkey', 'China', 'Japan', 'Norway', 'Sweden', 'Denmark', 'India', 'Europe','Africa','Taiwan'];
+const countries = ['Great Britain','Australia','Italy','Denmark','India','United States']
 
 class Countries extends Component {
 
@@ -22,22 +19,40 @@ class Countries extends Component {
 		this.state = {
 			countryName: this.props.countryData
 		}
-		// this.countryLoad = this.countryLoad.bind(this);
 	}
-	// countryLoad(event){
-	// 	event.preventDefault;
 
-	// 	this.props.countryLoad(this.state.countryName)
-	// }
 
 	render(){
+
+		if (this.state.countryName == 'Great Britain') {
+			var flagClass = 'flag flag-gb'
+		}
+		if (this.state.countryName == 'Australia') {
+			var flagClass = 'flag flag-au'
+		}
+		if (this.state.countryName == 'Italy') {
+			var flagClass = 'flag flag-it'
+		}
+		if (this.state.countryName == 'Denmark') {
+			var flagClass = 'flag flag-de'
+		}
+		if (this.state.countryName == 'India') {
+			var flagClass = 'flag flag-in'
+		}
+		if (this.state.countryName == 'United States') {
+			var flagClass = 'flag flag-us'
+		}
+
+
+		
+
 		return(
 			<div>
-				<a style={{cursor: 'pointer'}} onClick={this.props.countryLoad}>
+				<a style={{cursor: 'pointer'}} onClick={() => this.props.countryLoad(this.state.countryName)}>
+					<img src="blank.gif" className={flagClass} />
 					<h3 style={{color: 'white',cursor: 'pointer'}}>{this.state.countryName}</h3>
 				</a>
 			</div>
-
 		)
 	}
 }
@@ -53,12 +68,14 @@ class Global extends Component {
 		}
 	    this.componentDidMount = this.componentDidMount.bind(this);		
 	    this.getArticles = this.getArticles.bind(this);	
-	    this.handleInputChange = this.handleInputChange.bind(this);	
 	    this.countryLoadMethod = this.countryLoadMethod.bind(this);
 	}
 
 	getArticles(source){
-    	var url = apiMain + source + apiTail + newsApiKey;
+		var sourceA = source;
+		console.log(sourceA);
+    	var url = apiMain + sourceA + apiTail + newsApiKey;
+    	console.log(url)
     	$.getJSON(url, (newsData) =>{
     		this.setState({
     			searchedArticlesArray: 
@@ -67,25 +84,21 @@ class Global extends Component {
     	});		
 	}
 
-	handleInputChange(event){
-		var newFilterValue = event.target.value;
-		var filteredCountries = [];
-		this.setState({
-			countryList: []
-		})
-		// console.log(this.state.countryList)
-		console.log(newFilterValue);
-		countries.map(function(currCountry, index){
-			if(currCountry.indexOf(newFilterValue) != -1){
-				filteredCountries.push(currCountry)
-			}
-		})
+	setCountryArticlesBySource(country){
 
-			this.setState({
-				countryList: filteredCountries
-			})
-		
+		var temp = 'gb';
 
+		if(country == 'Great Britain'){
+			temp = 'gb'
+		}
+
+		var url = 'https://newsapi.org/v1/sources?country=' + temp;
+    	$.getJSON(url, (newsData) =>{
+    		for (var i = 0; i < 3; i++) {
+    			this.getArticles(newsData.sources[i].id)
+    			console.log(newsData.sources[i].id)
+    		}
+    	});
 	}
 
 	componentDidMount() {
@@ -95,16 +108,16 @@ class Global extends Component {
 		})
 	}
 
-	countryLoadMethod(){
-		console.log('whichCountry')
-		// $.getJSON('https://newsapi.org/v1/sources?language=en',function(returnData){
-		// 	console.log(returnData);
-		// });
+	countryLoadMethod(country){
+
+		this.setCountryArticlesBySource(country);
 	}
 
- // <section className="stage">
- //    <figure className="ball"><span className="shadow"></span></figure>
- //  </section>
+	//CODE FOR PAUL'S GLOBE
+	//====================================================================================================
+ 	// <section className="stage">
+	//    <figure className="ball"><span className="shadow"></span></figure>
+ 	//  </section>
 
 
 	//Render all of the HTML/CSS
@@ -115,18 +128,23 @@ class Global extends Component {
 	    	countryRows.push(<Countries countryLoad={this.countryLoadMethod} countryData={currentCountry} key={index} />)
 		}.bind(this))
 
+	    //Input Box for filtering the countries -- can be added in later
+		//====================================================================================================
 	    // <input onChange={this.handleInputChange} type="text" className="form-control h-5" placeholder="Name Of Country" style={{marginTop: '10px'}}/>
+
+	    //HOTDOG DIV to be used at a later time -- can add in scrolling weather DATA
+		//====================================================================================================
+	    //<div style={{height: '40px', width: '100%', backgroundColor: '#4F4F4F',borderTop: '1px solid black'}}></div>
+
 		return(
 			<div className="container" style={{paddingRight: '0px',paddingLeft: '0px',backgroundColor: 'back', width: '100vw', height: '400px'}}>
-			<div style={{height: '40px', width: '100%', backgroundColor: '#4F4F4F',borderTop: '1px solid black'}}></div>
-			<div className='col-sm-2' style={{backgroundColor:'#2E2B31', height:'87vh', width:' 23vw',marginRight: '-13px', float: 'left', overflow: 'scroll'}}>
-				
+			<div className='col-md-2 hidden-xs' style={{backgroundColor:'#2E2B31', height:'93vh', width:' 23vw',marginRight: '-13px', float: 'left', overflow: 'scroll'}}>
 				 <div style={{marginTop: '20px'}}>
 				 	{countryRows}
 				</div>
 			</div>
 				<div className="col-md-3" style={{float: 'right'}}>
-				  <div style={{fontSize:17, height:'87vh',overflow:'scroll', backgroundColor:'#F3F1F4'}}>
+				  <div style={{fontSize:17, height:'93vh',overflow:'scroll', backgroundColor:'#F3F1F4'}}>
 			 		{	
 			 		//map through the searchedArticles array
 				  	//====================================================================================================
@@ -266,7 +284,7 @@ class RenderSearchedNews extends Component{
 class SearchedNewsDescription extends Component{
 	render(){
 		return(
-			<div className='article-description' style={{zIndex:this.props.zIndex, display:this.props.open, 
+			<div className='article-description col-sm-12' style={{zIndex:this.props.zIndex, display:this.props.open, 
 				position:'fixed', right: '27%', top:117, height:'90vh', 
 				width:'48vw', backgroundColor:'white',marginTop: '-7px'}}>
 				
