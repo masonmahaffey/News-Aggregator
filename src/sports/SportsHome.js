@@ -22,9 +22,9 @@ class ArticleColOne extends React.Component{
 			return(
 				<div key={index}>
 					<div key={index}>
-						<div style={{marginBottom: 10, float:'left', textAlign:'center'}} className="row">
+						<div style={{margin:'auto', marginBottom: 10, textAlign:'center'}} className="row">
 							<div style={{fontSize: 16, margin:'4%'}}><a target="_blank" href={article.url}><img src={article.urlToImage} alt='s'
-								style={{width:'65%', height:'45%', margin:'auto', border:'1px solid black'}} /></a>
+								style={{width:'65%', height:'45%', margin:'auto', textAlign:'center', border:'1px solid black'}} /></a>
 								<br/>
 								<a target="_blank" style={{color:'black', fontWeight:500, fontSize:15}} href={article.url}></a>
 							</div>
