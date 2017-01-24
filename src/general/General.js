@@ -10,7 +10,7 @@ const apiTail = '&apiKey='
 
 //article Sources
 const sourceArray = [
-		'cnn', 'daily-mail'
+		'cnn', 'google-news', 'time'
 ]
 
 //header for news feed on the right (child of news feed)  / hidden in mobile
@@ -157,10 +157,10 @@ class ArticleTitles extends Component{
 				</div>
 
 					{/********************** Mobile View *********************/}
-					<div className='visible-xs'style={{marginTop:3, height:'65vh',overflow:'scroll'}}>
+					<div className='visible-xs'style={{marginTop:3, height:'60vh',overflow:'scroll'}}>
 						<Description article={this.state.article} />
 					</div>
-					<div className='col-xs-12 visible-xs' style={{height:'25vh',padding:0, marginRight:0, 
+					<div className='col-xs-12 visible-xs' style={{height:'30vh',padding:0, marginRight:0, 
 						backgroundColor:'#F3F1F4', borderLeft:'1px solid #ddd', right:0, overflow:'scroll'}}>
 						{justTitles}
 					</div>

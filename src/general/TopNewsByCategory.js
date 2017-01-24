@@ -112,7 +112,7 @@ var CategoryArticleImage = React.createClass({
 				{articles.map(function(article, index){
 					return(
 						<div key={index} style={{marginTop:6,padding:10, fontSize:19}}>
-							<img src={article.urlToImage} alt="not found" style={{height:'100%', width:'100%', border:'1px solid white'}}/>
+							<img src={article.urlToImage} alt="not found" style={{height:'100%', width:'100%', border:'.4px solid white'}}/>
 							<a href={article.url} style={{color:'white'}}>{article.title}</a>
 						</div>
 					)	
@@ -240,3 +240,4 @@ class TopNewsByCategory extends Component{
 }
 
 export default TopNewsByCategory 
+

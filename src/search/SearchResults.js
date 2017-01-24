@@ -11,6 +11,59 @@ var	sourceArray = [
 		'sky-news', 'sky-sports-news', 'techcrunch', 'reddit-r-all', 'reuters', 'the-washington-post', 'time', 'usa-today', 'nfl-news', 
 		'techradar',  'the-guardian-uk', 'the-huffington-post', 'the-new-york-times','the-sport-bible',
 	]
+// class KeyWords extends Component{
+// 	constructor(props) {
+// 		super(props);
+// 		this.state ={
+// 			wordString : ''
+// 		}
+// 		this.componentDidMount = this.componentDidMount.bind(this)
+// 	}
+// 	componentDidMount() {	
+// 		var wordString = ''
+// 		for(let i = 0; i < this.props.articles; i++){
+//     		wordString += this.props.articles[i].title
+//     		console.log('a')
+//     		this.setState({
+//     		wordString:wordString
+//     	})
+//     	}
+    	
+    		
+// 	}
+// 	render() {
+		
+// 		return(
+// 			<div>{findKeyWords(this.state.wordString)}</div>
+// 		)
+// 	}
+// }
+
+// function findKeyWords(wordString){
+// 	wordString = wordString.replace(/\,|\.|\'|\!|\?| a| is| to| the| at| from| us| in| for| with| on| of| \|| his| her| by| over| what| first| that| out| us| fox|/gi, "")
+// 	var wordArray = wordString.toLowerCase().split(' ')
+// 	var topTenCounters = 6
+// 	var topTenWords = []
+// 	for(let i = 0; i < wordArray.length; i++){
+// 		var wordCounter = 0
+// 		var word = wordArray[i]
+// 		for(let j = 0; j < wordArray.length; j++){
+// 			if(wordArray[i] === wordArray[j]){
+// 				wordCounter++;
+// 			}
+// 		}	
+// 			if((wordCounter > topTenCounters)&&(topTenWords.indexOf(word) == -1)){
+// 				topTenWords.push(word);
+// 			}
+		
+// 	}
+// 	return topTenWords.join(", ")
+// }
+
+
+
+
+
 
 //header for news feed on the right (child of news feed)  / hidden in mobile
 class LatestNews extends Component{
@@ -129,7 +182,7 @@ class SearchResults extends Component{
 		}
     this.componentDidMount = this.componentDidMount.bind(this);		
     this.parentOnClick = this.parentOnClick.bind(this);		
-    this.displayFirstArticle = this.displayFirstArticle.bind(this);
+    // this.displayFirstArticle = this.displayFirstArticle.bind(this);
     this.getArticles = this.getArticles.bind(this);
 	}
 	// this function is called in its child, and the child will run this function with
@@ -140,20 +193,21 @@ class SearchResults extends Component{
     		this.setState({
     			articlesArray: 
     			this.state.articlesArray.concat(newsData.articles),
+    			article:newsData.articles[2]
     		})
     	});		
 	}	
-	displayFirstArticle(firstArticle){
-		if(this.state.displayFirst){
-			this.setState({
-				article: firstArticle,
-				displayFirst: false
-			})
-		}
-	}
+	// displayFirstArticle(firstArticle){
+	// 	if(this.state.displayFirst){
+	// 		this.setState({
+	// 			article: firstArticle,
+	// 			displayFirst: false
+	// 		})
+	// 	}
+	// }
 	parentOnClick(article){
 		this.setState({
-			article: article,
+			article: article
 		})
 	}
 	componentDidMount() {
@@ -163,20 +217,18 @@ class SearchResults extends Component{
 		})
 	}
 	render(){
+		// console.log(this.state.wordString)
 		//defaulting justTitles array to <LatestNews/> (which is header on top of newsfeed)
 		var justTitles=[ <LatestNews key='LatestNews'/> ]
-		var shown = false
+		// var shown = false
 		this.state.articlesArray.map((article, index)=>{
 			var searchInput = this.props.params.newsToSearchFor.toLowerCase()
 			var indexOfTitle = article.title.toLowerCase().indexOf(searchInput)
-			
-
 			if((indexOfTitle > -1)&&(searchInput.length > 0)){
-
-				if(!shown){
-					this.displayFirstArticle(article); 
-					shown=true;
-				}
+				// if(!shown){
+				// 	this.displayFirstArticle(article); 
+				// 	shown=true;
+				// }
 				var frontText = article.title.slice(0, indexOfTitle)
 			 	var highlightText = article.title.slice(indexOfTitle, indexOfTitle + searchInput.length)
 			 	var backText = article.title.slice(indexOfTitle + searchInput.length)
@@ -189,10 +241,16 @@ class SearchResults extends Component{
 		//bootstrap for mobile friendly with hidden components and changing column size
 		return(
 			<div>
-				<div className='hidden-xs col-md-offset-3 col-md-6 col-sm-9'style={{marginTop:3}}>
+				{/*<div className='col-md-3 hidden-xs hidden-sm' style={{height:'94vh', position:'fixed', left:0, paddingLeft:0, paddingRight:0, overflow:'scroll'}}>
+					<div style={{height:'100vh', width: '100%', backgroundColor:'#2E2B31', color: 'white'}}>
+						<KeyWords article={this.state.articlesArray}/>
+					</div>
+				</div>				*/}
+
+				<div className='hidden-xs col-md-7  col-sm-9'style={{marginTop:3}}>
 					<Description article={this.state.article} />
 				</div>
-				<div className='col-sm-3 hidden-xs' style={{padding:0, marginRight:0, backgroundColor:'#F3F1F4', 
+				<div className='col-sm-5 hidden-xs' style={{padding:0, marginRight:0, backgroundColor:'#F3F1F4', 
 					borderLeft:'1px solid #ddd', height:'100vh', position:'fixed', right:0, overflow:'scroll'}}>
 					{justTitles}
 				</div>

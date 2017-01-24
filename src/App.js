@@ -7,8 +7,6 @@ class ToggleRoutes extends React.Component {
     constructor(props) {
         super(props);
         this.onInputChangeSaveValue = this.onInputChangeSaveValue.bind(this)
-        this.state = {
-        }
     }
     onInputChangeSaveValue(e){
         e.preventDefault();
@@ -39,7 +37,7 @@ class ToggleRoutes extends React.Component {
                                 <li><Link to="/entertainment" activeClassName="activeBorder">
                                 <img alt='a' src={require('../public/entertainment.png')} style={{marginRight:0,width:30, height:30}}/>
                                 </Link></li>
-                                <li><Link to="/sports" activeClassName="activeBorder"><img alt='a' src={require('../public/sports.ico')} style={{marginRight:0,width:27, height:27}}/>
+                                <li><Link to="/sports" activeClassName="activeBorder"><img alt='a' src={require('../public/sports.png')} style={{marginRight:0,width:27, height:27}}/>
                                 </Link></li>
                                 <li><Link to="/business" activeClassName="activeBorder"><img alt='a' src={require('../public/business.png')} style={{marginRight:0,width:30, height:30}}/>
                                 </Link></li>

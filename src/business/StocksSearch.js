@@ -88,7 +88,14 @@ class StockSearch extends Component{
 			   			</form>
 			   		</div>
 			   		<SearchedStockResults stock={this.state.stock} />
+			   		<div className='col-md-12' style={{padding:0, marginTop:30, fontSize:17}}>
+			   			<div style={{fontSize:27,height:20,borderTop:'1px solid white', width:'100%'}}></div>
+			   			<div className='col-md-8 col-sm-offset-2' style={{position:'absolute',textAlign:'center',marginTop:-32}}>
+							<div style={{paddingLeft:5,paddingRight:5,fontFamily:'Days One', color:'white',backgroundColor:'#2E2B31'}}>Common Stocks</div>
+						</div>
+					</div>
 			  	</div>
+
 			</div>
 		)
 	}
