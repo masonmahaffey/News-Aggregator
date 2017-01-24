@@ -5,7 +5,7 @@
 ##Description/Overview
 Upd8ed, a news aggregator, is a demonstration of the front-end skills we have learned during our time thus far in coding bootcamp. We have created a one-stop shop by pulling the latest business, entertainment, global, sports news from a variety of sources for the viewer. Upd8ed replicates the functionality of google news with the influence of Reddit.com and Pinterest.com.
 
-[Live URL](www.pauldkang.com/news)
+[Live URL](https://www.pauldkang.com/news)
 
 ##Table of contents
 
