@@ -1,8 +1,11 @@
-#The MSON Objects - Upd8ed#
+#Upd8ed: Aggregated. Upd8ed.
+
+#The MSON Objects
 
 ##Description/Overview
 Upd8ed, a news aggregator, is a demonstration of the front-end skills we have learned during our time thus far in coding bootcamp. We have created a one-stop shop by pulling the latest business, entertainment, global, sports news from a variety of sources for the viewer. Upd8ed replicates the functionality of google news with the influence of Reddit.com and Pinterest.com.
 
+[Live URL](www.pauldkang.com/news)
 
 ##Table of contents
 
@@ -16,7 +19,7 @@ Upd8ed, a news aggregator, is a demonstration of the front-end skills we have le
 
 [Code Snippets and Screenshots](#code-snippets-and-screenshots)
 
-[MVP (Minimal Viable Product)](#mvp-minimal-viable-product)
+[MVP](#mvp-minimal-viable-product)
 
 [Stretch Goals](#stretch-goals)
 
@@ -49,21 +52,23 @@ The following languages, frameworks and APIs were used:
 
 
 ##Challenges and Solutions
-1.  **Challenge:** Organizing styling and layout when working with ReactDOM, bootstrap, and original CSS. This was an issue throughout the entire project.
+1.  **Challenge:** Organizing styling and layout when working with ReactDOM, bootstrap, and original CSS. Certain layouts conflicted with how we wanted to style each page using Bootstrap. 
 
-   **Solution:**
+   **Solution:** This was an issue throughout the entire project. We developed unique solutions for each page depending on what best fit it. With the entertainment page, the code was rewritten to allow for easier styling and reduce unecessary white space. 
 
-2. **Challenge:** Search bar 
+2. **Challenge:** Search page that allows us to sort through the results. 
+The news api we were using did not have a keyword property in each of their articles. We had 60 news sources, each giving us their current top 10 articles, so we awere able to pull 600+ different articles, but without a way to sort through them.
 
-   **Solution:** 
+  **Solution:**
+First we made a global array of all the news sources (60 items), Then we made the ajax calls for each source and added all 600 articles into an array saved in the state of the parent component. The array of articles are then passed to the child component as props, where we built a quick sorting algorithm. From the input box component, we got the user input value and passed it up to its parent where routing happens. As input changes we went to a new route with the input value as the parameter. This input value is then passed all the way down to the child component which contains all the articles. Next, we looped through the titles of the articles looking for matches with whatever words user typed in. Those articles are rendered on the right. At onClick of each article, the article data is sent to the parent component through a parameter in a function, and sent back down to a description component where it displays the image, link to full article, etc.
 
 3. **Challenge:** We wanted to make the entertainment page visually appealing while remaining mobile-friendly at the same time. Originally, the code was written so that all articles were placed into four divs depending on their source. Because differnet sources pulled different amounts of articles, there were some glaring blank spaces at the end of the page for the sources that pulled the least amount of articles. This became especially true when the page was resized to mimic a mobile device. 
 
-   **Solution:** The code was condensed and rewritten for styling purposes. By putting all the articles and their pieces into an array and dividing them up into four divs, we were able to present the same number of articles per div regardless of the number of articles each source pulled in. Visually, the number of gaps minimized and were replaced by articles from other news sources. This allowed for easier bootstrap styling.
+   **Solution:** The code was condensed and rewritten for styling purposes. By putting all the articles and their pieces into an array and dividing them up into four divs, we were able to present the same number of articles per div regardless of the number of articles each source pulled in. Additionally, we also put a maximum length on the description of the article. Visually, the number of gaps minimized and were replaced by articles from other news sources. This allowed for easier bootstrap styling.
 
-4. **Challenge:** Slider for sports page
+4. **Challenge:** Slider for sports page. The React Slider component the sports page was cloned from github user akiran. Because of it's pre-written rules, styling it according to our data needs proved very difficult. There were customizable settings, none of which gave us the usability required. Teasing out an effective fix was a hack job with CSS classes that took time, but ultimately we succeeded.
 
-   **Solution:**
+   **Solution:** The React Slider component the sports page was cloned from github user akiran. Because of it's pre-written rules, styling it according to our data needs proved very difficult. There were customizable settings, none of which gave us the usability required. Teasing out an effective fix was a hack job that took time, but ultimately we succeeded by targeting hidden CSS classes and overwriting their value using '!important'. It's not pretty, but it works
 
 
 ##GitHub Link
@@ -140,44 +145,75 @@ class Stocks extends Component {
 export default Stocks;
 ```
 
-For visual appeal, we put the top ESPN news in a slider and displayed the entertainment articles in a Pinterest-inspired layout.
+For visual appeal, we put the top ESPN news in a slider and displayed the entertainment articles in a Pinterest-inspired layout. We used [Kiran's](https://github.com/akiran) open-source slider.
 
 ```js
+import SportsHome from './SportsHome';
+import giveToSliderPhoto from './SportsHome';
 var React = require('react');
 var Slider = require('react-slick');
 
-var SimpleSlider = React.createClass({
-  render: function () {
-    var settings = {
-      dots: true,
-      infinite: true,
-      speed: 500,
-      slidesToShow: 1,
-      slidesToScroll: 1
-    };
 
-    console.log(this.props.articles)
-    var imgURL = []
-         {this.props.articles.map(function(article, index){
-          imgURL.push(<div key={index}><img src={article.urlToImage} /></div>)}
-        )}
-    
-    return (
+var SimpleSlider = React.createClass({
+ render: function () {
+   var settings = {
+     dots: true,
+     speed: 500,
+     slidesToShow: 1,
+     slidesToScroll: 1,
+     autoplay: true,
+     autoplaySpeed: 4000,
+     adaptiveHeight: true,
+     arrows: false,
+     pauseOnHover: true,
+     useCSS: true,
+     centerMode: true,
+     variableWidth: true
  
-      <div className="slider">
-        <Slider{...settings}>
-          <div>{imgURL[0]}</div>
-          <div>{imgURL[1]}</div>
-          <div>{imgURL[2]}</div>
-          <div>{imgURL[3]}</div>
-          <div>{imgURL[4]}</div>
-        </Slider>
-      </div>
-    );
-  }
+   };
+
+   // console.log(this.props.articles)
+   var imgURL = []
+        {this.props.articles.map(function(article, index){
+         imgURL.push(<div className="anna" key={index}><a target="_blank" href={article.url}>
+                       <img src={article.urlToImage} styles={{padding:0}}/></a></div>)}
+       )}
+   var titles = []
+     {this.props.articles.map(function(article, index){
+       titles.push(<div className="row slider_titles" key={index}><a target="_blank" href={article.url}>{article.title}</a></div>)
+     })}
+
+   return (
+     
+     <div className="slider">
+       <Slider{...settings}>
+         <div>
+           <div >{imgURL[0]}</div>
+           <div>{titles[0]}</div>
+         </div>
+         <div>
+           <div>{imgURL[1]}</div>
+           <div>{titles[1]}</div>
+         </div>
+         <div>
+           <div>{imgURL[2]}</div>
+           <div>{titles[2]}</div>
+         </div>
+         <div>
+           <div>{imgURL[3]}</div>
+           <div>{titles[3]}</div>
+         </div>
+         <div>
+           <div>{imgURL[4]}</div>
+           <div>{titles[4]}</div>
+         </div>
+       </Slider>
+     </div>
+   );
+ }
 });
 
-export default SimpleSlider; 
+export default SimpleSlider;
 ```
 
 Entertainment page in tablet view. Notice how the icons in the links in the navbar have now changed to symbols when the size of the device has been reduced.
@@ -186,9 +222,9 @@ Entertainment page in tablet view. Notice how the icons in the links in the navb
 
 Want to search for specific articles anywhere on the site? Simply start typing in the search box. The articles retrieved from your query will have the word highlighted in its title. We tried searching "Trump" in the wake of the 2017 inauguration. Pretty neat!
 
-![alt](screenshots/NewsProjectScreenshots/searchPageExample.png)
+![alt](screenshots/NewsProjectScreenshots/searchResults.png)
 
-What if you can't remember if you've read this particular article before? No worries. Once you click on an article it turns gray as demonstrated in the first and third articles.
+What if you can't remember if you've read this particular article before? No worries. Once you click on an article it turns gray as demonstrated in the first three articles. There is also an option to share this article on your Facebook account.
 
 ![alt](screenshots/NewsProjectScreenshots/seenExample.png)
 
@@ -232,7 +268,7 @@ And just to make sure our website is mobile-friendly, we tested each page by shr
 
 ![alt](screenshots/NewsProjectScreenshots/businessMobileView.png)
 
-##MVP(Minimal Viable Product)
+##MVP (Minimal Viable Product)
 **Top news page:** displaying the current weather and a few top news articles from each page (entertainment, sports, business and world)
 
 **Entertainment page:** displaying the latest articles from Entertainment-Weekly, Buzzfeed, MTV, MTV-UK and Daily Mail
@@ -245,8 +281,9 @@ And just to make sure our website is mobile-friendly, we tested each page by shr
 
 ##Stretch Goals
 1. Upvote/downvote option for users
-2. Backend server
-3. Displaying articles in an Iframe modal
+2. Option to share articles on social media
+3. Backend server
+4. Displaying articles in an Iframe modal
 
 ##Team Members and Contributions
 All team members are full stack web development students of the [DigitalCrafts](http://www.digitalcrafts.com/) November 2016 cohort. This project utilizes our frontend skills that we have learned along with pair programming and SCRUM agile development methodology. We used Taiga to implement a Kanban task scheduling system to practice agile software development. 
@@ -258,27 +295,29 @@ All team members are full stack web development students of the [DigitalCrafts](
 
 **Role:** Dungeon Master - Data wizard - MVP
 
-**Contributions:** Designed the top news and business pages. Built layout from scratch. General styling throughout website. Troubleshooting. Helping everyone who gets stuck with ease.
+**Contributions:** Led team to timely completion of project. Built layout of website from scratch with Mason. Designed the top news and business pages to incorporate a continuously updating stocks page. Implemented a dynamic search bar that highlights user inputs and marks "read" articles. Created a mobile-friendly version of Upd8ed utilizing icons in the nav bar when viewing size is reduced. Provided a sharing link to Facebook for all articles. Flawless backup styling throughout website. Updated task cards on Taiga to reflect project progress. Resolved coding challenges team members faced throughout the project. Conceptualized logo.
 
 * [Mason Mahaffey](https://github.com/mason0958) 
 
 **Role:** THE MSON.object idea genius 
 
-**Contributions:**  Initial project idea. Global news. Planning. Development. Suggestion for features to add. Backend knowledge. App name.
+**Contributions:** World news page along with region-specific articles. Developed initial project concept with Paul. Outlined with detail the project from beginning to completion. Set up a Taiga account for the group to manage the development process and document issues. Assigned tasks for each team member based on their strengths. Suggestion for features to add. Backend consultant. 
 
 * [Anna Sedlar](https://github.com/annasedlar) 
 
-**Role:** Packers gurl  
+**Role:** Packers gurl - Sports Data Analyst  
 
-**Contributions:** Sports page. Slider for sports page. 
+**Contributions:** Created and styled the sports page. Populated sports page with content by working with the external API. Displayed articles in an organized manner and used a slider to display the top 5 articles from a single source, with focus on visual appeal. Updated task cards on Taiga to reflect progress of project. Pitched ideas to style navbar. 
 
 * [Connie Dang](https://github.com/dangconnie) 
 
-**Role:** 
+**Role:** Wordsmith - Mediator - Task Manager
 
-**Contributions:** Entertainment page. Weather widget. README file.
+**Contributions:** Functioning weather widget that takes user input to display the latest weather based on location. Pinterest-inspired entertainment page dsplaying the latest articles from each source as extracted from the API. Planned, wrote and revised README file to incorporate code changes. Developed all-encompassing slogan. Incorporated feedback and made adjustments to design of page. 
 
-If you would like to report an issue with our code or a suggest a way to improve it, simply contact one of us. We are always looking for ways to improve! 
+**I want to help out!**
+
+*If you would like to report an issue with our code or a suggest a way to improve it, simply contact one of us. We are always looking for ways to improve!* 
 
 If you would like to contribute to our project, we are looking to add the the following:
 

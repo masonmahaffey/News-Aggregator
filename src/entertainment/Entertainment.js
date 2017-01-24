@@ -26,27 +26,28 @@ const entertainmentAPIKey = '09a731f9f7e9481c9deffbec56d9b6c9';
 //Distribute evenly between 4 divs/columns
 
 class ArticleImages extends Component{
-	render(){
-		//Get and display images, titles, descriptions, authors
-		var imageArray = this.props.articles;
-		var arrayLengthDividedByFour = Math.floor(imageArray.length/4);
-		var imageArrayColumnOne = imageArray.slice(0, arrayLengthDividedByFour)
-        var imageArrayColumnTwo = imageArray.slice(arrayLengthDividedByFour, arrayLengthDividedByFour*2)
-        var imageArrayColumnThree = imageArray.slice(arrayLengthDividedByFour*2, arrayLengthDividedByFour*3)
-        var imageArrayColumnFour = imageArray.slice(arrayLengthDividedByFour*3)
-
- 	return(
+    render(){
+        //Get and display images, titles, descriptions, authors
+        var imageArray = this.props.articles;
+        var arrayLengthDividedByFour = Math.floor(imageArray.length/4);
+        var imageArrayColumnOne = imageArray.slice(0, arrayLengthDividedByFour+1)
+        var imageArrayColumnTwo = imageArray.slice(arrayLengthDividedByFour+1, arrayLengthDividedByFour*2+2)
+        var imageArrayColumnThree = imageArray.slice(arrayLengthDividedByFour*2+2, arrayLengthDividedByFour*3+2)
+        var imageArrayColumnFour = imageArray.slice(arrayLengthDividedByFour*3+2)
+    return(
             <div>
                 {/*<img style={{position:'fixed', width:'100vw', height:'100vh'}} src={require('./images/music.png')}/>*/}
                 <div className='col-xs-12 col-sm-6' style={{padding:0}}>
                 <div className='col-xs-12 col-md-12 col-lg-6' style={{marginTop:25}}>
                     {imageArrayColumnOne.map(function(article, index){
+                        var description = article.description
+                        if(description.length > 50){description = description.slice(0,50)+'...'}
                         return(
                             <div className='row eachArticle' key={index} style={{margin:1, marginBottom:20, padding:15,height:'100%',borderRadius:'3%'}}>
                                 <a href={article.url} style={{color:'black'}}>
                                     <img src={article.urlToImage} style={{width:'100%', height:'120%', marginBottom:7, borderRadius:'3%'}} alt="a"/>
                                     <div className='col-xs-12' style={{padding:0}}>{article.title}</div>
-                                    <div className='col-xs-12 text-left' style={{color:'grey',padding:0}}>{article.description}</div>
+                                    <div className='col-xs-12 text-left' style={{color:'grey',padding:0}}>{description}</div>
                                     <div className='col-xs-12' style={{width:'100%', color:'grey', marginTop:10, padding:0}}>By {article.author}</div>
                                 </a>
                             </div>
@@ -55,12 +56,14 @@ class ArticleImages extends Component{
                 </div>
                 <div className='col-xs-12 col-md-12 col-lg-6' style={{marginTop:25}}>
                     {imageArrayColumnTwo.map(function(article, index){
+                        var description = article.description
+                        if(description.length > 50){description = description.slice(0,50)+'...'}
                         return(
                             <div className='row eachArticle' key={index} style={{margin:1, marginBottom:20, padding:15,height:'100%',borderRadius:'3%'}}>
                                 <a href={article.url} style={{color:'black'}}>
                                     <img src={article.urlToImage} style={{width:'100%', height:'120%', marginBottom:7, borderRadius:'3%'}} alt="a"/>
                                     <div className='col-xs-12' style={{padding:0}}>{article.title}</div>
-                                    <div className='col-xs-12 text-left' style={{color:'grey',padding:0}}>{article.description}</div>
+                                    <div className='col-xs-12 text-left' style={{color:'grey',padding:0}}>{description}</div>
                                     <div className='col-xs-12' style={{width:'100%', color:'grey', marginTop:10, padding:0}}>By {article.author}</div>
                                 </a>
                             </div>
@@ -71,12 +74,14 @@ class ArticleImages extends Component{
                 <div className='col-xs-12 col-sm-6' style={{padding:0}}>
                 <div className='col-xs-12 col-md-12 col-lg-6' style={{marginTop:25}}>
                     {imageArrayColumnThree.map(function(article, index){
+                        var description = article.description
+                        if(description.length > 50){description = description.slice(0,50)+'...'}
                         return(
                             <div className='row eachArticle' key={index} style={{margin:1, marginBottom:20, padding:15,height:'100%',borderRadius:'3%'}}>
                                                                 <a href={article.url} style={{color:'black'}}>
                                     <img src={article.urlToImage} style={{width:'100%', height:'120%', marginBottom:7, borderRadius:'3%'}} alt="a"/>
                                     <div className='col-xs-12' style={{padding:0}}>{article.title}</div>
-                                    <div className='col-xs-12 text-left' style={{color:'grey',padding:0}}>{article.description}</div>
+                                    <div className='col-xs-12 text-left' style={{color:'grey',padding:0}}>{description}</div>
                                     <div className='col-xs-12' style={{width:'100%', color:'grey', marginTop:10, padding:0}}>By {article.author}</div>
                                 </a>
                             </div>
@@ -85,12 +90,14 @@ class ArticleImages extends Component{
                 </div>
                 <div className='col-xs-12 col-md-12 col-lg-6' style={{marginTop:25}}>
                     {imageArrayColumnFour.map(function(article, index){
+                        var description = article.description
+                        if(description.length > 50){description = description.slice(0,50)+'...'}
                         return(
                             <div className='row eachArticle' key={index} style={{marginTop: 5, marginBottom:20, padding:15,height:'100%',borderRadius:'3%'}}>
                                                                 <a href={article.url} style={{color:'black'}}>
                                     <img src={article.urlToImage} style={{width:'100%', height:'120%', marginBottom:7, borderRadius:'3%'}} alt="a"/>
                                     <div className='col-xs-12' style={{padding:0}}>{article.title}</div>
-                                    <div className='col-xs-12 text-left' style={{color:'grey',padding:0}}>{article.description}</div>
+                                    <div className='col-xs-12 text-left' style={{color:'grey',padding:0}}>{description}</div>
                                     <div className='col-xs-12' style={{width:'100%', color:'grey', marginTop:10, padding:0}}>By {article.author}</div>
                                 </a>
                             </div>
