@@ -32,11 +32,8 @@ h1{
 	clear: both;
 }
 
-.indiv_slide{
-	height: 100%;
-	width: 100%;
-	display: block;
-	text-align: center;
+.slick-list{
+	padding: 0px !important;
 }
 
 .second{

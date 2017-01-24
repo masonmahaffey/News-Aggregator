@@ -23,7 +23,7 @@ class ArticleColOne extends React.Component{
 				<div key={index}>
 					<div key={index}>
 						<div style={{margin:'auto', marginBottom: 10, textAlign:'center'}} className="row">
-							<div style={{fontSize: 16, margin:'4%', textAlign:'center'}}><a target="_blank" href={article.url}><img src={article.urlToImage} alt='s'
+							<div style={{fontSize: 16, margin:'4%'}}><a target="_blank" href={article.url}><img src={article.urlToImage} alt='s'
 								style={{width:'65%', height:'45%', margin:'auto', textAlign:'center', border:'1px solid black'}} /></a>
 								<br/>
 								<a target="_blank" style={{color:'black', fontWeight:500, fontSize:15}} href={article.url}></a>
@@ -74,7 +74,7 @@ class ArticleColTwo extends React.Component{
 		return(
 		
 			<div className="espn_articles">
-				<SimpleSlider articles={this.props.articles} />
+				<SimpleSlider className="hidden-xs" articles={this.props.articles} />
 	 			{this.props.articles.map(function(article, index){
 	 					//return the other ESPN headlines as smaller
 						return(

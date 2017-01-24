@@ -14,19 +14,20 @@ var SimpleSlider = React.createClass({
       autoplay: true,
       autoplaySpeed: 4000,
       adaptiveHeight: true,
-      className: 'indiv_slide',
+      className: 'indiv_slidee',
       arrows: false,
       pauseOnHover: true,
       useCSS: true,
-      centerMode: true
+      centerMode: true,
+      variableWidth: true
   
     };
 
     // console.log(this.props.articles)
     var imgURL = []
          {this.props.articles.map(function(article, index){
-          imgURL.push(<div key={index}><a target="_blank" href={article.url}>
-                        <img src={article.urlToImage} styles={{padding:50}}/></a></div>)}
+          imgURL.push(<div className="anna" key={index}><a target="_blank" href={article.url}>
+                        <img src={article.urlToImage} styles={{padding:0}}/></a></div>)}
         )}
     var titles = []
       {this.props.articles.map(function(article, index){
