@@ -13,33 +13,50 @@ var SimpleSlider = React.createClass({
       slidesToScroll: 1,
       autoplay: true,
       autoplaySpeed: 3000,
-      centerMode: true,
       adaptiveHeight: true,
-      className: 'slides',
+      className: 'row',
       arrows: false,
       pauseOnHover: true,
-      useCSS:true
+      useCSS: true,
+      centerMode: true
+  
     };
 
-    console.log(this.props.articles)
+    // console.log(this.props.articles)
     var imgURL = []
          {this.props.articles.map(function(article, index){
-          imgURL.push(<div className="row" key={index}><a target="_blank" href={article.url}><img src={article.urlToImage} /></a></div>)}
+          imgURL.push(<div key={index}><a target="_blank" href={article.url}>
+                        <img src={article.urlToImage} /></a></div>)}
         )}
     var titles = []
       {this.props.articles.map(function(article, index){
-        titles.push(<div className="row"key={index}><a target="_blank" href={article.url}>{article.title}</a></div>)
+        titles.push(<div className="row slider_titles" key={index}><a target="_blank" href={article.url}>{article.title}</a></div>)
       })}
 
     return (
- 
+      
       <div className="slider">
         <Slider{...settings}>
-          <div>{imgURL[0]}<div>{titles[0]}</div></div>
-          <div>{imgURL[1]}<div>{titles[1]}</div></div>
-          <div>{imgURL[2]}<div>{titles[2]}</div></div>
-          <div>{imgURL[3]}<div>{titles[3]}</div></div>
-          <div>{imgURL[4]}<div>{titles[4]}</div></div>
+          <div>
+            <div>{imgURL[0]}</div>
+            <div>{titles[0]}</div>
+          </div>
+          <div>
+            <div>{imgURL[1]}</div>
+            <div>{titles[1]}</div>
+          </div>
+          <div>
+            <div>{imgURL[2]}</div>
+            <div>{titles[2]}</div>
+          </div>
+          <div>
+            <div>{imgURL[3]}</div>
+            <div>{titles[3]}</div>
+          </div>
+          <div>
+            <div>{imgURL[4]}</div>
+            <div>{titles[4]}</div>
+          </div>
         </Slider>
       </div>
     );
