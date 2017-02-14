@@ -6,8 +6,8 @@ const apiMain = 'https://newsapi.org/v1/articles?source=';
 const apiTail = '&apiKey='
 import { Link } from 'react-router'
 var symbol = 'GOOG+FB+AAPL+AMZN'
-var stockFront = 'http://query.yahooapis.com/v1/public/yql?q=select%20*%20from%20yahoo.finance.quotes%20where%20symbol%20in%20("'
-var stockTail = '")%0A%09%09&env=http%3A%2F%2Fdatatables.org%2Falltables.env&format=json'
+var stockFront = 'http://query.yahooapis.com/v1/public/yql?q=select%20%2a%20from%20yahoo.finance.quotes%20where%20symbol%20in%20%28%22'
+var stockTail = '%22%29&env=store://datatables.org/alltableswithkeys&format=json'
 var stockUrl = stockFront + symbol + stockTail
 
 //business category
@@ -66,7 +66,9 @@ class Stocks extends Component {
     	
 	};
 	 componentDidMount() {
+	 	console.log(stockUrl)
 		$.getJSON(stockUrl, (stockData) =>{
+			console.log(stockData)
 			var stockArr = stockData.query.results.quote
 			var stockArrMin = []
 			for(let i = 0; i < stockArr.length; i++){

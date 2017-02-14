@@ -41,7 +41,7 @@ class ArticleImages extends Component{
                 <div className='col-xs-12 col-md-12 col-lg-6' style={{marginTop:25}}>
                     {imageArrayColumnOne.map(function(article, index){
                         var description = article.description
-                        if(description.length > 70){description = description.slice(0,70)+'...'}
+                        if(description.length > 50){description = description.slice(0,50)+'...'}
                         return(
                             <div className='row eachArticle' key={index} style={{margin:1, marginBottom:20, padding:15,height:'100%',borderRadius:'3%'}}>
                                 <a href={article.url} style={{color:'black'}}>

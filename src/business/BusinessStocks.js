@@ -5,8 +5,8 @@ import StockSearch from './StocksSearch.js'
 import StockHeader from './StockMarkets.js'
 
 var symbol = 'BAC+FB+TSLA+WPX+WFC+RAD+FCX+AAPL+F+GE+JCP+JPM+VALE+FCAU+FTI+T+GOOG+S+DOW+TWTR+CSCO+INTC+QQQ+MU+XIV+NVDA+NFLX+JNJ+HBAN+ARRY+CMCSA+TVIX+GRPN+ARIA+MSFT+SIRI'
-var stockFront = 'http://query.yahooapis.com/v1/public/yql?q=select%20*%20from%20yahoo.finance.quotes%20where%20symbol%20in%20("'
-var stockTail = '")%0A%09%09&env=http%3A%2F%2Fdatatables.org%2Falltables.env&format=json'
+var stockFront = 'http://query.yahooapis.com/v1/public/yql?q=select%20%2a%20from%20yahoo.finance.quotes%20where%20symbol%20in%20%28%22'
+var stockTail = '%22%29&env=store://datatables.org/alltableswithkeys&format=json'
 var stockUrl = stockFront + symbol + stockTail
 
 //parent of Stock.js, StockSearch.js, StockMarkets.js
