@@ -1,13 +1,13 @@
-#Upd8ed: Aggregated. Upd8ed.
+# Upd8ed: Aggregated. Upd8ed.
 
-#The MSON Objects
+# The MSON Objects
 
-##Description/Overview
+## Description/Overview
 Upd8ed, a news aggregator, is a demonstration of the front-end skills we have learned during our time thus far in coding bootcamp. We have created a one-stop shop by pulling the latest business, entertainment, global, sports news from a variety of sources for the viewer. Upd8ed replicates the functionality of google news with the influence of Reddit.com and Pinterest.com.
 
 [Live URL](https://www.pauldkang.com/news)
 
-##Table of contents
+## Table of contents
 
 [Description/Overview](#description/overview)
 
@@ -29,7 +29,7 @@ Upd8ed, a news aggregator, is a demonstration of the front-end skills we have le
 
 
 
-##Technologies
+## Technologies
 The following languages, frameworks and APIs were used:
 
   * HTML
@@ -51,7 +51,7 @@ The following languages, frameworks and APIs were used:
   * Yahoo Finance API
 
 
-##Challenges and Solutions
+## Challenges and Solutions
 1.  **Challenge:** Organizing styling and layout when working with ReactDOM, bootstrap, and original CSS. Certain layouts conflicted with how we wanted to style each page using Bootstrap. 
 
    **Solution:** This was an issue throughout the entire project. We developed unique solutions for each page depending on what best fit it. With the entertainment page, the code was rewritten to allow for easier styling and reduce unecessary white space. 
@@ -71,10 +71,10 @@ First we made a global array of all the news sources (60 items), Then we made th
    **Solution:** The React Slider component the sports page was cloned from github user akiran. Because of it's pre-written rules, styling it according to our data needs proved very difficult. There were customizable settings, none of which gave us the usability required. Teasing out an effective fix was a hack job that took time, but ultimately we succeeded by targeting hidden CSS classes and overwriting their value using '!important'. It's not pretty, but it works
 
 
-##GitHub Link
+## GitHub Link
 [Upd8ed](https://github.com/mason0958/News-Aggregator)
 
-##Code Snippets and Screenshots
+## Code Snippets and Screenshots
 
 Although not necessarily apparent in this screenshot, the stocks on the left side of the page are constantly being updated. Notice also that header below the nav bar displays up to date information on whether a stock market is currently open as well as the local time. 
 
@@ -268,7 +268,7 @@ And just to make sure our website is mobile-friendly, we tested each page by shr
 
 ![alt](screenshots/NewsProjectScreenshots/businessMobileView.png)
 
-##MVP (Minimal Viable Product)
+## MVP (Minimal Viable Product)
 **Top news page:** displaying the current weather and a few top news articles from each page (entertainment, sports, business and world)
 
 **Entertainment page:** displaying the latest articles from Entertainment-Weekly, Buzzfeed, MTV, MTV-UK and Daily Mail
@@ -279,13 +279,13 @@ And just to make sure our website is mobile-friendly, we tested each page by shr
 
 **World:** displaying the latest top articles from each continent
 
-##Stretch Goals
+## Stretch Goals
 1. Upvote/downvote option for users
 2. Option to share articles on social media
 3. Backend server
 4. Displaying articles in an Iframe modal
 
-##Team Members and Contributions
+## Team Members and Contributions
 All team members are full stack web development students of the [DigitalCrafts](http://www.digitalcrafts.com/) November 2016 cohort. This project utilizes our frontend skills that we have learned along with pair programming and SCRUM agile development methodology. We used Taiga to implement a Kanban task scheduling system to practice agile software development. 
 
 ![alt](screenshots/NewsProjectScreenshots/kanban.png)
@@ -317,7 +317,7 @@ All team members are full stack web development students of the [DigitalCrafts](
 
 **I want to help out!**
 
-*If you would like to report an issue with our code or a suggest a way to improve it, simply contact one of us. We are always looking for ways to improve!* 
+* If you would like to report an issue with our code or a suggest a way to improve it, simply contact one of us. We are always looking for ways to improve!* 
 
 If you would like to contribute to our project, we are looking to add the the following:
 
@@ -329,7 +329,7 @@ If you would like to contribute to our project, we are looking to add the the fo
 
 
 
-##Project Timeline
-Project start: 1/18/2017
+## Project Timeline
+* Project start: 1/18/2017
 
-Project completion: 1/24/2017
+* Project completion: 1/24/2017
